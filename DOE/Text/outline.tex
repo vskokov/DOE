@@ -22,7 +22,7 @@
 
 
 % Section 1
-\section{Proposed Research: Multi-particle production and correlations at small $x$ in p-p/A and 
+\section{Proposed Research: Multi particle production and correlations at small $x$ in p-p/A and 
 e-A collisions}
     \label{sec:p1}
 
@@ -30,8 +30,8 @@ e-A collisions}
     \subsection{Background}
     \label{sec:p1b}
 
-Below we list essential background material and motivations for major
-goals of the proposed research in this topic. 
+Below we discuss the essential background material and motivations for major
+goals of the proposed research on this topic. 
 
 \subsubsection*{Particle production in classical approximation}
 	
@@ -86,15 +86,15 @@ Functions $f_2 , f_3 , \ldots$ are
 not known analytically at present.
 Here we want to explain what we mean by  analytical results, 
 as e.g. $f_i$ may still involve rather  complicated momentum integrals 
-of  Wilson lines of the target field. 
+of  Wilson lines of the target field, see also Eq.~\eqref{eq:SIPc}. 
 Getting to a number, often requires using $f_i$ to 
 conduct numerical lattice simulations. This is why in what follow we 
-refer to this as semi-analytical approach. 
+often refer to this as semi-analytical approach. 
 In contrast to numerical Classical Yang-Mills (CYM)
 calculations, $f_i$ require neither numerical solution 
 for the proper time dependence nor numerical implementation of 
 LSZ (projection of gluon field time evolution to asymptotic particle states). 
-In comparison to numerical CYM, the dilute-dense semi-analytic 
+Aslo the advantage of this approach is that, in contrast to numerical CYM, the dilute-dense semi-analytic 
 results facilitates inclusion of small $x$ evolution, 
 running coupling corrections and, finally, it is superior 
 in terms of simulation time. 
@@ -107,12 +107,12 @@ projectile, since it comes in with two powers of $Q_{sp}^2/k^2$,
 corresponding to interactions with two valence sources in the projectile. 
 The efforts to calculate $f_2$ analytically was started in
 \myref\cite{Balitsky:2004rr} and more recently revisited in
-\myref\cite{Chirilli:2015tea}. Despite of this effort, only $f_2$ is known only partially 
+\myref\cite{Chirilli:2015tea}. Despite of this effort,  $f_2$ is known only partially 
 and its complete analytic calculation is one of the goals of this proposal. 
 Phenomenologically $f_2$ is of paramount importance because it defines the first non-trivial 
-correction to the dilute-dense approximation and thus provides a systematic
+correction to the strict dilute-dense approximation and thus provides a systematic
 check on the applicability/convergence  of this approximation. 
-$f_2$ will also bridge the gap between dilute-dense and dense-dense 
+$f_2$  also bridges the gap between dilute-dense and dense-dense 
 approaches. 
 
 
@@ -135,7 +135,7 @@ approaches.
 %to determine $f_2$!
  
  
-The same discussion but with greater effect applies to the two-gluon production. For the
+The same discussion  applies to the two- gluon production. For the
 classical two-gluon production cross section one can write
 \begin{align}
 	\frac{dN}{d^2 k_1 \, d^2 b_1 \, d^2 k_2 \, d^2 b_2 \, d^2 B} 
@@ -166,7 +166,7 @@ the function $h_1$ involves four Wilson lines (quadrupole).
 This
 part of the two-gluon production cross section is even 
 under the reflection of either momenta $k_1$ or $k_2$ and thus 
-generates  only even harmonics. This is why finding the function $h_2$ 
+generates  only even harmonics of azimuthal anisotropy. This is why finding the function $h_2$ 
 was one of the highest priorities for saturation/CGC community. 
 Recently, in Refs.~\cite{McLerran:2016snu,Kovchegov:2018jun},
 it was shown that the accidental symmetry with respect to the 
@@ -221,8 +221,8 @@ Recently, at small $x$, this problem has been attacked from different angles,
 but lead to the universal result on the approximate negative binomial 
 distribution for the high multiplicity tail, see e.g. Ref.~\cite{Liou:2016mfr,Kovner:2018azs}.  
 In particular, PI with collaborators, derived an effective action describing 
-the covariant gauge gluon field ($A^+$)  distribution in a hadron both for the McLerran-Venugopalan 
-model~\cite{McLerran:1993ni,McLerran:1993ka} and for a (non-local) Gaussian 
+the covariant gauge gluon field ($A^+$)  distribution in a hadron both in the McLerran-Venugopalan 
+model~\cite{McLerran:1993ni,McLerran:1993ka} and in a (non-local) Gaussian 
 approximation~\cite{Iancu:2002tr} 
 for the small-x density matrix of 
 the valence charge distribution. It was shown that the corresponding effective action is a Liouville action (without kinetic term and with negative Ricci scalar):
@@ -288,7 +288,7 @@ high multiplicity tail, as most of the generated configurations are close to the
 one. 
 
 One of the goals of this proposal is to develop a theoretical high multiplicity ``trigger'', 
-i.e. the reweighting technique giving an efficient access to the high multiplicity tail.   
+i.e. the reweighting technique providing  an efficient access to the high multiplicity tail.   
 
 \subsubsection*{Small-x evolution}
 Apart from the general advantage of having a semi-analytic solution, 
@@ -303,15 +303,15 @@ JalilianMarian:1997dw,
 JalilianMarian:1997gr,
 Iancu:2001ad, 
 Iancu:2000hn}.
-Presently, in this framework,  the small-$x$ evolutions has not been accounted for 
+Presently, in this framework,  the small-$x$ evolution has not been accounted for 
 with rare exceptions and only
 for single inclusive gluon production, see e.g. in Ref.~\cite{Dumitru:2018iko}. 
-Usually, dependence on $x$ is approximated by the IP-SAT model~\cite{Kowalski:2003hm,Rezaeian:2012ji},
-which solves leading order  DGLAP (Dokshitzer--Gribov--Lipatov--Altarelli--Parisi)  gluon evolution (neglecting its coupling to quarks) 
+Usually, the dependence on $x$ is approximated by the IP-SAT model~\cite{Kowalski:2003hm,Rezaeian:2012ji},
+which solves the leading order  DGLAP (Dokshitzer--Gribov--Lipatov--Altarelli--Parisi)  gluon evolution (neglecting its coupling to quarks) 
 with analytically parametrized $x$ dependence at an initial 
 transverse scale $\mu_0$. 
 This approach provides a flexible and numerically simple method 
-to phenomenology. Nonetheless, incorporating actual non-linear 
+to the phenomenology. Nonetheless, incorporating actual non-linear 
 small $x$ evolution is essential to study physics 
 of high partonic densities and to extract phenomenological results from first principles.  
 Doing so in the framework of JIMWLK (Jalilian-Marian--Iancu--McLerran--Weigert--Leonidov--Kovner) equation 
@@ -328,8 +328,8 @@ the Wilson line. Owing to its complexity, no analytic solution of the JIMWLK equ
 Its solution has been obtained only numerically, using lattice gauge theory methods for the
  Langevin form of JIMWLK equation.
 
- At NLO, JIMWLK equation does not allow for a straightforward reformulation in the Langevin form~\cite{Kovner:2014lca}. 
- This is why NLO JIMWLK equation has not been solved numerically yet. 	
+ At NLO, the JIMWLK equation does not allow for a straightforward reformulation in the Langevin form~\cite{Kovner:2014lca,Balitsky:2013fea}. 
+ This is why the NLO JIMWLK equation has not been solved numerically yet. 	
 
 
 
