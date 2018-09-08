@@ -1,0 +1,3255 @@
+% flatex input: [main.tex]
+%\documentclass[%
+%,aps%
+% ,onecolumn%
+%,amssymb, amsmath,
+%nobibnotes, aps, prd, preprint]{revtex4-1}
+
+\documentclass{DOEproposal}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{latexsym}
+\usepackage{epsfig}
+\usepackage{epstopdf}
+\usepackage{graphicx}
+\usepackage[footnotesize,bf]{caption}
+\usepackage[final]{pdfpages}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,        % false: boxed links; true: colored links
+    linkcolor=blue,         % color of internal links
+    citecolor=black,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=magenta,       % color of external links
+    pdfstartview=           % omit this key from pdf dictionary so reader 
+}                           %     just uses user default
+
+\usepackage{floatrow}
+\usepackage{mathtools}
+% ----------------------------------
+% Things to remove!
+% ----------------------------------
+% Add line numbers to draft
+\usepackage{lineno}
+\linenumbers
+% Lorem ipsum generator for template
+%\usepackage{lipsum}
+\newcommand{\lipsum}[1][1]{}
+\newcommand{\TODO}{\color{red} \bf}
+% Some definition to make collab. 
+% editing easier. 
+% flatex input: [edit.tex]
+% ================================================
+% Assign each person a color for in=text comments.
+% ================================================
+\usepackage[dvipsnames]{xcolor}
+% For a list of named colors, see:
+%     https://en.wikibooks.org/wiki/LaTeX/Colors#The_68_standard_colors_known_to_dvips
+
+% --------------------------------------------------------------------------
+% These definitions define a \NAME command which, when used like:
+%    \NAME{Some comment.}
+% will produce:
+%    NAME says:  Some commnet.
+% in the generated PDF. The comment will also be colored with NAME's color. 
+% --------------------------------------------------------------------------
+% A cool person 
+\newcommand{\cool}[1]{{\color{Red}Cool says:~#1}}
+
+
+% flatex input end: [edit.tex]
+% ----------------------------------
+
+
+\newcommand{\myref}{Ref.~}
+\newcommand{\myrefs}{Refs.~}
+\def\wt#1{\widetilde{#1}}
+\def\gsim{ \,\, \vcenter{\hbox{$\buildrel{\displaystyle >}\over\sim$}}
+ \,\,}
+\def\lsim{ \,\, \vcenter{\hbox{$\buildrel{\displaystyle <}\over\sim$}}
+ \,\,}
+\newcommand{\as}{\alpha_s}
+
+
+
+\def\be{\begin{equation}}
+\def\ee{\end{equation}}
+\def\bea{\begin{eqnarray}}
+\def\eea{\end{eqnarray}}
+
+\def\beq{\begin{equation}}
+\def\eeq{\end{equation}}
+
+\newcommand{\nn}{\notag \\}
+
+\newcommand{\CGCket}{|{\rm CGC}\rangle}
+\newcommand{\CGCbra}{\langle {\rm CGC}|}
+
+
+\def\vp#1{\vec{#1}_\perp}
+\def\d{\dagger}
+\def\lrd{\overset{\leftrightarrow}{\partial_0}}
+
+\newcommand{\pvec}[1]{\vec{#1}\mkern2mu\vphantom{#1}}
+\def\pvp#1{\pvec{#1}'_\perp}
+
+
+
+
+
+
+
+% Use roman numerals to number all pages before the narrative.
+\pagenumbering{roman}
+
+% The PI's information
+\investigator{Vladimir Skokov}
+\institute{North Carolina State University}
+\phone{\dots}
+\email{vskokov@ncsu.edu}
+
+% setup the title page.
+% NOTE: you'll have to edit the imported file.
+\title{QuantumChromodynamics at extreme gluon densities}
+\date{August 22, 2018}
+\renewcommand*{\maketitle}{% flatex input: [Text/title_page.tex]
+\begin{titlepage}
+    \begin{center}
+        { \Large \bf \Title }
+        
+        \vspace{1em}
+        A proposal submitted to the DOE Office of Science \\
+        \Date \\
+        
+        \vspace{1em}
+        \emph{Funding Opportunity Announcement Number:} DE FOA 0001820 \\                                                                          
+        \emph{DOE Office of Science Program Manager:} George Fai \\
+        
+        \vspace{1em}
+        \begin{table}[h!]                                                                                         
+            \centering
+            \begin{tabular}{ l l }                                                                                   
+                \emph{Proposing Organization:}  &  \Institute \\[1em]
+                
+                \emph{Principal Investigator:}  & \Investigator \\         
+                & Physics Department, College of Sciences \\ 
+				&North Carolina State University \\
+                & Raleigh, NC 27695\\ 
+                & Phone: \Phone \\ 
+                & Email: \Email \\[1em]
+
+                \emph{Requested Funding:} & {\$100/year for three years} \\
+                \emph{Total Request:}     & {\$300}   \\
+            \end{tabular}
+        \end{table}
+    
+        \vspace{1em}
+        Budget Summary: \\
+        \vspace{0.5em}
+        \begin{tabular}{|r|r|r|}                                                                                   
+            \hline
+            {\bf }  {\bf Year 1} & {\bf Year 2} & {\bf Year 3} \\
+            \hline
+             \$100K & \$100K & \$100K \\ \hline
+        \end{tabular}
+    \end{center}
+\end{titlepage}                                                                                                         
+
+
+% flatex input end: [Text/title_page.tex]
+
+
+
+\usepackage[TS1,T1]{fontenc}
+\usepackage{fourier, heuristica}
+\usepackage{array,longtable}
+\DeclareCaptionFont{blue}{\color{LightSteelBlue3}}
+
+\newcommand{\foo}{\color{LightSteelBlue3}\makebox[0pt]{\textbullet}\hskip-0.5pt\vrule width 1pt\hspace{\labelsep}}
+
+
+
+
+
+%\bibliographystyle{abbrvnat}
+%*flatex input: [main.bbl]
+%merlin.mbs apsrev4-1.bst 2010-07-25 4.21a (PWD, AO, DPC) hacked
+%Control: key (0)
+%Control: author (72) initials jnrlst
+%Control: editor formatted (1) identically to author
+%Control: production of article title (-1) disabled
+%Control: page (0) single
+%Control: year (1) truncated
+%Control: production of eprint (0) enabled
+\begin{thebibliography}{115}%
+\makeatletter
+\providecommand \@ifxundefined [1]{%
+ \@ifx{#1\undefined}
+}%
+\providecommand \@ifnum [1]{%
+ \ifnum #1\expandafter \@firstoftwo
+ \else \expandafter \@secondoftwo
+ \fi
+}%
+\providecommand \@ifx [1]{%
+ \ifx #1\expandafter \@firstoftwo
+ \else \expandafter \@secondoftwo
+ \fi
+}%
+\providecommand \natexlab [1]{#1}%
+\providecommand \enquote  [1]{``#1''}%
+\providecommand \bibnamefont  [1]{#1}%
+\providecommand \bibfnamefont [1]{#1}%
+\providecommand \citenamefont [1]{#1}%
+\providecommand \href@noop [0]{\@secondoftwo}%
+\providecommand \href [0]{\begingroup \@sanitize@url \@href}%
+\providecommand \@href[1]{\@@startlink{#1}\@@href}%
+\providecommand \@@href[1]{\endgroup#1\@@endlink}%
+\providecommand \@sanitize@url [0]{\catcode `\\12\catcode `\$12\catcode
+  `\&12\catcode `\#12\catcode `\^12\catcode `\_12\catcode `\%12\relax}%
+\providecommand \@@startlink[1]{}%
+\providecommand \@@endlink[0]{}%
+\providecommand \url  [0]{\begingroup\@sanitize@url \@url }%
+\providecommand \@url [1]{\endgroup\@href {#1}{\urlprefix }}%
+\providecommand \urlprefix  [0]{URL }%
+\providecommand \Eprint [0]{\href }%
+\providecommand \doibase [0]{http://dx.doi.org/}%
+\providecommand \selectlanguage [0]{\@gobble}%
+\providecommand \bibinfo  [0]{\@secondoftwo}%
+\providecommand \bibfield  [0]{\@secondoftwo}%
+\providecommand \translation [1]{[#1]}%
+\providecommand \BibitemOpen [0]{}%
+\providecommand \bibitemStop [0]{}%
+\providecommand \bibitemNoStop [0]{.\EOS\space}%
+\providecommand \EOS [0]{\spacefactor3000\relax}%
+\providecommand \BibitemShut  [1]{\csname bibitem#1\endcsname}%
+\let\auto@bib@innerbib\@empty
+%</preamble>
+\bibitem [{\citenamefont {Shuryak}(2004)}]{Shuryak:2003xe}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
+  {Shuryak}},\ }\bibfield  {booktitle} {\emph {\bibinfo {booktitle} {{Heavy ion
+  reaction from nuclear to quark matter. Proceedings, International School of
+  Nuclear Physics, 25th Course, Erice, Italy, September 16-24, 2003}}},\ }\href
+  {\doibase 10.1016/j.ppnp.2004.02.025} {\bibfield  {journal} {\bibinfo
+  {journal} {Prog. Part. Nucl. Phys.}\ }\textbf {\bibinfo {volume} {53}},\
+  \bibinfo {pages} {273} (\bibinfo {year} {2004})},\ \Eprint
+  {http://arxiv.org/abs/hep-ph/0312227} {arXiv:hep-ph/0312227 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/0312227;%%
+\bibitem [{\citenamefont {Shuryak}(2005)}]{Shuryak:2004cy}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.~V.}\ \bibnamefont
+  {Shuryak}},\ }\bibfield  {booktitle} {\emph {\bibinfo {booktitle} {{Quark
+  gluon plasma. New discoveries at RHIC: A case of strongly interacting quark
+  gluon plasma. Proceedings, RBRC Workshop, Brookhaven, Upton, USA, May 14-15,
+  2004}}},\ }\href {\doibase 10.1016/j.nuclphysa.2004.10.022} {\bibfield
+  {journal} {\bibinfo  {journal} {Nucl. Phys.}\ }\textbf {\bibinfo {volume}
+  {A750}},\ \bibinfo {pages} {64} (\bibinfo {year} {2005})},\ \Eprint
+  {http://arxiv.org/abs/hep-ph/0405066} {arXiv:hep-ph/0405066 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/0405066;%%
+\bibitem [{\citenamefont {Adams}\ \emph {et~al.}(2005)\citenamefont {Adams}
+  \emph {et~al.}}]{Adams:2005dq}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Adams}} \emph {et~al.} (\bibinfo {collaboration} {STAR}),\ }\href {\doibase
+  10.1016/j.nuclphysa.2005.03.085} {\bibfield  {journal} {\bibinfo  {journal}
+  {Nucl. Phys.}\ }\textbf {\bibinfo {volume} {A757}},\ \bibinfo {pages} {102}
+  (\bibinfo {year} {2005})},\ \Eprint {http://arxiv.org/abs/nucl-ex/0501009}
+  {arXiv:nucl-ex/0501009 [nucl-ex]} \BibitemShut {NoStop}%
+%%CITATION = NUCL-EX/0501009;%%
+\bibitem [{\citenamefont {Song}\ \emph {et~al.}(2011)\citenamefont {Song},
+  \citenamefont {Bass}, \citenamefont {Heinz}, \citenamefont {Hirano},\ and\
+  \citenamefont {Shen}}]{Song:2010mg}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Song}}, \bibinfo {author} {\bibfnamefont {S.~A.}\ \bibnamefont {Bass}},
+  \bibinfo {author} {\bibfnamefont {U.}~\bibnamefont {Heinz}}, \bibinfo
+  {author} {\bibfnamefont {T.}~\bibnamefont {Hirano}}, \ and\ \bibinfo {author}
+  {\bibfnamefont {C.}~\bibnamefont {Shen}},\ }\href {\doibase
+  10.1103/PhysRevLett.106.192301, 10.1103/PhysRevLett.109.139904} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo
+  {volume} {106}},\ \bibinfo {pages} {192301} (\bibinfo {year} {2011})},\
+  \bibinfo {note} {[Erratum: Phys. Rev. Lett.109,139904(2012)]},\ \Eprint
+  {http://arxiv.org/abs/1011.2783} {arXiv:1011.2783 [nucl-th]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1011.2783;%%
+\bibitem [{\citenamefont {Schäfer}\ and\ \citenamefont
+  {Teaney}(2009)}]{Schafer:2009dj}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {T.}~\bibnamefont
+  {Schäfer}}\ and\ \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
+  {Teaney}},\ }\href {\doibase 10.1088/0034-4885/72/12/126001} {\bibfield
+  {journal} {\bibinfo  {journal} {Rept. Prog. Phys.}\ }\textbf {\bibinfo
+  {volume} {72}},\ \bibinfo {pages} {126001} (\bibinfo {year} {2009})},\
+  \Eprint {http://arxiv.org/abs/0904.3107} {arXiv:0904.3107 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = ARXIV:0904.3107;%%
+\bibitem [{\citenamefont {Romatschke}\ and\ \citenamefont
+  {Romatschke}(2017)}]{Romatschke:2017ejr}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {P.}~\bibnamefont
+  {Romatschke}}\ and\ \bibinfo {author} {\bibfnamefont {U.}~\bibnamefont
+  {Romatschke}},\ }\href@noop {} {\  (\bibinfo {year} {2017})},\ \Eprint
+  {http://arxiv.org/abs/1712.05815} {arXiv:1712.05815 [nucl-th]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1712.05815;%%
+\bibitem [{\citenamefont {Iancu}\ \emph
+  {et~al.}(2002{\natexlab{a}})\citenamefont {Iancu}, \citenamefont {Leonidov},\
+  and\ \citenamefont {McLerran}}]{Iancu:2002xk}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
+  {Iancu}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Leonidov}}, \
+  and\ \bibinfo {author} {\bibfnamefont {L.}~\bibnamefont {McLerran}},\ }in\
+  \href@noop {} {\emph {\bibinfo {booktitle} {{QCD perspectives on hot and
+  dense matter. Proceedings, NATO Advanced Study Institute, Summer School,
+  Cargese, France, August 6-18, 2001}}}}\ (\bibinfo {year} {2002})\ pp.\
+  \bibinfo {pages} {73--145},\ \Eprint {http://arxiv.org/abs/hep-ph/0202270}
+  {arXiv:hep-ph/0202270 [hep-ph]} \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/0202270;%%
+\bibitem [{\citenamefont {Albacete}\ and\ \citenamefont
+  {Marquet}(2014)}]{Albacete:2014fwa}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~L.}\ \bibnamefont
+  {Albacete}}\ and\ \bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Marquet}},\ }\href {\doibase 10.1016/j.ppnp.2014.01.004} {\bibfield
+  {journal} {\bibinfo  {journal} {Prog. Part. Nucl. Phys.}\ }\textbf {\bibinfo
+  {volume} {76}},\ \bibinfo {pages} {1} (\bibinfo {year} {2014})},\ \Eprint
+  {http://arxiv.org/abs/1401.4866} {arXiv:1401.4866 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1401.4866;%%
+\bibitem [{\citenamefont {Kovchegov}\ and\ \citenamefont
+  {Levin}(2012)}]{KovchegovLevin}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Y.~V.}\ \bibnamefont
+  {Kovchegov}}\ and\ \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
+  {Levin}},\ }\href@noop {} {\emph {\bibinfo {title} {Quantum Chromodynamics at
+  High Energy}}}\ (\bibinfo  {publisher} {Cambridge University Press},\
+  \bibinfo {year} {2012})\BibitemShut {NoStop}%
+%%CITATION = INSPIRE-1217905;%%
+\bibitem [{\citenamefont {Mantysaari}\ and\ \citenamefont
+  {Schenke}(2016{\natexlab{a}})}]{Mantysaari:2016ykx}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Mantysaari}}\ and\ \bibinfo {author} {\bibfnamefont {B.}~\bibnamefont
+  {Schenke}},\ }\href {\doibase 10.1103/PhysRevLett.117.052301} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo
+  {volume} {117}},\ \bibinfo {pages} {052301} (\bibinfo {year}
+  {2016}{\natexlab{a}})},\ \Eprint {http://arxiv.org/abs/1603.04349}
+  {arXiv:1603.04349 [hep-ph]} \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1603.04349;%%
+\bibitem [{\citenamefont {Mantysaari}\ and\ \citenamefont
+  {Schenke}(2016{\natexlab{b}})}]{Mantysaari:2016jaz}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Mantysaari}}\ and\ \bibinfo {author} {\bibfnamefont {B.}~\bibnamefont
+  {Schenke}},\ }\href {\doibase 10.1103/PhysRevD.94.034042} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume}
+  {D94}},\ \bibinfo {pages} {034042} (\bibinfo {year} {2016}{\natexlab{b}})},\
+  \Eprint {http://arxiv.org/abs/1607.01711} {arXiv:1607.01711 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1607.01711;%%
+\bibitem [{\citenamefont {Mantysaari}\ \emph {et~al.}(2017)\citenamefont
+  {Mantysaari}, \citenamefont {Schenke}, \citenamefont {Shen},\ and\
+  \citenamefont {Tribedy}}]{Mantysaari:2017cni}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Mantysaari}}, \bibinfo {author} {\bibfnamefont {B.}~\bibnamefont {Schenke}},
+  \bibinfo {author} {\bibfnamefont {C.}~\bibnamefont {Shen}}, \ and\ \bibinfo
+  {author} {\bibfnamefont {P.}~\bibnamefont {Tribedy}},\ }\href {\doibase
+  10.1016/j.physletb.2017.07.038} {\bibfield  {journal} {\bibinfo  {journal}
+  {Phys. Lett.}\ }\textbf {\bibinfo {volume} {B772}},\ \bibinfo {pages} {681}
+  (\bibinfo {year} {2017})},\ \Eprint {http://arxiv.org/abs/1705.03177}
+  {arXiv:1705.03177 [nucl-th]} \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1705.03177;%%
+\bibitem [{\citenamefont {Kowalski}\ and\ \citenamefont
+  {Teaney}(2003)}]{Kowalski:2003hm}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Kowalski}}\ and\ \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
+  {Teaney}},\ }\href {\doibase 10.1103/PhysRevD.68.114005} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume}
+  {D68}},\ \bibinfo {pages} {114005} (\bibinfo {year} {2003})},\ \Eprint
+  {http://arxiv.org/abs/hep-ph/0304189} {arXiv:hep-ph/0304189 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/0304189;%%
+\bibitem [{\citenamefont {Jalilian-Marian}\ \emph
+  {et~al.}(1998{\natexlab{a}})\citenamefont {Jalilian-Marian}, \citenamefont
+  {Kovner},\ and\ \citenamefont {Weigert}}]{JalilianMarian:1997dw}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Jalilian-Marian}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Kovner}}, \ and\ \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Weigert}},\ }\href {\doibase 10.1103/PhysRevD.59.014015} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume}
+  {D59}},\ \bibinfo {pages} {014015} (\bibinfo {year} {1998}{\natexlab{a}})},\
+  \Eprint {http://arxiv.org/abs/hep-ph/9709432} {arXiv:hep-ph/9709432 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/9709432;%%
+\bibitem [{\citenamefont {Jalilian-Marian}\ \emph
+  {et~al.}(1998{\natexlab{b}})\citenamefont {Jalilian-Marian}, \citenamefont
+  {Kovner}, \citenamefont {Leonidov},\ and\ \citenamefont
+  {Weigert}}]{JalilianMarian:1997gr}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Jalilian-Marian}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Kovner}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Leonidov}}, \
+  and\ \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont {Weigert}},\ }\href
+  {\doibase 10.1103/PhysRevD.59.014014} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume} {D59}},\ \bibinfo {pages}
+  {014014} (\bibinfo {year} {1998}{\natexlab{b}})},\ \Eprint
+  {http://arxiv.org/abs/hep-ph/9706377} {arXiv:hep-ph/9706377 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/9706377;%%
+\bibitem [{\citenamefont {Iancu}\ \emph
+  {et~al.}(2001{\natexlab{a}})\citenamefont {Iancu}, \citenamefont {Leonidov},\
+  and\ \citenamefont {McLerran}}]{Iancu:2001ad}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
+  {Iancu}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Leonidov}}, \
+  and\ \bibinfo {author} {\bibfnamefont {L.~D.}\ \bibnamefont {McLerran}},\
+  }\href {\doibase 10.1016/S0370-2693(01)00524-X} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Lett.}\ }\textbf {\bibinfo {volume} {B510}},\
+  \bibinfo {pages} {133} (\bibinfo {year} {2001}{\natexlab{a}})}\BibitemShut
+  {NoStop}%
+%%CITATION = HEP-PH/0102009;%%
+\bibitem [{\citenamefont {Iancu}\ \emph
+  {et~al.}(2001{\natexlab{b}})\citenamefont {Iancu}, \citenamefont {Leonidov},\
+  and\ \citenamefont {McLerran}}]{Iancu:2000hn}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
+  {Iancu}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Leonidov}}, \
+  and\ \bibinfo {author} {\bibfnamefont {L.~D.}\ \bibnamefont {McLerran}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Nucl. Phys.}\
+  }\textbf {\bibinfo {volume} {A692}},\ \bibinfo {pages} {583} (\bibinfo {year}
+  {2001}{\natexlab{b}})},\ \Eprint {http://arxiv.org/abs/hep-ph/0011241}
+  {hep-ph/0011241} \BibitemShut {NoStop}%
+%%CITATION = HEP-PH 0011241;%%
+\bibitem [{\citenamefont {Balitsky}(1996)}]{Balitsky:1995ub}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {I.}~\bibnamefont
+  {Balitsky}},\ }\href {\doibase 10.1016/0550-3213(95)00638-9} {\bibfield
+  {journal} {\bibinfo  {journal} {Nucl. Phys.}\ }\textbf {\bibinfo {volume}
+  {B463}},\ \bibinfo {pages} {99} (\bibinfo {year} {1996})},\ \Eprint
+  {http://arxiv.org/abs/hep-ph/9509348} {arXiv:hep-ph/9509348 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/9509348;%%
+\bibitem [{\citenamefont {Balitsky}(1999)}]{Balitsky:1998ya}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {I.}~\bibnamefont
+  {Balitsky}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {Phys. Rev.}\ }\textbf {\bibinfo {volume} {D60}},\ \bibinfo {pages} {014020}
+  (\bibinfo {year} {1999})},\ \Eprint {http://arxiv.org/abs/hep-ph/9812311}
+  {hep-ph/9812311} \BibitemShut {NoStop}%
+%%CITATION = HEP-PH 9812311;%%
+\bibitem [{\citenamefont {Kovchegov}(1999)}]{Kovchegov:1999yj}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Y.~V.}\ \bibnamefont
+  {Kovchegov}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {Phys. Rev.}\ }\textbf {\bibinfo {volume} {D60}},\ \bibinfo {pages} {034008}
+  (\bibinfo {year} {1999})},\ \Eprint {http://arxiv.org/abs/hep-ph/9901281}
+  {hep-ph/9901281} \BibitemShut {NoStop}%
+%%CITATION = HEP-PH 9901281;%%
+\bibitem [{\citenamefont {Kovchegov}(2000)}]{Kovchegov:1999ua}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Y.~V.}\ \bibnamefont
+  {Kovchegov}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {Phys. Rev.}\ }\textbf {\bibinfo {volume} {D61}},\ \bibinfo {pages} {074018}
+  (\bibinfo {year} {2000})},\ \Eprint {http://arxiv.org/abs/hep-ph/9905214}
+  {hep-ph/9905214} \BibitemShut {NoStop}%
+%%CITATION = HEP-PH 9905214;%%
+\bibitem [{\citenamefont {Kharzeev}\ \emph {et~al.}(2008)\citenamefont
+  {Kharzeev}, \citenamefont {McLerran},\ and\ \citenamefont
+  {Warringa}}]{Kharzeev:2007jp}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.~E.}\ \bibnamefont
+  {Kharzeev}}, \bibinfo {author} {\bibfnamefont {L.~D.}\ \bibnamefont
+  {McLerran}}, \ and\ \bibinfo {author} {\bibfnamefont {H.~J.}\ \bibnamefont
+  {Warringa}},\ }\href {\doibase 10.1016/j.nuclphysa.2008.02.298} {\bibfield
+  {journal} {\bibinfo  {journal} {Nucl. Phys.}\ }\textbf {\bibinfo {volume}
+  {A803}},\ \bibinfo {pages} {227} (\bibinfo {year} {2008})},\ \Eprint
+  {http://arxiv.org/abs/0711.0950} {arXiv:0711.0950 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:0711.0950;%%
+\bibitem [{\citenamefont {Stephanov}(2009)}]{Stephanov:2008qz}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.~A.}\ \bibnamefont
+  {Stephanov}},\ }\href {\doibase 10.1103/PhysRevLett.102.032301} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo
+  {volume} {102}},\ \bibinfo {pages} {032301} (\bibinfo {year} {2009})},\
+  \Eprint {http://arxiv.org/abs/0809.3450} {arXiv:0809.3450 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = ARXIV:0809.3450;%%
+\bibitem [{\citenamefont {Munier}\ and\ \citenamefont
+  {Peschanski}(2003)}]{Munier:2003vc}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Munier}}\ and\ \bibinfo {author} {\bibfnamefont {R.~B.}\ \bibnamefont
+  {Peschanski}},\ }\href {\doibase 10.1103/PhysRevLett.91.232001} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo
+  {volume} {91}},\ \bibinfo {pages} {232001} (\bibinfo {year} {2003})},\
+  \Eprint {http://arxiv.org/abs/hep-ph/0309177} {arXiv:hep-ph/0309177 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/0309177;%%
+\bibitem [{\citenamefont {Iancu}\ \emph {et~al.}(2005)\citenamefont {Iancu},
+  \citenamefont {Mueller},\ and\ \citenamefont {Munier}}]{Iancu:2004es}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
+  {Iancu}}, \bibinfo {author} {\bibfnamefont {A.~H.}\ \bibnamefont {Mueller}},
+  \ and\ \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Munier}},\ }\href
+  {\doibase 10.1016/j.physletb.2004.12.009} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Lett.}\ }\textbf {\bibinfo {volume} {B606}},\ \bibinfo
+  {pages} {342} (\bibinfo {year} {2005})},\ \Eprint
+  {http://arxiv.org/abs/hep-ph/0410018} {arXiv:hep-ph/0410018 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/0410018;%%
+\bibitem [{\citenamefont {Kutak}(2011)}]{Kutak:2011rb}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {K.}~\bibnamefont
+  {Kutak}},\ }\href {\doibase 10.1016/j.physletb.2011.09.113} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Lett.}\ }\textbf {\bibinfo {volume}
+  {B705}},\ \bibinfo {pages} {217} (\bibinfo {year} {2011})},\ \Eprint
+  {http://arxiv.org/abs/1103.3654} {arXiv:1103.3654 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1103.3654;%%
+\bibitem [{\citenamefont {Mac}\ and\ \citenamefont {Ugaz}(1989)}]{Mac:1989ki}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
+  {Mac}}\ and\ \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont {Ugaz}},\
+  }\href {\doibase 10.1007/BF01550946} {\bibfield  {journal} {\bibinfo
+  {journal} {Z. Phys.}\ }\textbf {\bibinfo {volume} {C43}},\ \bibinfo {pages}
+  {655} (\bibinfo {year} {1989})}\BibitemShut {NoStop}%
+%%CITATION = ZEPYA,C43,655;%%
+\bibitem [{\citenamefont {Bhalerao}(1996)}]{Bhalerao:1996fc}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {R.~S.}\ \bibnamefont
+  {Bhalerao}},\ }\href {\doibase 10.1016/0370-2693(96)01206-3,
+  10.1016/0370-2693(96)00516-3} {\bibfield  {journal} {\bibinfo  {journal}
+  {Phys. Lett.}\ }\textbf {\bibinfo {volume} {B380}},\ \bibinfo {pages} {1}
+  (\bibinfo {year} {1996})},\ \bibinfo {note} {[Erratum: Phys.
+  Lett.B387,no.4,881(1996)]},\ \Eprint {http://arxiv.org/abs/hep-ph/9607315}
+  {arXiv:hep-ph/9607315 [hep-ph]} \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/9607315;%%
+\bibitem [{\citenamefont {Bourrely}\ \emph {et~al.}(2002)\citenamefont
+  {Bourrely}, \citenamefont {Soffer},\ and\ \citenamefont
+  {Buccella}}]{Bourrely:2001du}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Bourrely}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Soffer}}, \
+  and\ \bibinfo {author} {\bibfnamefont {F.}~\bibnamefont {Buccella}},\ }\href
+  {\doibase 10.1007/s100520100855} {\bibfield  {journal} {\bibinfo  {journal}
+  {Eur. Phys. J.}\ }\textbf {\bibinfo {volume} {C23}},\ \bibinfo {pages} {487}
+  (\bibinfo {year} {2002})},\ \Eprint {http://arxiv.org/abs/hep-ph/0109160}
+  {arXiv:hep-ph/0109160 [hep-ph]} \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/0109160;%%
+\bibitem [{\citenamefont {Kovner}\ and\ \citenamefont
+  {Skokov}(2018{\natexlab{a}})}]{Kovner:2018azs}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Kovner}}\ and\ \bibinfo {author} {\bibfnamefont {V.~V.}\ \bibnamefont
+  {Skokov}},\ }\href {\doibase 10.1103/PhysRevD.98.014004} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume}
+  {D98}},\ \bibinfo {pages} {014004} (\bibinfo {year} {2018}{\natexlab{a}})},\
+  \Eprint {http://arxiv.org/abs/1805.09296} {arXiv:1805.09296 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1805.09296;%%
+\bibitem [{\citenamefont {Peschanski}(2013)}]{Peschanski:2012cw}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {R.}~\bibnamefont
+  {Peschanski}},\ }\href {\doibase 10.1103/PhysRevD.87.034042} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume}
+  {D87}},\ \bibinfo {pages} {034042} (\bibinfo {year} {2013})},\ \Eprint
+  {http://arxiv.org/abs/1211.6911} {arXiv:1211.6911 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1211.6911;%%
+\bibitem [{\citenamefont {Kovner}\ and\ \citenamefont
+  {Lublinsky}(2015)}]{Kovner:2015hga}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Kovner}}\ and\ \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Lublinsky}},\ }\href {\doibase 10.1103/PhysRevD.92.034016} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume}
+  {D92}},\ \bibinfo {pages} {034016} (\bibinfo {year} {2015})},\ \Eprint
+  {http://arxiv.org/abs/1506.05394} {arXiv:1506.05394 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1506.05394;%%
+\bibitem [{\citenamefont {Kharzeev}\ and\ \citenamefont
+  {Levin}(2017)}]{Kharzeev:2017qzs}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.~E.}\ \bibnamefont
+  {Kharzeev}}\ and\ \bibinfo {author} {\bibfnamefont {E.~M.}\ \bibnamefont
+  {Levin}},\ }\href {\doibase 10.1103/PhysRevD.95.114008} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume} {D95}},\
+  \bibinfo {pages} {114008} (\bibinfo {year} {2017})},\ \Eprint
+  {http://arxiv.org/abs/1702.03489} {arXiv:1702.03489 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1702.03489;%%
+\bibitem [{\citenamefont {Shuryak}\ and\ \citenamefont
+  {Zahed}(2018)}]{Shuryak:2017phz}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
+  {Shuryak}}\ and\ \bibinfo {author} {\bibfnamefont {I.}~\bibnamefont
+  {Zahed}},\ }\href {\doibase 10.1016/j.aop.2018.06.008} {\bibfield  {journal}
+  {\bibinfo  {journal} {Annals Phys.}\ }\textbf {\bibinfo {volume} {396}},\
+  \bibinfo {pages} {1} (\bibinfo {year} {2018})},\ \Eprint
+  {http://arxiv.org/abs/1707.01885} {arXiv:1707.01885 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1707.01885;%%
+\bibitem [{\citenamefont {Hagiwara}\ \emph {et~al.}(2018)\citenamefont
+  {Hagiwara}, \citenamefont {Hatta}, \citenamefont {Xiao},\ and\ \citenamefont
+  {Yuan}}]{Hagiwara:2017uaz}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont
+  {Hagiwara}}, \bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont {Hatta}},
+  \bibinfo {author} {\bibfnamefont {B.-W.}\ \bibnamefont {Xiao}}, \ and\
+  \bibinfo {author} {\bibfnamefont {F.}~\bibnamefont {Yuan}},\ }\href {\doibase
+  10.1103/PhysRevD.97.094029} {\bibfield  {journal} {\bibinfo  {journal} {Phys.
+  Rev.}\ }\textbf {\bibinfo {volume} {D97}},\ \bibinfo {pages} {094029}
+  (\bibinfo {year} {2018})},\ \Eprint {http://arxiv.org/abs/1801.00087}
+  {arXiv:1801.00087 [hep-ph]} \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1801.00087;%%
+\bibitem [{\citenamefont {Holzhey}\ \emph {et~al.}(1994)\citenamefont
+  {Holzhey}, \citenamefont {Larsen},\ and\ \citenamefont
+  {Wilczek}}]{Holzhey:1994we}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Holzhey}}, \bibinfo {author} {\bibfnamefont {F.}~\bibnamefont {Larsen}}, \
+  and\ \bibinfo {author} {\bibfnamefont {F.}~\bibnamefont {Wilczek}},\ }\href
+  {\doibase 10.1016/0550-3213(94)90402-2} {\bibfield  {journal} {\bibinfo
+  {journal} {Nucl. Phys.}\ }\textbf {\bibinfo {volume} {B424}},\ \bibinfo
+  {pages} {443} (\bibinfo {year} {1994})},\ \Eprint
+  {http://arxiv.org/abs/hep-th/9403108} {arXiv:hep-th/9403108 [hep-th]}
+  \BibitemShut {NoStop}%
+%%CITATION = HEP-TH/9403108;%%
+\bibitem [{\citenamefont {Calabrese}\ and\ \citenamefont
+  {Cardy}(2006)}]{Calabrese:2005zw}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {P.}~\bibnamefont
+  {Calabrese}}\ and\ \bibinfo {author} {\bibfnamefont {J.~L.}\ \bibnamefont
+  {Cardy}},\ }\bibfield  {booktitle} {\emph {\bibinfo {booktitle} {{Workshop on
+  Quantum Entanglement in Physical and Information Sciences Pisa, Italy,
+  December 14-18, 2004}}},\ }\href {\doibase 10.1142/S021974990600192X}
+  {\bibfield  {journal} {\bibinfo  {journal} {Int. J. Quant. Inf.}\ }\textbf
+  {\bibinfo {volume} {4}},\ \bibinfo {pages} {429} (\bibinfo {year} {2006})},\
+  \Eprint {http://arxiv.org/abs/quant-ph/0505193} {arXiv:quant-ph/0505193
+  [quant-ph]} \BibitemShut {NoStop}%
+%%CITATION = QUANT-PH/0505193;%%
+\bibitem [{\citenamefont {Strominger}(2017)}]{Strominger:2017zoo}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Strominger}},\ }\href@noop {} {\  (\bibinfo {year} {2017})},\ \Eprint
+  {http://arxiv.org/abs/1703.05448} {arXiv:1703.05448 [hep-th]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1703.05448;%%
+\bibitem [{\citenamefont {Pate}\ \emph {et~al.}(2017)\citenamefont {Pate},
+  \citenamefont {Raclariu},\ and\ \citenamefont {Strominger}}]{Pate:2017vwa}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Pate}}, \bibinfo {author} {\bibfnamefont {A.-M.}\ \bibnamefont {Raclariu}},
+  \ and\ \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Strominger}},\
+  }\href {\doibase 10.1103/PhysRevLett.119.261602} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {119}},\
+  \bibinfo {pages} {261602} (\bibinfo {year} {2017})},\ \Eprint
+  {http://arxiv.org/abs/1707.08016} {arXiv:1707.08016 [hep-th]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1707.08016;%%
+\bibitem [{\citenamefont {Ball}\ \emph {et~al.}(2018)\citenamefont {Ball},
+  \citenamefont {Pate}, \citenamefont {Raclariu}, \citenamefont {Strominger},\
+  and\ \citenamefont {Venugopalan}}]{Ball:2018prg}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Ball}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Pate}}, \bibinfo
+  {author} {\bibfnamefont {A.-M.}\ \bibnamefont {Raclariu}}, \bibinfo {author}
+  {\bibfnamefont {A.}~\bibnamefont {Strominger}}, \ and\ \bibinfo {author}
+  {\bibfnamefont {R.}~\bibnamefont {Venugopalan}},\ }\href@noop {} {\
+  (\bibinfo {year} {2018})},\ \Eprint {http://arxiv.org/abs/1805.12224}
+  {arXiv:1805.12224 [hep-ph]} \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1805.12224;%%
+\bibitem [{\citenamefont {Khachatryan}\ \emph {et~al.}(2011)\citenamefont
+  {Khachatryan} \emph {et~al.}}]{Khachatryan:2010nk}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {V.}~\bibnamefont
+  {Khachatryan}} \emph {et~al.} (\bibinfo {collaboration} {CMS}),\ }\href
+  {\doibase 10.1007/JHEP01(2011)079} {\bibfield  {journal} {\bibinfo  {journal}
+  {JHEP}\ }\textbf {\bibinfo {volume} {01}},\ \bibinfo {pages} {079} (\bibinfo
+  {year} {2011})},\ \Eprint {http://arxiv.org/abs/1011.5531} {arXiv:1011.5531
+  [hep-ex]} \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1011.5531;%%
+\bibitem [{\citenamefont {Aad}\ \emph {et~al.}(2011)\citenamefont {Aad} \emph
+  {et~al.}}]{Aad:2010ac}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {G.}~\bibnamefont
+  {Aad}} \emph {et~al.} (\bibinfo {collaboration} {ATLAS}),\ }\href {\doibase
+  10.1088/1367-2630/13/5/053033} {\bibfield  {journal} {\bibinfo  {journal}
+  {New J. Phys.}\ }\textbf {\bibinfo {volume} {13}},\ \bibinfo {pages} {053033}
+  (\bibinfo {year} {2011})},\ \Eprint {http://arxiv.org/abs/1012.5104}
+  {arXiv:1012.5104 [hep-ex]} \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1012.5104;%%
+\bibitem [{\citenamefont {Aaij}\ \emph {et~al.}(2014)\citenamefont {Aaij} \emph
+  {et~al.}}]{Aaij:2014pza}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {R.}~\bibnamefont
+  {Aaij}} \emph {et~al.} (\bibinfo {collaboration} {LHCb}),\ }\href {\doibase
+  10.1140/epjc/s10052-014-2888-1} {\bibfield  {journal} {\bibinfo  {journal}
+  {Eur. Phys. J.}\ }\textbf {\bibinfo {volume} {C74}},\ \bibinfo {pages} {2888}
+  (\bibinfo {year} {2014})},\ \Eprint {http://arxiv.org/abs/1402.4430}
+  {arXiv:1402.4430 [hep-ex]} \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1402.4430;%%
+\bibitem [{\citenamefont {Acharya}\ \emph {et~al.}(2017)\citenamefont {Acharya}
+  \emph {et~al.}}]{ALICE:2017pcy}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Acharya}} \emph {et~al.} (\bibinfo {collaboration} {ALICE}),\ }\href
+  {\doibase 10.1140/epjc/s10052-017-5412-6} {\bibfield  {journal} {\bibinfo
+  {journal} {Eur. Phys. J.}\ }\textbf {\bibinfo {volume} {C77}},\ \bibinfo
+  {pages} {852} (\bibinfo {year} {2017})},\ \Eprint
+  {http://arxiv.org/abs/1708.01435} {arXiv:1708.01435 [hep-ex]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1708.01435;%%
+\bibitem [{\citenamefont {Adam}\ \emph {et~al.}(2017)\citenamefont {Adam} \emph
+  {et~al.}}]{Adam:2016iwf}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Adam}} \emph {et~al.} (\bibinfo {collaboration} {ALICE}),\ }\href {\doibase
+  10.1140/epjc/s10052-017-5129-6} {\bibfield  {journal} {\bibinfo  {journal}
+  {Eur. Phys. J.}\ }\textbf {\bibinfo {volume} {C77}},\ \bibinfo {pages} {569}
+  (\bibinfo {year} {2017})},\ \Eprint {http://arxiv.org/abs/1612.08975}
+  {arXiv:1612.08975 [nucl-ex]} \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1612.08975;%%
+\bibitem [{\citenamefont {Abelev}\ \emph {et~al.}(2013)\citenamefont {Abelev}
+  \emph {et~al.}}]{ALICE:2012mj}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {B.}~\bibnamefont
+  {Abelev}} \emph {et~al.} (\bibinfo {collaboration} {ALICE}),\ }\href
+  {\doibase 10.1103/PhysRevLett.110.082302} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {110}},\ \bibinfo
+  {pages} {082302} (\bibinfo {year} {2013})},\ \Eprint
+  {http://arxiv.org/abs/1210.4520} {arXiv:1210.4520 [nucl-ex]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1210.4520;%%
+\bibitem [{\citenamefont {Aad}\ \emph {et~al.}(2015)\citenamefont {Aad} \emph
+  {et~al.}}]{ATLAS:2014cpa}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {G.}~\bibnamefont
+  {Aad}} \emph {et~al.} (\bibinfo {collaboration} {ATLAS}),\ }\href {\doibase
+  10.1016/j.physletb.2015.07.023} {\bibfield  {journal} {\bibinfo  {journal}
+  {Phys. Lett.}\ }\textbf {\bibinfo {volume} {B748}},\ \bibinfo {pages} {392}
+  (\bibinfo {year} {2015})},\ \Eprint {http://arxiv.org/abs/1412.4092}
+  {arXiv:1412.4092 [hep-ex]} \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1412.4092;%%
+\bibitem [{\citenamefont {Aad}\ \emph {et~al.}(2016)\citenamefont {Aad} \emph
+  {et~al.}}]{Aad:2015ziq}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {G.}~\bibnamefont
+  {Aad}} \emph {et~al.} (\bibinfo {collaboration} {ATLAS}),\ }\href {\doibase
+  10.1016/j.physletb.2016.02.056} {\bibfield  {journal} {\bibinfo  {journal}
+  {Phys. Lett.}\ }\textbf {\bibinfo {volume} {B756}},\ \bibinfo {pages} {10}
+  (\bibinfo {year} {2016})},\ \Eprint {http://arxiv.org/abs/1512.00197}
+  {arXiv:1512.00197 [hep-ex]} \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1512.00197;%%
+\bibitem [{\citenamefont {Kovchegov}\ and\ \citenamefont
+  {Skokov}(2018)}]{Kovchegov:2018jun}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Y.~V.}\ \bibnamefont
+  {Kovchegov}}\ and\ \bibinfo {author} {\bibfnamefont {V.~V.}\ \bibnamefont
+  {Skokov}},\ }\href {\doibase 10.1103/PhysRevD.97.094021} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume}
+  {D97}},\ \bibinfo {pages} {094021} (\bibinfo {year} {2018})},\ \Eprint
+  {http://arxiv.org/abs/1802.08166} {arXiv:1802.08166 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1802.08166;%%
+\bibitem [{\citenamefont {Kovchegov}(1996)}]{Kovchegov:1996ty}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Y.~V.}\ \bibnamefont
+  {Kovchegov}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {Phys. Rev.}\ }\textbf {\bibinfo {volume} {D54}},\ \bibinfo {pages} {5463}
+  (\bibinfo {year} {1996})},\ \Eprint {http://arxiv.org/abs/hep-ph/9605446}
+  {hep-ph/9605446} \BibitemShut {NoStop}%
+%%CITATION = HEP-PH 9605446;%%
+\bibitem [{\citenamefont {Kovchegov}(1997)}]{Kovchegov:1997pc}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Y.~V.}\ \bibnamefont
+  {Kovchegov}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {Phys. Rev.}\ }\textbf {\bibinfo {volume} {D55}},\ \bibinfo {pages} {5445}
+  (\bibinfo {year} {1997})},\ \Eprint {http://arxiv.org/abs/hep-ph/9701229}
+  {hep-ph/9701229} \BibitemShut {NoStop}%
+%%CITATION = HEP-PH 9701229;%%
+\bibitem [{\citenamefont {Krasnitz}\ and\ \citenamefont
+  {Venugopalan}(2000)}]{Krasnitz:1999wc}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Krasnitz}}\ and\ \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont
+  {Venugopalan}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {84}},\ \bibinfo {pages}
+  {4309} (\bibinfo {year} {2000})},\ \Eprint
+  {http://arxiv.org/abs/hep-ph/9909203} {hep-ph/9909203} \BibitemShut {NoStop}%
+%%CITATION = HEP-PH 9909203;%%
+\bibitem [{\citenamefont {Krasnitz}\ \emph {et~al.}(2003)\citenamefont
+  {Krasnitz}, \citenamefont {Nara},\ and\ \citenamefont
+  {Venugopalan}}]{Krasnitz:2003jw}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Krasnitz}}, \bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont {Nara}}, \
+  and\ \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Venugopalan}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Nucl. Phys.}\
+  }\textbf {\bibinfo {volume} {A727}},\ \bibinfo {pages} {427} (\bibinfo {year}
+  {2003})},\ \Eprint {http://arxiv.org/abs/hep-ph/0305112} {hep-ph/0305112}
+  \BibitemShut {NoStop}%
+%%CITATION = HEP-PH 0305112;%%
+\bibitem [{\citenamefont {Lappi}(2003)}]{Lappi:2003bi}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {T.}~\bibnamefont
+  {Lappi}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Phys.
+  Rev.}\ }\textbf {\bibinfo {volume} {C67}},\ \bibinfo {pages} {054903}
+  (\bibinfo {year} {2003})},\ \Eprint {http://arxiv.org/abs/hep-ph/0303076}
+  {hep-ph/0303076} \BibitemShut {NoStop}%
+%%CITATION = HEP-PH 0303076;%%
+\bibitem [{\citenamefont {Blaizot}\ \emph {et~al.}(2010)\citenamefont
+  {Blaizot}, \citenamefont {Lappi},\ and\ \citenamefont
+  {Mehtar-Tani}}]{Blaizot:2010kh}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~P.}\ \bibnamefont
+  {Blaizot}}, \bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Lappi}}, \
+  and\ \bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont {Mehtar-Tani}},\
+  }\href {\doibase 10.1016/j.nuclphysa.2010.06.009} {\bibfield  {journal}
+  {\bibinfo  {journal} {Nucl. Phys.}\ }\textbf {\bibinfo {volume} {A846}},\
+  \bibinfo {pages} {63} (\bibinfo {year} {2010})},\ \Eprint
+  {http://arxiv.org/abs/1005.0955} {arXiv:1005.0955 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = 1005.0955;%%
+\bibitem [{\citenamefont {Kovchegov}\ and\ \citenamefont
+  {Mueller}(1998)}]{Kovchegov:1998bi}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Y.~V.}\ \bibnamefont
+  {Kovchegov}}\ and\ \bibinfo {author} {\bibfnamefont {A.~H.}\ \bibnamefont
+  {Mueller}},\ }\href {\doibase 10.1016/S0550-3213(98)00384-8} {\bibfield
+  {journal} {\bibinfo  {journal} {Nucl. Phys.}\ }\textbf {\bibinfo {volume}
+  {B529}},\ \bibinfo {pages} {451} (\bibinfo {year} {1998})},\ \Eprint
+  {http://arxiv.org/abs/hep-ph/9802440} {arXiv:hep-ph/9802440 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/9802440;%%
+\bibitem [{\citenamefont {Dumitru}\ and\ \citenamefont
+  {McLerran}(2002)}]{Dumitru:2001ux}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Dumitru}}\ and\ \bibinfo {author} {\bibfnamefont {L.~D.}\ \bibnamefont
+  {McLerran}},\ }\href {\doibase 10.1016/S0375-9474(01)01301-X} {\bibfield
+  {journal} {\bibinfo  {journal} {Nucl. Phys.}\ }\textbf {\bibinfo {volume}
+  {A700}},\ \bibinfo {pages} {492} (\bibinfo {year} {2002})},\ \Eprint
+  {http://arxiv.org/abs/hep-ph/0105268} {arXiv:hep-ph/0105268 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/0105268;%%
+\bibitem [{\citenamefont {Balitsky}(2004)}]{Balitsky:2004rr}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {I.}~\bibnamefont
+  {Balitsky}},\ }\href {\doibase 10.1103/PhysRevD.70.114030} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume}
+  {D70}},\ \bibinfo {pages} {114030} (\bibinfo {year} {2004})},\ \Eprint
+  {http://arxiv.org/abs/hep-ph/0409314} {arXiv:hep-ph/0409314} \BibitemShut
+  {NoStop}%
+%%CITATION = HEP-PH/0409314;%%
+\bibitem [{\citenamefont {Chirilli}\ \emph {et~al.}(2015)\citenamefont
+  {Chirilli}, \citenamefont {Kovchegov},\ and\ \citenamefont
+  {Wertepny}}]{Chirilli:2015tea}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {G.~A.}\ \bibnamefont
+  {Chirilli}}, \bibinfo {author} {\bibfnamefont {Y.~V.}\ \bibnamefont
+  {Kovchegov}}, \ and\ \bibinfo {author} {\bibfnamefont {D.~E.}\ \bibnamefont
+  {Wertepny}},\ }\href {\doibase 10.1007/JHEP03(2015)015} {\bibfield  {journal}
+  {\bibinfo  {journal} {JHEP}\ }\textbf {\bibinfo {volume} {03}},\ \bibinfo
+  {pages} {015} (\bibinfo {year} {2015})},\ \Eprint
+  {http://arxiv.org/abs/1501.03106} {arXiv:1501.03106 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1501.03106;%%
+\bibitem [{\citenamefont {Kovner}\ and\ \citenamefont
+  {Lublinsky}(2013)}]{Kovner:2012jm}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Kovner}}\ and\ \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Lublinsky}},\ }\href {\doibase 10.1142/S0218301313300014} {\bibfield
+  {journal} {\bibinfo  {journal} {Int. J. Mod. Phys.}\ }\textbf {\bibinfo
+  {volume} {E22}},\ \bibinfo {pages} {1330001} (\bibinfo {year} {2013})},\
+  \Eprint {http://arxiv.org/abs/1211.1928} {arXiv:1211.1928 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1211.1928;%%
+\bibitem [{\citenamefont {Kovchegov}\ and\ \citenamefont
+  {Wertepny}(2013)}]{Kovchegov:2012nd}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Y.~V.}\ \bibnamefont
+  {Kovchegov}}\ and\ \bibinfo {author} {\bibfnamefont {D.~E.}\ \bibnamefont
+  {Wertepny}},\ }\href {\doibase 10.1016/j.nuclphysa.2013.03.006} {\bibfield
+  {journal} {\bibinfo  {journal} {Nucl. Phys.}\ }\textbf {\bibinfo {volume}
+  {A906}},\ \bibinfo {pages} {50} (\bibinfo {year} {2013})},\ \Eprint
+  {http://arxiv.org/abs/1212.1195} {arXiv:1212.1195 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1212.1195;%%
+\bibitem [{\citenamefont {Kovner}\ and\ \citenamefont
+  {Skokov}(2018{\natexlab{b}})}]{Kovner:2018fxj}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Kovner}}\ and\ \bibinfo {author} {\bibfnamefont {V.~V.}\ \bibnamefont
+  {Skokov}},\ }\href@noop {} {\  (\bibinfo {year} {2018}{\natexlab{b}})},\
+  \Eprint {http://arxiv.org/abs/1805.09297} {arXiv:1805.09297 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1805.09297;%%
+\bibitem [{\citenamefont {McLerran}\ and\ \citenamefont
+  {Skokov}(2017)}]{McLerran:2016snu}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.}~\bibnamefont
+  {McLerran}}\ and\ \bibinfo {author} {\bibfnamefont {V.}~\bibnamefont
+  {Skokov}},\ }\href {\doibase 10.1016/j.nuclphysa.2016.12.011} {\bibfield
+  {journal} {\bibinfo  {journal} {Nucl. Phys.}\ }\textbf {\bibinfo {volume}
+  {A959}},\ \bibinfo {pages} {83} (\bibinfo {year} {2017})},\ \Eprint
+  {http://arxiv.org/abs/1611.09870} {arXiv:1611.09870 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1611.09870;%%
+\bibitem [{\citenamefont {Mace}\ \emph
+  {et~al.}(2018{\natexlab{a}})\citenamefont {Mace}, \citenamefont {Skokov},
+  \citenamefont {Tribedy},\ and\ \citenamefont {Venugopalan}}]{Mace:2018vwq}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Mace}}, \bibinfo {author} {\bibfnamefont {V.~V.}\ \bibnamefont {Skokov}},
+  \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {Tribedy}}, \ and\
+  \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Venugopalan}},\
+  }\href@noop {} {\  (\bibinfo {year} {2018}{\natexlab{a}})},\ \Eprint
+  {http://arxiv.org/abs/1805.09342} {arXiv:1805.09342 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1805.09342;%%
+\bibitem [{\citenamefont {Mace}\ \emph
+  {et~al.}(2018{\natexlab{b}})\citenamefont {Mace}, \citenamefont {Skokov},
+  \citenamefont {Tribedy},\ and\ \citenamefont {Venugopalan}}]{Mace:2018yvl}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Mace}}, \bibinfo {author} {\bibfnamefont {V.~V.}\ \bibnamefont {Skokov}},
+  \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {Tribedy}}, \ and\
+  \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Venugopalan}},\
+  }\href@noop {} {\  (\bibinfo {year} {2018}{\natexlab{b}})},\ \Eprint
+  {http://arxiv.org/abs/1807.00825} {arXiv:1807.00825 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1807.00825;%%
+\bibitem [{\citenamefont {Liou}\ \emph {et~al.}(2017)\citenamefont {Liou},
+  \citenamefont {Mueller},\ and\ \citenamefont {Munier}}]{Liou:2016mfr}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {T.}~\bibnamefont
+  {Liou}}, \bibinfo {author} {\bibfnamefont {A.~H.}\ \bibnamefont {Mueller}}, \
+  and\ \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Munier}},\ }\href
+  {\doibase 10.1103/PhysRevD.95.014001} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume} {D95}},\ \bibinfo {pages}
+  {014001} (\bibinfo {year} {2017})},\ \Eprint
+  {http://arxiv.org/abs/1608.00852} {arXiv:1608.00852 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1608.00852;%%
+\bibitem [{\citenamefont {McLerran}\ and\ \citenamefont
+  {Venugopalan}(1994{\natexlab{a}})}]{McLerran:1993ni}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.~D.}\ \bibnamefont
+  {McLerran}}\ and\ \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont
+  {Venugopalan}},\ }\href {\doibase 10.1103/PhysRevD.49.2233} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume}
+  {D49}},\ \bibinfo {pages} {2233} (\bibinfo {year} {1994}{\natexlab{a}})},\
+  \Eprint {http://arxiv.org/abs/hep-ph/9309289} {arXiv:hep-ph/9309289 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/9309289;%%
+\bibitem [{\citenamefont {McLerran}\ and\ \citenamefont
+  {Venugopalan}(1994{\natexlab{b}})}]{McLerran:1993ka}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.~D.}\ \bibnamefont
+  {McLerran}}\ and\ \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont
+  {Venugopalan}},\ }\href {\doibase 10.1103/PhysRevD.49.3352} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume}
+  {D49}},\ \bibinfo {pages} {3352} (\bibinfo {year} {1994}{\natexlab{b}})},\
+  \Eprint {http://arxiv.org/abs/hep-ph/9311205} {arXiv:hep-ph/9311205 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/9311205;%%
+\bibitem [{\citenamefont {Iancu}\ \emph
+  {et~al.}(2002{\natexlab{b}})\citenamefont {Iancu}, \citenamefont {Itakura},\
+  and\ \citenamefont {McLerran}}]{Iancu:2002tr}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
+  {Iancu}}, \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont {Itakura}}, \
+  and\ \bibinfo {author} {\bibfnamefont {L.}~\bibnamefont {McLerran}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Nucl. Phys.}\
+  }\textbf {\bibinfo {volume} {A708}},\ \bibinfo {pages} {327} (\bibinfo {year}
+  {2002}{\natexlab{b}})},\ \Eprint {http://arxiv.org/abs/hep-ph/0203137}
+  {hep-ph/0203137} \BibitemShut {NoStop}%
+%%CITATION = HEP-PH 0203137;%%
+\bibitem [{\citenamefont {Dumitru}\ and\ \citenamefont
+  {Skokov}(2017)}]{Dumitru:2017cwt}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Dumitru}}\ and\ \bibinfo {author} {\bibfnamefont {V.}~\bibnamefont
+  {Skokov}},\ }\href {\doibase 10.1103/PhysRevD.96.056029} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume}
+  {D96}},\ \bibinfo {pages} {056029} (\bibinfo {year} {2017})},\ \Eprint
+  {http://arxiv.org/abs/1704.05917} {arXiv:1704.05917 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1704.05917;%%
+\bibitem [{\citenamefont {Marquet}\ \emph {et~al.}(2006)\citenamefont
+  {Marquet}, \citenamefont {Soyez},\ and\ \citenamefont
+  {Xiao}}]{Marquet:2006xm}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Marquet}}, \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Soyez}}, \
+  and\ \bibinfo {author} {\bibfnamefont {B.-W.}\ \bibnamefont {Xiao}},\ }\href
+  {\doibase 10.1016/j.physletb.2006.07.022} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Lett.}\ }\textbf {\bibinfo {volume} {B639}},\ \bibinfo
+  {pages} {635} (\bibinfo {year} {2006})},\ \Eprint
+  {http://arxiv.org/abs/hep-ph/0606233} {arXiv:hep-ph/0606233 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/0606233;%%
+\bibitem [{\citenamefont {Iancu}\ and\ \citenamefont
+  {McLerran}(2007)}]{Iancu:2007st}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
+  {Iancu}}\ and\ \bibinfo {author} {\bibfnamefont {L.}~\bibnamefont
+  {McLerran}},\ }\href {\doibase 10.1016/j.nuclphysa.2007.06.010} {\bibfield
+  {journal} {\bibinfo  {journal} {Nucl. Phys.}\ }\textbf {\bibinfo {volume}
+  {A793}},\ \bibinfo {pages} {96} (\bibinfo {year} {2007})},\ \Eprint
+  {http://arxiv.org/abs/hep-ph/0701276} {arXiv:hep-ph/0701276 [HEP-PH]}
+  \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/0701276;%%
+\bibitem [{\citenamefont {Dumitru}\ and\ \citenamefont
+  {Skokov}(2018)}]{Dumitru:2017ftq}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Dumitru}}\ and\ \bibinfo {author} {\bibfnamefont {V.}~\bibnamefont
+  {Skokov}},\ }\bibfield  {booktitle} {\emph {\bibinfo {booktitle}
+  {{Proceedings, 47th International Symposium on Multiparticle Dynamics
+  (ISMD2017): Tlaxcala, Mexico, September 11-15, 2017}}},\ }\href {\doibase
+  10.1051/epjconf/201817203009} {\bibfield  {journal} {\bibinfo  {journal} {EPJ
+  Web Conf.}\ }\textbf {\bibinfo {volume} {172}},\ \bibinfo {pages} {03009}
+  (\bibinfo {year} {2018})},\ \Eprint {http://arxiv.org/abs/1710.05041}
+  {arXiv:1710.05041 [hep-ph]} \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1710.05041;%%
+\bibitem [{\citenamefont {Dumitru}\ \emph
+  {et~al.}(2018{\natexlab{a}})\citenamefont {Dumitru}, \citenamefont
+  {Kapilevich},\ and\ \citenamefont {Skokov}}]{Dumitru:2018iko}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Dumitru}}, \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Kapilevich}},
+  \ and\ \bibinfo {author} {\bibfnamefont {V.}~\bibnamefont {Skokov}},\ }\href
+  {\doibase 10.1016/j.nuclphysa.2018.03.012} {\bibfield  {journal} {\bibinfo
+  {journal} {Nucl. Phys.}\ }\textbf {\bibinfo {volume} {A974}},\ \bibinfo
+  {pages} {106} (\bibinfo {year} {2018}{\natexlab{a}})},\ \Eprint
+  {http://arxiv.org/abs/1802.06111} {arXiv:1802.06111 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1802.06111;%%
+\bibitem [{\citenamefont {Kuraev}\ \emph {et~al.}(1977)\citenamefont {Kuraev},
+  \citenamefont {Lipatov},\ and\ \citenamefont {Fadin}}]{Kuraev:1977fs}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.~A.}\ \bibnamefont
+  {Kuraev}}, \bibinfo {author} {\bibfnamefont {L.~N.}\ \bibnamefont {Lipatov}},
+  \ and\ \bibinfo {author} {\bibfnamefont {V.~S.}\ \bibnamefont {Fadin}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Sov. Phys. JETP}\
+  }\textbf {\bibinfo {volume} {45}},\ \bibinfo {pages} {199} (\bibinfo {year}
+  {1977})}\BibitemShut {NoStop}%
+%%CITATION = SPHJA,45,199;%%
+\bibitem [{\citenamefont {Balitsky}\ and\ \citenamefont
+  {Lipatov}(1978)}]{Balitsky:1978ic}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {I.}~\bibnamefont
+  {Balitsky}}\ and\ \bibinfo {author} {\bibfnamefont {L.}~\bibnamefont
+  {Lipatov}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {Sov.J.Nucl.Phys.}\ }\textbf {\bibinfo {volume} {28}},\ \bibinfo {pages}
+  {822} (\bibinfo {year} {1978})}\BibitemShut {NoStop}%
+%%CITATION = SJNCA,28,822;%%
+\bibitem [{\citenamefont {Balitsky}(1997)}]{Balitsky:1997mk}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {I.}~\bibnamefont
+  {Balitsky}},\ }\bibfield  {booktitle} {\emph {\bibinfo {booktitle}
+  {{Proceedings, 5th International Workshop on Deep Inelastic Scattering and
+  QCD (DIS 97): Chicago, Illinois, April 14-18, 1997}}},\ }\href {\doibase
+  10.1063/1.53693} {\bibfield  {journal} {\bibinfo  {journal} {AIP Conf.
+  Proc.}\ }\textbf {\bibinfo {volume} {407}},\ \bibinfo {pages} {953} (\bibinfo
+  {year} {1997})},\ \Eprint {http://arxiv.org/abs/hep-ph/9706411}
+  {arXiv:hep-ph/9706411 [hep-ph]} \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/9706411;%%
+\bibitem [{\citenamefont {Rezaeian}\ \emph {et~al.}(2013)\citenamefont
+  {Rezaeian}, \citenamefont {Siddikov}, \citenamefont {Van~de Klundert},\ and\
+  \citenamefont {Venugopalan}}]{Rezaeian:2012ji}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.~H.}\ \bibnamefont
+  {Rezaeian}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Siddikov}},
+  \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Van~de Klundert}}, \ and\
+  \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Venugopalan}},\ }\href
+  {\doibase 10.1103/PhysRevD.87.034002} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume} {D87}},\ \bibinfo {pages}
+  {034002} (\bibinfo {year} {2013})},\ \Eprint {http://arxiv.org/abs/1212.2974}
+  {arXiv:1212.2974 [hep-ph]} \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1212.2974;%%
+\bibitem [{\citenamefont {Weigert}(2002)}]{Weigert:2000gi}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Weigert}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Nucl.
+  Phys.}\ }\textbf {\bibinfo {volume} {A703}},\ \bibinfo {pages} {823}
+  (\bibinfo {year} {2002})},\ \Eprint {http://arxiv.org/abs/hep-ph/0004044}
+  {hep-ph/0004044} \BibitemShut {NoStop}%
+%%CITATION = HEP-PH 0004044;%%
+\bibitem [{\citenamefont {Kovner}\ \emph {et~al.}(2014)\citenamefont {Kovner},
+  \citenamefont {Lublinsky},\ and\ \citenamefont {Mulian}}]{Kovner:2014lca}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Kovner}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Lublinsky}}, \
+  and\ \bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont {Mulian}},\ }\href
+  {\doibase 10.1007/JHEP08(2014)114} {\bibfield  {journal} {\bibinfo  {journal}
+  {JHEP}\ }\textbf {\bibinfo {volume} {08}},\ \bibinfo {pages} {114} (\bibinfo
+  {year} {2014})},\ \Eprint {http://arxiv.org/abs/1405.0418} {arXiv:1405.0418
+  [hep-ph]} \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1405.0418;%%
+\bibitem [{\citenamefont {Gunion}\ and\ \citenamefont
+  {Soper}(1977)}]{Gunion:1976iy}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~F.}\ \bibnamefont
+  {Gunion}}\ and\ \bibinfo {author} {\bibfnamefont {D.~E.}\ \bibnamefont
+  {Soper}},\ }\href {\doibase 10.1103/PhysRevD.15.2617} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume} {D15}},\
+  \bibinfo {pages} {2617} (\bibinfo {year} {1977})}\BibitemShut {NoStop}%
+%%CITATION = PHRVA,D15,2617;%%
+\bibitem [{\citenamefont {Nussinov}(1975)}]{Nussinov:1975mw}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Nussinov}},\ }\href {\doibase 10.1103/PhysRevLett.34.1286} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo
+  {volume} {34}},\ \bibinfo {pages} {1286} (\bibinfo {year}
+  {1975})}\BibitemShut {NoStop}%
+%%CITATION = PRLTA,34,1286;%%
+\bibitem [{\citenamefont {Nussinov}(1976)}]{Nussinov:1975qb}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Nussinov}},\ }\href {\doibase 10.1103/PhysRevD.14.246} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume} {D14}},\
+  \bibinfo {pages} {246} (\bibinfo {year} {1976})}\BibitemShut {NoStop}%
+%%CITATION = PHRVA,D14,246;%%
+\bibitem [{\citenamefont {Marquet}\ \emph {et~al.}(2009)\citenamefont
+  {Marquet}, \citenamefont {Xiao},\ and\ \citenamefont
+  {Yuan}}]{Marquet:2009ca}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Marquet}}, \bibinfo {author} {\bibfnamefont {B.-W.}\ \bibnamefont {Xiao}}, \
+  and\ \bibinfo {author} {\bibfnamefont {F.}~\bibnamefont {Yuan}},\ }\href
+  {\doibase 10.1016/j.physletb.2009.10.099} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Lett.}\ }\textbf {\bibinfo {volume} {B682}},\ \bibinfo
+  {pages} {207} (\bibinfo {year} {2009})},\ \Eprint
+  {http://arxiv.org/abs/0906.1454} {arXiv:0906.1454 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:0906.1454;%%
+\bibitem [{\citenamefont {Mäntysaari}\ and\ \citenamefont
+  {Venugopalan}(2018)}]{Mantysaari:2017slo}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Mäntysaari}}\ and\ \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont
+  {Venugopalan}},\ }\href {\doibase 10.1016/j.physletb.2018.04.044} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Lett.}\ }\textbf {\bibinfo {volume}
+  {B781}},\ \bibinfo {pages} {664} (\bibinfo {year} {2018})},\ \Eprint
+  {http://arxiv.org/abs/1712.02508} {arXiv:1712.02508 [nucl-th]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1712.02508;%%
+\bibitem [{\citenamefont {Aschenauer}\ \emph {et~al.}(2017)\citenamefont
+  {Aschenauer}, \citenamefont {Fazio}, \citenamefont {Lee}, \citenamefont
+  {Mantysaari}, \citenamefont {Page}, \citenamefont {Schenke}, \citenamefont
+  {Ullrich}, \citenamefont {Venugopalan},\ and\ \citenamefont
+  {Zurita}}]{Aschenauer:2017jsk}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.~C.}\ \bibnamefont
+  {Aschenauer}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Fazio}},
+  \bibinfo {author} {\bibfnamefont {J.~H.}\ \bibnamefont {Lee}}, \bibinfo
+  {author} {\bibfnamefont {H.}~\bibnamefont {Mantysaari}}, \bibinfo {author}
+  {\bibfnamefont {B.~S.}\ \bibnamefont {Page}}, \bibinfo {author}
+  {\bibfnamefont {B.}~\bibnamefont {Schenke}}, \bibinfo {author} {\bibfnamefont
+  {T.}~\bibnamefont {Ullrich}}, \bibinfo {author} {\bibfnamefont
+  {R.}~\bibnamefont {Venugopalan}}, \ and\ \bibinfo {author} {\bibfnamefont
+  {P.}~\bibnamefont {Zurita}},\ }\href@noop {} {\  (\bibinfo {year} {2017})},\
+  \Eprint {http://arxiv.org/abs/1708.01527} {arXiv:1708.01527 [nucl-ex]}
+  \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1708.01527;%%
+\bibitem [{\citenamefont {Dominguez}\ \emph {et~al.}(2011)\citenamefont
+  {Dominguez}, \citenamefont {Marquet}, \citenamefont {Xiao},\ and\
+  \citenamefont {Yuan}}]{Dominguez:2011wm}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {F.}~\bibnamefont
+  {Dominguez}}, \bibinfo {author} {\bibfnamefont {C.}~\bibnamefont {Marquet}},
+  \bibinfo {author} {\bibfnamefont {B.-W.}\ \bibnamefont {Xiao}}, \ and\
+  \bibinfo {author} {\bibfnamefont {F.}~\bibnamefont {Yuan}},\ }\href {\doibase
+  10.1103/PhysRevD.83.105005} {\bibfield  {journal} {\bibinfo  {journal}
+  {Phys.Rev.}\ }\textbf {\bibinfo {volume} {D83}},\ \bibinfo {pages} {105005}
+  (\bibinfo {year} {2011})},\ \Eprint {http://arxiv.org/abs/1101.0715}
+  {arXiv:1101.0715 [hep-ph]} \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1101.0715;%%
+\bibitem [{\citenamefont {Dominguez}\ \emph {et~al.}(2012)\citenamefont
+  {Dominguez}, \citenamefont {Qiu}, \citenamefont {Xiao},\ and\ \citenamefont
+  {Yuan}}]{Dominguez:2011br}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {F.}~\bibnamefont
+  {Dominguez}}, \bibinfo {author} {\bibfnamefont {J.-W.}\ \bibnamefont {Qiu}},
+  \bibinfo {author} {\bibfnamefont {B.-W.}\ \bibnamefont {Xiao}}, \ and\
+  \bibinfo {author} {\bibfnamefont {F.}~\bibnamefont {Yuan}},\ }\href {\doibase
+  10.1103/PhysRevD.85.045003} {\bibfield  {journal} {\bibinfo  {journal}
+  {Phys.Rev.}\ }\textbf {\bibinfo {volume} {D85}},\ \bibinfo {pages} {045003}
+  (\bibinfo {year} {2012})},\ \Eprint {http://arxiv.org/abs/1109.6293}
+  {arXiv:1109.6293 [hep-ph]} \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1109.6293;%%
+\bibitem [{\citenamefont {Mulders}\ and\ \citenamefont
+  {Rodrigues}(2001)}]{Mulders:2000sh}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {P.~J.}\ \bibnamefont
+  {Mulders}}\ and\ \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Rodrigues}},\ }\href {\doibase 10.1103/PhysRevD.63.094021} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume}
+  {D63}},\ \bibinfo {pages} {094021} (\bibinfo {year} {2001})},\ \Eprint
+  {http://arxiv.org/abs/hep-ph/0009343} {arXiv:hep-ph/0009343 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/0009343;%%
+\bibitem [{\citenamefont {Bomhof}\ \emph {et~al.}(2006)\citenamefont {Bomhof},
+  \citenamefont {Mulders},\ and\ \citenamefont {Pijlman}}]{Bomhof:2006dp}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.~J.}\ \bibnamefont
+  {Bomhof}}, \bibinfo {author} {\bibfnamefont {P.~J.}\ \bibnamefont {Mulders}},
+  \ and\ \bibinfo {author} {\bibfnamefont {F.}~\bibnamefont {Pijlman}},\ }\href
+  {\doibase 10.1140/epjc/s2006-02554-2} {\bibfield  {journal} {\bibinfo
+  {journal} {Eur. Phys. J.}\ }\textbf {\bibinfo {volume} {C47}},\ \bibinfo
+  {pages} {147} (\bibinfo {year} {2006})},\ \Eprint
+  {http://arxiv.org/abs/hep-ph/0601171} {arXiv:hep-ph/0601171 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/0601171;%%
+\bibitem [{\citenamefont {Meissner}\ \emph {et~al.}(2007)\citenamefont
+  {Meissner}, \citenamefont {Metz},\ and\ \citenamefont
+  {Goeke}}]{Meissner:2007rx}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Meissner}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Metz}}, \
+  and\ \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont {Goeke}},\ }\href
+  {\doibase 10.1103/PhysRevD.76.034002} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume} {D76}},\ \bibinfo {pages}
+  {034002} (\bibinfo {year} {2007})},\ \Eprint
+  {http://arxiv.org/abs/hep-ph/0703176} {arXiv:hep-ph/0703176 [HEP-PH]}
+  \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/0703176;%%
+\bibitem [{\citenamefont {Metz}\ and\ \citenamefont
+  {Zhou}(2011)}]{Metz:2011wb}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Metz}}\ and\ \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Zhou}},\
+  }\href {\doibase 10.1103/PhysRevD.84.051503} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys.Rev.}\ }\textbf {\bibinfo {volume} {D84}},\ \bibinfo {pages}
+  {051503} (\bibinfo {year} {2011})},\ \Eprint {http://arxiv.org/abs/1105.1991}
+  {arXiv:1105.1991 [hep-ph]} \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1105.1991;%%
+\bibitem [{\citenamefont {Dumitru}\ \emph
+  {et~al.}(2015{\natexlab{a}})\citenamefont {Dumitru}, \citenamefont {Lappi},\
+  and\ \citenamefont {Skokov}}]{Dumitru:2015gaa}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Dumitru}}, \bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Lappi}}, \
+  and\ \bibinfo {author} {\bibfnamefont {V.}~\bibnamefont {Skokov}},\ }\href
+  {\doibase 10.1103/PhysRevLett.115.252301} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {115}},\ \bibinfo
+  {pages} {252301} (\bibinfo {year} {2015}{\natexlab{a}})},\ \Eprint
+  {http://arxiv.org/abs/1508.04438} {arXiv:1508.04438 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1508.04438;%%
+\bibitem [{\citenamefont {Dumitru}\ and\ \citenamefont
+  {Skokov}(2016)}]{Dumitru:2016jku}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Dumitru}}\ and\ \bibinfo {author} {\bibfnamefont {V.}~\bibnamefont
+  {Skokov}},\ }\href {\doibase 10.1103/PhysRevD.94.014030} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume}
+  {D94}},\ \bibinfo {pages} {014030} (\bibinfo {year} {2016})},\ \Eprint
+  {http://arxiv.org/abs/1605.02739} {arXiv:1605.02739 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1605.02739;%%
+\bibitem [{\citenamefont {Kovner}\ \emph {et~al.}(1995)\citenamefont {Kovner},
+  \citenamefont {McLerran},\ and\ \citenamefont {Weigert}}]{Kovner:1995ts}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Kovner}}, \bibinfo {author} {\bibfnamefont {L.~D.}\ \bibnamefont
+  {McLerran}}, \ and\ \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Weigert}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Phys.
+  Rev.}\ }\textbf {\bibinfo {volume} {D52}},\ \bibinfo {pages} {3809} (\bibinfo
+  {year} {1995})},\ \Eprint {http://arxiv.org/abs/hep-ph/9505320}
+  {hep-ph/9505320} \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/9505320;%%
+\bibitem [{\citenamefont {Kovchegov}\ and\ \citenamefont
+  {Wertepny}(2014)}]{Kovchegov:2013ewa}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Y.~V.}\ \bibnamefont
+  {Kovchegov}}\ and\ \bibinfo {author} {\bibfnamefont {D.~E.}\ \bibnamefont
+  {Wertepny}},\ }\href {\doibase 10.1016/j.nuclphysa.2014.02.021} {\bibfield
+  {journal} {\bibinfo  {journal} {Nucl.Phys.}\ }\textbf {\bibinfo {volume}
+  {A925}},\ \bibinfo {pages} {254} (\bibinfo {year} {2014})},\ \Eprint
+  {http://arxiv.org/abs/1310.6701} {arXiv:1310.6701 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1310.6701;%%
+\bibitem [{\citenamefont {Kovner}\ \emph
+  {et~al.}(2017{\natexlab{a}})\citenamefont {Kovner}, \citenamefont
+  {Lublinsky},\ and\ \citenamefont {Skokov}}]{Kovner:2016jfp}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Kovner}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Lublinsky}}, \
+  and\ \bibinfo {author} {\bibfnamefont {V.}~\bibnamefont {Skokov}},\ }\href
+  {\doibase 10.1103/PhysRevD.96.016010} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume} {D96}},\ \bibinfo {pages}
+  {016010} (\bibinfo {year} {2017}{\natexlab{a}})},\ \Eprint
+  {http://arxiv.org/abs/1612.07790} {arXiv:1612.07790 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1612.07790;%%
+\bibitem [{\citenamefont {Dumitru}\ \emph
+  {et~al.}(2018{\natexlab{b}})\citenamefont {Dumitru}, \citenamefont {Miller},\
+  and\ \citenamefont {Venugopalan}}]{Dumitru:2018vpr}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Dumitru}}, \bibinfo {author} {\bibfnamefont {G.~A.}\ \bibnamefont {Miller}},
+  \ and\ \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Venugopalan}},\
+  }\href@noop {} {\  (\bibinfo {year} {2018}{\natexlab{b}})},\ \Eprint
+  {http://arxiv.org/abs/1808.02501} {arXiv:1808.02501 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1808.02501;%%
+\bibitem [{\citenamefont {Brodsky}\ \emph {et~al.}(1998)\citenamefont
+  {Brodsky}, \citenamefont {Pauli},\ and\ \citenamefont
+  {Pinsky}}]{Brodsky:1997de}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.~J.}\ \bibnamefont
+  {Brodsky}}, \bibinfo {author} {\bibfnamefont {H.-C.}\ \bibnamefont {Pauli}},
+  \ and\ \bibinfo {author} {\bibfnamefont {S.~S.}\ \bibnamefont {Pinsky}},\
+  }\href {\doibase 10.1016/S0370-1573(97)00089-6} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys.Rept.}\ }\textbf {\bibinfo {volume} {301}},\
+  \bibinfo {pages} {299} (\bibinfo {year} {1998})},\ \Eprint
+  {http://arxiv.org/abs/hep-ph/9705477} {arXiv:hep-ph/9705477 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/9705477;%%
+\bibitem [{\citenamefont {Klein}\ and\ \citenamefont
+  {Nystrand}(2000)}]{Klein:1999gv}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.~R.}\ \bibnamefont
+  {Klein}}\ and\ \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Nystrand}},\ }\href {\doibase 10.1103/PhysRevLett.84.2330} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo
+  {volume} {84}},\ \bibinfo {pages} {2330} (\bibinfo {year} {2000})},\ \Eprint
+  {http://arxiv.org/abs/hep-ph/9909237} {arXiv:hep-ph/9909237 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/9909237;%%
+\bibitem [{\citenamefont {Toll}\ and\ \citenamefont
+  {Ullrich}(2013)}]{Toll:2012mb}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {T.}~\bibnamefont
+  {Toll}}\ and\ \bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Ullrich}},\
+  }\href {\doibase 10.1103/PhysRevC.87.024913} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume} {C87}},\ \bibinfo {pages}
+  {024913} (\bibinfo {year} {2013})},\ \Eprint {http://arxiv.org/abs/1211.3048}
+  {arXiv:1211.3048 [hep-ph]} \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1211.3048;%%
+\bibitem [{\citenamefont {Adamczyk}\ \emph
+  {et~al.}(2017{\natexlab{a}})\citenamefont {Adamczyk} \emph
+  {et~al.}}]{Adamczyk:2017hdl}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.}~\bibnamefont
+  {Adamczyk}} \emph {et~al.} (\bibinfo {collaboration} {STAR}),\ }\href@noop {}
+  {\  (\bibinfo {year} {2017}{\natexlab{a}})},\ \Eprint
+  {http://arxiv.org/abs/1701.06496} {arXiv:1701.06496 [nucl-ex]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1701.06496;%%
+\bibitem [{\citenamefont {Adamczyk}\ \emph
+  {et~al.}(2017{\natexlab{b}})\citenamefont {Adamczyk} \emph
+  {et~al.}}]{Adamczyk:2017byf}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.}~\bibnamefont
+  {Adamczyk}} \emph {et~al.} (\bibinfo {collaboration} {STAR}),\ }\href@noop {}
+  {\  (\bibinfo {year} {2017}{\natexlab{b}})},\ \Eprint
+  {http://arxiv.org/abs/1701.06497} {arXiv:1701.06497 [nucl-ex]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1701.06497;%%
+\bibitem [{\citenamefont {Adam}\ \emph {et~al.}(2015)\citenamefont {Adam} \emph
+  {et~al.}}]{Adam:2014qja}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Adam}} \emph {et~al.} (\bibinfo {collaboration} {ALICE}),\ }\href {\doibase
+  10.1103/PhysRevC.91.064905} {\bibfield  {journal} {\bibinfo  {journal} {Phys.
+  Rev.}\ }\textbf {\bibinfo {volume} {C91}},\ \bibinfo {pages} {064905}
+  (\bibinfo {year} {2015})},\ \Eprint {http://arxiv.org/abs/1412.6828}
+  {arXiv:1412.6828 [nucl-ex]} \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1412.6828;%%
+\bibitem [{\citenamefont {Dumitru}\ \emph
+  {et~al.}(2015{\natexlab{b}})\citenamefont {Dumitru}, \citenamefont
+  {McLerran},\ and\ \citenamefont {Skokov}}]{Dumitru:2014yza}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Dumitru}}, \bibinfo {author} {\bibfnamefont {L.}~\bibnamefont {McLerran}}, \
+  and\ \bibinfo {author} {\bibfnamefont {V.}~\bibnamefont {Skokov}},\ }\href
+  {\doibase 10.1016/j.physletb.2015.02.046} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Lett.}\ }\textbf {\bibinfo {volume} {B743}},\ \bibinfo
+  {pages} {134} (\bibinfo {year} {2015}{\natexlab{b}})},\ \Eprint
+  {http://arxiv.org/abs/1410.4844} {arXiv:1410.4844 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1410.4844;%%
+\bibitem [{\citenamefont {Dumitru}\ and\ \citenamefont
+  {Skokov}(2015)}]{Dumitru:2014vka}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Dumitru}}\ and\ \bibinfo {author} {\bibfnamefont {V.}~\bibnamefont
+  {Skokov}},\ }\href {\doibase 10.1103/PhysRevD.91.074006} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume}
+  {D91}},\ \bibinfo {pages} {074006} (\bibinfo {year} {2015})},\ \Eprint
+  {http://arxiv.org/abs/1411.6630} {arXiv:1411.6630 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1411.6630;%%
+\bibitem [{\citenamefont {Dumitru}\ \emph
+  {et~al.}(2015{\natexlab{c}})\citenamefont {Dumitru}, \citenamefont
+  {Giannini},\ and\ \citenamefont {Skokov}}]{Dumitru:2015cfa}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Dumitru}}, \bibinfo {author} {\bibfnamefont {A.~V.}\ \bibnamefont
+  {Giannini}}, \ and\ \bibinfo {author} {\bibfnamefont {V.}~\bibnamefont
+  {Skokov}},\ }\href@noop {} {\  (\bibinfo {year} {2015}{\natexlab{c}})},\
+  \Eprint {http://arxiv.org/abs/1503.03897} {arXiv:1503.03897 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1503.03897;%%
+\bibitem [{\citenamefont {Altinoluk}\ \emph {et~al.}(2015)\citenamefont
+  {Altinoluk}, \citenamefont {Armesto}, \citenamefont {Beuf}, \citenamefont
+  {Kovner},\ and\ \citenamefont {Lublinsky}}]{Altinoluk:2015uaa}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {T.}~\bibnamefont
+  {Altinoluk}}, \bibinfo {author} {\bibfnamefont {N.}~\bibnamefont {Armesto}},
+  \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Beuf}}, \bibinfo {author}
+  {\bibfnamefont {A.}~\bibnamefont {Kovner}}, \ and\ \bibinfo {author}
+  {\bibfnamefont {M.}~\bibnamefont {Lublinsky}},\ }\href {\doibase
+  10.1016/j.physletb.2015.10.072} {\bibfield  {journal} {\bibinfo  {journal}
+  {Phys. Lett.}\ }\textbf {\bibinfo {volume} {B751}},\ \bibinfo {pages} {448}
+  (\bibinfo {year} {2015})},\ \Eprint {http://arxiv.org/abs/1503.07126}
+  {arXiv:1503.07126 [hep-ph]} \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1503.07126;%%
+\bibitem [{\citenamefont {Altinoluk}\ \emph {et~al.}(2018)\citenamefont
+  {Altinoluk}, \citenamefont {Armesto}, \citenamefont {Kovner},\ and\
+  \citenamefont {Lublinsky}}]{Altinoluk:2018ogz}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {T.}~\bibnamefont
+  {Altinoluk}}, \bibinfo {author} {\bibfnamefont {N.}~\bibnamefont {Armesto}},
+  \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Kovner}}, \ and\ \bibinfo
+  {author} {\bibfnamefont {M.}~\bibnamefont {Lublinsky}},\ }\href@noop {} {\
+  (\bibinfo {year} {2018})},\ \Eprint {http://arxiv.org/abs/1805.07739}
+  {arXiv:1805.07739 [hep-ph]} \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1805.07739;%%
+\bibitem [{\citenamefont {Altinoluk}\ \emph {et~al.}(2017)\citenamefont
+  {Altinoluk}, \citenamefont {Armesto}, \citenamefont {Beuf}, \citenamefont
+  {Kovner},\ and\ \citenamefont {Lublinsky}}]{Altinoluk:2016vax}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {T.}~\bibnamefont
+  {Altinoluk}}, \bibinfo {author} {\bibfnamefont {N.}~\bibnamefont {Armesto}},
+  \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Beuf}}, \bibinfo {author}
+  {\bibfnamefont {A.}~\bibnamefont {Kovner}}, \ and\ \bibinfo {author}
+  {\bibfnamefont {M.}~\bibnamefont {Lublinsky}},\ }\href {\doibase
+  10.1103/PhysRevD.95.034025} {\bibfield  {journal} {\bibinfo  {journal} {Phys.
+  Rev.}\ }\textbf {\bibinfo {volume} {D95}},\ \bibinfo {pages} {034025}
+  (\bibinfo {year} {2017})},\ \Eprint {http://arxiv.org/abs/1610.03020}
+  {arXiv:1610.03020 [hep-ph]} \BibitemShut {NoStop}%
+%%CITATION = ARXIV:1610.03020;%%
+\bibitem [{\citenamefont {Kovner}\ and\ \citenamefont
+  {Rezaeian}(2017)}]{Kovner:2017ssr}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Kovner}}\ and\ \bibinfo {author} {\bibfnamefont {A.~H.}\ \bibnamefont
+  {Rezaeian}},\ }\href {\doibase 10.1103/PhysRevD.96.074018} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume}
+  {D96}},\ \bibinfo {pages} {074018} (\bibinfo {year} {2017})},\ \Eprint
+  {http://arxiv.org/abs/1707.06985} {arXiv:1707.06985 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1707.06985;%%
+\bibitem [{\citenamefont {Kovner}\ and\ \citenamefont
+  {Rezaeian}(2018)}]{Kovner:2018vec}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Kovner}}\ and\ \bibinfo {author} {\bibfnamefont {A.~H.}\ \bibnamefont
+  {Rezaeian}},\ }\href {\doibase 10.1103/PhysRevD.97.074008} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume}
+  {D97}},\ \bibinfo {pages} {074008} (\bibinfo {year} {2018})},\ \Eprint
+  {http://arxiv.org/abs/1801.04875} {arXiv:1801.04875 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1801.04875;%%
+\bibitem [{\citenamefont {Kovner}\ \emph
+  {et~al.}(2017{\natexlab{b}})\citenamefont {Kovner}, \citenamefont
+  {Lublinsky},\ and\ \citenamefont {Skokov}}]{Kovner:2017gab}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Kovner}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Lublinsky}}, \
+  and\ \bibinfo {author} {\bibfnamefont {V.}~\bibnamefont {Skokov}},\ }\href
+  {\doibase 10.1103/PhysRevD.96.096003} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume} {D96}},\ \bibinfo {pages}
+  {096003} (\bibinfo {year} {2017}{\natexlab{b}})},\ \Eprint
+  {http://arxiv.org/abs/1706.02330} {arXiv:1706.02330 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1706.02330;%%
+\bibitem [{\citenamefont {Martinez}\ \emph {et~al.}(2018)\citenamefont
+  {Martinez}, \citenamefont {Sievert},\ and\ \citenamefont
+  {Wertepny}}]{Martinez:2018tuf}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Martinez}}, \bibinfo {author} {\bibfnamefont {M.~D.}\ \bibnamefont
+  {Sievert}}, \ and\ \bibinfo {author} {\bibfnamefont {D.~E.}\ \bibnamefont
+  {Wertepny}},\ }\href@noop {} {\  (\bibinfo {year} {2018})},\ \Eprint
+  {http://arxiv.org/abs/1808.04896} {arXiv:1808.04896 [hep-ph]} \BibitemShut
+  {NoStop}%
+%%CITATION = ARXIV:1808.04896;%%
+\bibitem [{\citenamefont {Machleidt}(2001)}]{Machleidt:2000ge}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {R.}~\bibnamefont
+  {Machleidt}},\ }\href {\doibase 10.1103/PhysRevC.63.024001} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume}
+  {C63}},\ \bibinfo {pages} {024001} (\bibinfo {year} {2001})},\ \Eprint
+  {http://arxiv.org/abs/nucl-th/0006014} {arXiv:nucl-th/0006014 [nucl-th]}
+  \BibitemShut {NoStop}%
+%%CITATION = NUCL-TH/0006014;%%
+\end{thebibliography}%
+
+% flatex input end: [main.bbl]
+\renewcommand{\v}[1]{ \ensuremath{  \vec {#1}_\perp }}
+\renewcommand{\vp}[1]{ \ensuremath{  \underline {#1} }}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Begin the document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+    % make the title page
+    \maketitle
+
+    % make the table of contents
+    \renewcommand{\contentsname}{Table of Contents}
+    \tableofcontents
+    \newpage
+
+	\pagenumbering{arabic}
+    \setcounter{page}{1}
+    % the abstract
+    %\phantomsection
+    \section{Introduction}
+    %\addcontentsline{toc}{section}{Introduction}
+    % flatex input: [Text/abstract.tex]
+%\begin{document}
+\vspace{0.5em}
+\noindent
+{\bf Title:} \Title
+
+\vspace{0.5em}
+\noindent
+{\bf Lead Institution:} \Institute
+
+\vspace{0.5em}
+\noindent
+{\bf Principal Investigator:} \Investigator
+
+
+\vspace{0.5em}
+\noindent
+
+
+\vspace{0.5em}
+\noindent
+{\bf Abstract:} 
+Scattering processes and soft/semihard particle production in high-energy
+hadron-hadron and lepton-hadron collisions are largely defined  by the 
+small Bjorken $x$ component of the hadron(s) wave-function. 
+These  collisions provide access to kinematic regions 
+in the nucleon and nuclei where parton densities are extremely high 
+and dominated by gluons. In contrast to 
+well-understood dilute QCD dynamics at small distance scales, 
+high gluon density QCD is an intrinsically new, nonlinear regime
+forbidding usual perturbative treatment. Nevertheless due to formation of a semi-hard scale, 
+the so-called saturation momentum, the theory is computable semi-analytically using 
+weak coupling, but non-perturbative techniques.
+This proposal aims to develope  a unifying quantitative framework for 
+describing  novel aspects of small-$x$ physics in hadron-hadron,
+lepton-hadron, and Ultra Peripheral A-A collisions.
+
+This work is especially relevant to experiments at the Relativistic Heavy Ion Collider (BNL),
+Large Hadron Collider (CERN) and a future Electron-Ion Collider (BNL and JLab).  
+
+
+%{\TODO (should be shortened -- currently 119, the rule: 100 words or less )
+%}
+% participating in a collision.
+%can still
+%be utilized to extract   semi-analytic results for most of the observables. 
+
+
+\vspace{0.5em}
+\noindent
+{\bf Summary of Proposed Work:}
+The main objectives  are 
+\begin{itemize}
+
+	%\item Derive complete analytic results for first-saturation correction 
+	%	in projectile gluon density for single inclusive and double inclusive 
+	%	gluon production in classical approximation for 
+	%	asymmetric collisions (e.g. proton-nucleus collisions).    
+
+	%	Most of the semi-analytic calculations for particle production in
+	%	the saturation framework are 
+	%	either obtained in the dilute-dilute approximation 
+	%	(fully neglecting multiple rescattering) or in dilute-dense approximation
+	%	(multiple rescattering if fully accounted for in the dense target).
+
+	%	However, to perform a systematical analysis of particle production 
+	%	and correlations in hadronic collisions 
+	%	it is crucial to compute the first non-trivial correction to 
+	%	the dilute-dense limit. This correction is termed the first saturation correction. 
+
+	\item Build a unified framework for a systematic 
+		first-principle description of multiparticle production and
+		multiparticle correlations at small $x$ in 
+		various colliding systems (p-p/A and e-p/A). The critical steps include:
+		\begin{itemize}
+			\item Deriving complete analytic results for the first-saturation correction 
+		in projectile gluon density for single inclusive and double inclusive 
+		gluon production in the classical approximation for 
+		asymmetric collisions (e.g. proton-nucleus collisions).
+			\item Theoretical  development of a reweighting technique
+		enabling an access to the high multiplicity tail of 
+		hadronic wave-function/particle production. 
+			\item Proper account for the small $x$ evolution in order to restore the
+		three-dimensional snapshot of multi particle production in collisions
+		and to elicit the dependence on the collision energy.
+			\item Making the source code(s) performing numerical lattice 
+				simulations for multi-particle production publicly available. 
+		\end{itemize}
+
+		{\it Potential Impact:} 
+		These first-principle quantitative studies of the initial state effects in hadronic collisions 
+		may lead to a potential shift of paradigm in our understanding of 
+		particle production and, specificly,  the origin of collectivity. Additionally, 
+		on this stage of 
+		the EIC R\&D program, quantitative  predictions for the observables sensitive to 
+		gluon saturation or to various gluon distribution functions  
+		(e.g. the linearly polarized gluon distribution in an unpolirized hadron)  
+		in the relevant energy range 
+		may influence yet flexible design for EIC detectors by providing a
+		optimal kinematic range for performing corresponding measurements.  
+
+	\item Quantitatively study momentum entanglement in hadronic wave function. Derive 
+		small $x$ evolution for the full density matrix including the off-diagonal components 
+		in the basis of valence charge density. 
+		Extract the evolution of the associated entanglement entropy. Identify potential 
+		experimental observables. 
+
+		{\it Potential impact:} Quantum entangelement is a universal phenomenon underlying 
+		the behavior of quantum systems of diverse nature. The concept
+		does not rely on small coupling methods and thus may facilitate extension of 
+		evolution equations for entangelement entropy to an arbitrary value if the strong coupling.     
+		
+
+	\item Provide a cohesive picture of the role of quantum statistics at small $x$. 
+		Study associated effects in gluon and quark production. Compute the initial state
+		background contribution to the Chiral Magnetic Effect (CME). 
+		
+		{\it Potential impact:} Experimental data collected by CMS collaboration in p-A colisions
+		challenges the conventional picture of the flow-driven CME background established in A-A
+		collisions. The initial state correlations may explain the observed descrepancy.     
+
+
+\end{itemize}
+
+\vspace{0.5em}
+\noindent
+{\bf List of Personal:}
+\begin{enumerate}
+	\item Faculty: Vladimir Skokov (PI)
+	\item Postdoctoral Fellows: to be hired 
+	\item Graduate students:  Haowu Duan,  Gregory Johson 
+\end{enumerate}
+
+
+% flatex input end: [Text/abstract.tex]
+    \newpage
+
+    % setup the main body of the proposal
+
+    \phantomsection
+    \addcontentsline{toc}{section}{Proposal Narrative}
+
+    
+    % the main body of the proposal
+    % flatex input: [Text/outline.tex]
+\noindent
+
+% Section 1
+\section{Narrative Introduction}
+    \label{sec:introduction}
+    % flatex input: [Text/intro.tex]
+%\lipsum[5]
+
+The 2015 Nuclear Science Advisory Committee (NSAC) Long Range Plan
+\href{https://science.energy.gov/np/nsac/}
+{``Reaching  for the Horizon''} outlined the key fundamental  questions{\it 
+\begin{itemize}
+	\item [] How are the sea quarks and gluons, and their spins, distributed in
+		space and momentum inside the nucleon? 
+	\item [ ] How does the nuclear environment affect the distribution of
+		quarks and gluons and their interactions in nuclei?
+	\item [] Where does the saturation of gluon densities set in?
+\end{itemize}}
+\noindent 
+under one overarching theme \\
+\indent {\it  
+``How does subatomic matter organize itself and what phenomena emerge?''.  
+} \\ \noindent 
+The scientific  urge to answer these questions lead the NSAC 
+to recommend EIC as the ``highest priority for new facility construction
+following the completion of FRIB''. In the mid 2018, this recommendation 
+was supported by the National Academy of Science which  concluded 
+``that the science questions
+regarding the building blocks of matter are compelling and that an EIC is
+essential to answering these questions.'' 
+This, however, can only be achieved   
+with appropriate theoretical support %in the form of providing prediction 
+and development of new theoretical tools built upon 
+first-princliple approaches  to 
+the theory of strong interactions. 
+This proposal seeks funding for building such a tool 
+with a broader application range which includes also high energy hadron-hadron 
+collisions and Ultra Peripheral Collisions (UPC) of proton-nucleus and nucleus-nucleus.   
+
+Besides the EIC physics, 
+the successful implementation of the proposal will have a significant impact on 
+understanding the results of other planned or on-going experimental programs  at the large 
+facilities in the U.S. (RHIC, CEBAF) and Europe (CERN). 
+
+
+
+
+% flatex input end: [Text/intro.tex]
+
+    \vspace{0.5em}
+    \subsection{Motivation}
+        \label{sec:motivation}
+        % flatex input: [Text/motivation.tex]
+The two decades worth of experimental
+measurements at RHIC and, then, LHC 
+have provided many unexpected results, including 
+a strong evidence for the formation of 
+a strongly coupled plasma of quarks and gluons in
+heavy-ion collisions at high energy~\cite{Shuryak:2003xe,Shuryak:2004cy,Adams:2005dq,Song:2010mg}. 
+This plasma  
+demonstrated properties of a nearly perfect fluid; 
+this fact facilitated  theoretical description 
+of the collisions dynamics starting just  about 1 fm/c after the heavy-ion impact 
+in the framework of hydrodynamics~\cite{Schafer:2009dj,Song:2010mg,Romatschke:2017ejr}.   
+
+The success of the hydrodynamic description, however, cannot be complete 
+without a detailed understanding of the initial 
+non-equilibrium state. The properties of this state go boyong the range of applicability 
+of hydrodynamics and  are little known; 
+the evolution of this state towards equilibrated 
+thermal nearly perfect liquid  is not well understood. 
+One dominant mechanism describing the initial phase is 
+based on the saturation framework, also widely known as 
+Color Glass Condensate~\cite{Iancu:2002xk,Albacete:2014fwa,KovchegovLevin}. According to the framework, the 
+high energy particle production and scaterring processes are 
+dominated by the classical gluon fields providing a 
+backgrouynd for systematical weak-coupling 
+computation of quantum correction on top of it.  
+
+In laboratory, 
+collisions of heavy-ions create probably the most optimal enviroment for 
+probing quark-gluon plasma near equilibrium, but 
+at the same time they are poorly suited to study the 
+initial state particle production. This is because 
+most of the observables in heavy-ion collisions are 
+sensitive not only to the initial state but also 
+to the final sate. However, to uniquily map the trasport properties 
+of the plasma, it is critical to extract information 
+about the initial state in collisions where 
+the final state is better understood and the 
+initial state is expected to play the dominant role.
+This nesessitates to probe a nucleus  and a nucleon with the smallest projectiles: 
+proton and ultimately electron. 
+Theoretically, a controled,  first principle description of such collisions (p-p, p-A, e-A) 
+is not as complex as A-A collisions 
+and at high energy can be performed in a common quantitative framework: the saturation framework. 
+Leter on the results of the framework may be transferred to describe A-A collisions. 
+
+
+One example of similar strategy was realized recently in Refs.~\cite{Mantysaari:2016ykx,Mantysaari:2016jaz,Mantysaari:2017cni} 
+where the saturation motivated model (IP-SAT, see Ref.~\cite{Kowalski:2003hm}) for e-p collisions  was used to constrain the 
+shape flustuation of the proton wavefunction by studying 
+coherent and incoherent diffractive 
+vector meson production at HERA. The proton shape fluctuations may have direct 
+impact on properties of the matter created in A-A collisions from 
+the initial state in peripheral to ultracentral collisions. 
+
+
+
+Theoretical analysis of future experimental data from an Electron-Ion Collider  will 
+definetely make greater impact on our understanding of the dynamics in 
+p-p, p-A and A-A collisions.  % and the initial state of A-A collisions. 
+The inverse is also partially true as the data collected 
+in p-p and p-A collsions currently drives an active 
+development of the first princliple approaches to 
+high energy QCD physics. Additionally p-p and p-A 
+collisions allow us to probe a different phase space 
+of high energy  QCD, complementing future EIC coverage, and thus 
+better constraining the applicability range of our frameworks. 
+
+Before EIC comes into opperation, ultra peripheral collisions (UPC) 
+of p-A and A-A provide a unique opportunity to 
+further sharpen theoretical methods. It is clear that 
+many smoking gun signals of new QCD dynamics at high energy 
+will be measured with rather high statistics 
+by collecting UPC data at LHC and RHIC. Additionally, researchers at LHC 
+seriously consider 
+future physics opportunities for studying high-density QCD 
+with UPC in ions and proton beams. This is why it is 
+crucial to have a common approach to a wide energy or Bjorken $x$ range; 
+in saturation framework the energy depndence  is captured by the small-$x$ 
+renromalization group evolution equations.  
+The modern pinnacle of performing numerical analysis of the small-$x$ evolution is based on 
+leading order  JIMWLK (Jalilian-Marian--Iancu--McLerran--Weigert--Leonidov--Kovner) equation~\cite{JalilianMarian:1997dw, 
+JalilianMarian:1997gr,
+Iancu:2001ad, 
+Iancu:2000hn}  which resums powers of $\alpha_s \log x^{-1}$
+extends the applicability range of BK (Balitsky-Kovchev) equation \cite{Balitsky:1995ub,Balitsky:1998ya,Kovchegov:1999yj,Kovchegov:1999ua} to finite number of colors $N_c$. 
+It has not yet be fully utilized to describe gluon production, 
+while it paves a way to reducing model dependence towards  
+first-principle framework.  
+
+%Future precision phenomenology requires numerical solution of the 
+%next-to-leadin order JIMWLK, which was recently derived. 
+%It however still awaits \ldots 
+
+The number of unresolved thoretical issues complemented by a number of 
+quite puzzling yet unexplained features of the experimental data (see below and  Secs.~\ref{sec:p1},~\ref{sec:p2} and~\ref{sec:p3})  
+and the need for the development of new theoreticall tools to EIC physics 
+require to solidify our understanding of small $x$ dynamics, 
+to develop first-principle based event generators and, finally, to  
+explore new approaches and ideas. 
+
+
+%Developping a first-principle theoretical model is required to 
+
+Cristalyzing %ummarizing 
+the above, there are four  major motivation themes that drive our interest  
+
+\vspace{0.5em}
+
+\noindent
+{\bf Theme 1: 
+To differentiate initial state effects from the final state dynamics of strongly coupled quark-gluon plasma. 
+}
+Multiparticle production and correlations are cannonical measurements for a) the formation of the strongly coupled 
+plasma, see e.g. Refs.~\cite{Schafer:2009dj,Song:2010mg}; b) the Chiral Magnetic Effect~\cite{Kharzeev:2007jp}, the novel transport mechanism due to QCD quantum axial anomaly;
+%c) the nuclear modification factor at given ``centrality'' (defined as the activity of an event) and 
+c) higher order cumulants of proton fluctuations as a signature of a critical point or first-order phase transition~\cite{Stephanov:2008qz}. 
+For all of these items in the list, it is important to disentangle the initial state contribution from 
+the geniune final state effects in near-equilibrium quark-gluon plasma. Quantifying the role of the initial state 
+will further strengthen the discovery potential for all these key measurements and improve the chances of 
+establishing these novel phenomena.   
+
+\vspace{0.5em}
+
+\noindent
+{\bf Theme 2: 
+	To find  a better, simplier description of complex problems in hadron structure and 
+high energy QCD. 
+}	 
+At small $x$ or at high energy, the number of gluons grows rapidly; intuitevely, it is  
+reasonable to expect that an effective, statistical description of some if not all 
+observables can be feasible and acurate. There are already known examples where 
+statisticl analogy  was implemented and offered fresh insights on complex problems: 
+-- treatment of of high-energy evolution as a reaction-diffusion process in statistical physics~\cite{Munier:2003vc,Iancu:2004es,Kutak:2011rb}, 
+-- parametrization of parton distribution functions motivated by quantum statistics distributions~\cite{Mac:1989ki,Bhalerao:1996fc,Bourrely:2001du}, 
+-- establishing the dominance of Bose-Enhancement in high multiplicity events~\cite{Kovner:2018azs}, 
+-- entropy of small $x$ gluons in hadronic wave function and its relation to 
+multiplicity and entropy of produced hadrons in the final state~\cite{Peschanski:2012cw,Kovner:2015hga,Kharzeev:2017qzs,Shuryak:2017phz,Hagiwara:2017uaz}.  
+
+
+Along these lines, one may hypothetize that small $x$ evolution may be generalized beyong 
+weakly coupled regime through the universal notion of the entagelement entropy. 
+It could be also possible  that strict bounds on the entagelement entropy~\cite{Holzhey:1994we,Calabrese:2005zw}
+may lead 
+to a resolution of the QCD unitarity problem at high energy. 
+
+Besides, the statistical description, recently established set of dualities between the verticies 
+of the infra-red triangle~\cite{Strominger:2017zoo,Pate:2017vwa,Ball:2018prg} may also bring better understanding of particle production in near classical regime. 
+
+\vspace{0.5em}
+
+
+
+\noindent
+
+{\bf Theme 3:  Describe puzzling featires of the data. }
+There are puzzling features of the data that may be potentially described 
+with saturation/CGC formalism; these includes: 
+-- long-range rapidity correlations and apparent collectivity in p-p and p-A 
+collisions~\cite{Khachatryan:2010nk,Aad:2010ac,Aaij:2014pza,ALICE:2017pcy},  
+-- baryon-baryon correlation in p-p collisions~\cite{Adam:2016iwf}, 
+-- re-emergence of the Cronin peak in multiplicity biased p-A collisions at high energy~\cite{ALICE:2012mj} , 
+-- strong correlations between soft-hard particle production in p-p and p-A collisions~\cite{ATLAS:2014cpa,Aad:2015ziq}. 
+
+
+\vspace{0.5em}
+
+\noindent
+
+{\bf Theme 4:  Rigorous theoretical predictions 
+on gluon saturation dynamics in experimental observables at a future EIC }
+Electron-Ion Collider has a strong discovery potential 
+for a novel QCD phase. Theoretical development and in particular 
+predictions based on saturation dynamics are required to claim  the discovery. 
+
+\vspace{2em}
+
+The success of this project is defined by delivering the following key results 
+\begin{itemize}
+    \item Developping a systematic framework for particle production at 
+		small $x$. Making the associated source code(s) performing numerical simulation for 
+		the developped framework available online. This item is an integral part 
+		of the proposal; it was pointed out on multiple occasions that 
+		there are no publicly available small $x$ codes or they are not well 
+		documented. 
+		%With our experience of publishing
+		%the simulation code MCDijet, we    
+    \item Derivation of the 
+		small-$x$ evolution equations for the off-diagonal components 
+		of the density matrix in the basis of the valence charge density.
+		Derivation of the small-$x$ evolution equations for the momentum 
+		entanglement entropy and seeking for universal features allowing to 
+		a potential extension to arbitrary coupling.  
+    \item Providing a detailed and cohesive picture of the role of 
+		quantum statistics at small $x$. Ultimately establishing 
+		connection to 
+		the Kulish-Fadeev formalism, the color memory effect, and 
+		BMS (Bondi-Metzner-Sachs) symmetry and their consequences at small $x$.   
+		Publishing a detailed review on the role of quantum statistics 
+		cristalysing synergy of the results obtained by the PI and 
+		other researchers. 
+\end{itemize}
+
+% flatex input end: [Text/motivation.tex]
+
+ %   \vspace{0.5em}
+ %   \subsection{Background}
+ %       \label{sec:background}
+ %       \input{Text/background}
+
+ %   \vspace{0.5em}
+ %   \subsection{Selection of Tasks}
+ %       \label{sec:selectedtasks}
+ %       \input{Text/selected_tasks}
+
+
+% Section 1
+\section{Proposed Research: Multi-particle production and correlations at small $x$ in p-p/A and 
+e-A collisions}
+    \label{sec:p1}
+
+    \vspace{0.5em}
+    \subsection{Background}
+    \label{sec:p1b}
+
+Below we list essential background material and motivations for major
+goals of the proposed research in this topic. 
+
+\subsubsection*{Particle production in classical approximation}
+	
+To review the state of the art in the saturation/CGC formalism,   
+let us first consider the single inclusive gluon production cross section. 
+Suppressing impact parameter dependence (see Ref.~\cite{Kovchegov:2018jun} for more details), 
+the production cross section can be written as \cite{Kovchegov:1996ty,Kovchegov:1997pc} 
+ \begin{align}
+   \frac{dN}{d^2 k \, d^2 b \, d^2 B} 
+   = \frac{1}{\alpha_s} \, f \left( 
+   \frac{Q_{sp}^2}{k^2},  	 
+   \frac{Q_{sA}^2}{k^2}  	 
+   \right)\, ,
+ \end{align}
+ where $Q_{sp}$ and $Q_{sA}$ are the saturation momenta 
+ for the projectile and target, $\alpha_s$ is the strong coupling constant,
+ $B$ is the impact parameter between the projectile nuclei or nucleon and target nucleus, $b$ is the transverse
+ position of the gluon. 
+ %\cite{McLerran:1994vd,McLerran:1993ka,McLerran:1993ni,Kovchegov:1996ty,Kovchegov:1997pc}. 
+ The function $f$ was only studied numerically~\cite{Krasnitz:1999wc,Krasnitz:2003jw,Lappi:2003bi,Blaizot:2010kh}. 
+ Analytically tractable is only its expansion in either one of the arguments.
+ In the {\it dilute-dense} approximation valid for asymmetric collisions, one assumes 
+ that the projectile is a dilute object, $  \frac{Q_{sp}^2}{k^2} \lsim
+ 1$ which facilitates the expansion of the production cross section in this parameter
+\begin{align}
+  \frac{dN}{d^2 k \, d^2 b \, d^2 B} = \frac{1}{\as} \, \left[
+     \frac{Q_{sp}^2}{k^2}
+	  \ f_1 \! \left(  \frac{Q_{sA}^2}{k^2} \right) +
+    \left(  \frac{Q_{sp}^2}{k^2} \right)^2 \ f_2 \! \left(  \frac{Q_{sA}^2}{k^2} \right) + \ldots \right].
+  \label{Eq:SIP}
+\end{align}
+The function $f_1$ is known analytically 
+\cite{Kovchegov:1998bi,Dumitru:2001ux}. 
+At this order the number of produced gluons for  given projectile and target configurations is given by 
+\begin{equation}
+\left.\frac{dN}{d^{2}kdy}\right|_{\rho_{\rm p},\rho_{\rm t}}=\frac{2g^{2}}{(2\pi)^{3}}\int\frac{d^{2}q}{(2\pi)^{2}}\frac{d^{2}q'}{(2\pi)^{2}}\Gamma(\v{k},\v{q},\v{q}')\rho_{\rm p}^{a}(-\v{q}')\left[U^{\dagger}(\v{k}-\v{q}')U(\v{k}-\v{q})\right]_{ab}\rho_{\rm p}^{b}(\v{q}),
+\label{eq:SIPc}
+\end{equation}
+where $\Gamma(\v{k},\v{q},\v{q}')$ is the square of Lipatov vertex, 
+see \myref~\cite{Kovner:2018azs} for details. 
+%\begin{equation}
+%\Gamma(\v{k},\v{q},\v{q}')=\left(\frac{\v{q}}{q^{2}}-\frac{\v{k}}{k^{2}}\right)
+%\cdot \left(\frac{\v{q}'}{q'^{2}}-\frac{\v{k}}{k^{2}}\right)\,.
+%\end{equation}
+Here $\rho_{\rm p}$ is a given configuration of the color charged density in the projectile,
+and $U$ is the eikonal scattering matrix -- the adjoint Wilson line -- for scattering of
+a single gluon on the target.
+The target Wilson lines depend on the target color sources, $\rho_{\rm t}$. 
+
+
+Functions $f_2 , f_3 , \ldots$ are
+not known analytically at present.
+Here we want to explain what we mean by  analytical results, 
+as e.g. $f_i$ may still involve rather  complicated momentum integrals 
+of  Wilson lines of the target field. 
+Getting to a number, often requires using $f_i$ to 
+conduct numerical lattice simulations. This is why in what follow we 
+refer to this as semi-analytical approach. 
+In contrast to numerical Classical Yang-Mills (CYM)
+calculations, $f_i$ require neither numerical solution 
+for the proper time dependence nor numerical implementation of 
+LSZ (projection of gluon field time evolution to asymptotic particle states). 
+In comparison to numerical CYM, the dilute-dense semi-analytic 
+results facilitates inclusion of small $x$ evolution, 
+running coupling corrections and, finally, it is superior 
+in terms of simulation time. 
+ 
+
+Returning back to the expansion~\eqref{Eq:SIP},  
+the next contribution, 
+the function $f_2$, is  also termed as the {\it first saturation correction} in the
+projectile, since it comes in with two powers of $Q_{sp}^2/k^2$,
+corresponding to interactions with two valence sources in the projectile. 
+The efforts to calculate $f_2$ analytically was started in
+\myref\cite{Balitsky:2004rr} and more recently revisited in
+\myref\cite{Chirilli:2015tea}. Despite of this effort, only $f_2$ is known only partially 
+and its complete analytic calculation is one of the goals of this proposal. 
+Phenomenologically $f_2$ is of paramount importance because it defines the first non-trivial 
+correction to the dilute-dense approximation and thus provides a systematic
+check on the applicability/convergence  of this approximation. 
+$f_2$ will also bridge the gap between dilute-dense and dense-dense 
+approaches. 
+
+
+%The calculation of the order-$\left(
+%  Q_{sp}^2/k^2 \right)^2$ correction implies including an
+%order-$\as^2$ correction to the projectile interaction as compared to
+%the leading order-$Q_{sp}^2/k^2$ term from
+%\myref\cite{Kovchegov:1998bi}. This order-$\as^2$ correction involves
+%interaction with the extra valence source in the projectile, which brings in
+%an additional $Q_s^2/\alpha_s^2$ factor. With the help of the retarded gluon
+%Green function one can rearrange the diagrams such that the
+%order-$\as^2$ correction enters in two different ways: it may enter as an
+%order-$\as$ correction in the amplitude {\sl and} in the complex
+%conjugate amplitude, or as an order-$\as^2$ correction either in the
+%amplitude or in the complex conjugate amplitude. The former case was
+%calculated in \myrefs\cite{Balitsky:2004rr,Chirilli:2015tea}, where the
+%order-$\as$ correction to the leading-order (pA) gluon production
+%amplitude was found. No one has yet analytically calculated the
+%order-$\as^2$ correction to the same amplitude to complete the efforts
+%to determine $f_2$!
+ 
+ 
+The same discussion but with greater effect applies to the two-gluon production. For the
+classical two-gluon production cross section one can write
+\begin{align}
+	\frac{dN}{d^2 k_1 \, d^2 b_1 \, d^2 k_2 \, d^2 b_2 \, d^2 B} 
+  = \frac{1}{\as^2} \, h
+  \left( 
+  \frac{Q_{sp}^2}{k^2},  	 
+   \frac{Q_{sA}^2}{k^2}  	 
+  \right)
+ \end{align}
+ with the new unknown function $h$. Here $k_1$ and $k_2$ are the
+ gluons' transverse momenta (here to simplify notation 
+ we assumed that $|k_1|=|k_2|=k$), while $b_i$ are their
+ transverse positions. Again, assuming a dilute projectile we expand
+ in $\frac{Q_{sp}^2}{k^2}$ getting
+\begin{align}
+  \frac{dN}{d^2 k_1 \, d^2 b_1 \, d^2 k_2 \, d^2 b_2 \, d^2 B} =
+  \frac{1}{\as^2} \, \left[ \left( \frac{Q_{sp}^2}{k^2}  \right)^2 \ 
+	  h_1
+    \!\left(  \frac{Q_{sA}^2}{k^2} \right) + \left( \frac{Q_{sp}^2}{k^2}  \right)^3 \ h_2 \! \left( \frac{Q_{sA}^2}{k^2}  \right) + \ldots
+  \right] .
+  \label{Eq:DIP}
+\end{align}
+The function $h_1$ can be found from the results of
+\myrefs\cite{Kovner:2012jm,Kovchegov:2012nd}, 
+explicitly it is also written in \myrefs\cite{Kovner:2018fxj}. 
+Compared to $f_1$ in Eq.~\eqref{eq:SIPc}, which has two target Wilson lines (dipole), 
+the function $h_1$ involves four Wilson lines (quadrupole). 
+This
+part of the two-gluon production cross section is even 
+under the reflection of either momenta $k_1$ or $k_2$ and thus 
+generates  only even harmonics. This is why finding the function $h_2$ 
+was one of the highest priorities for saturation/CGC community. 
+Recently, in Refs.~\cite{McLerran:2016snu,Kovchegov:2018jun},
+it was shown that the accidental symmetry with respect to the 
+reflection of one of the momenta is lifted by the 
+first saturation contribution, $h_2$. 
+The complete part of $h_2$ responsible for the
+odd harmonics was derived analytically~\cite{McLerran:2016snu,Kovchegov:2018jun}. 
+This progress allowed us to find the leading order contribution to odd harmonics and lead to 
+a  
+successful application of the framework to phenomenology of two particle correlations in p-A 
+collisions~\cite{Mace:2018vwq,Mace:2018yvl}.
+Nevertheless, the complete result for $h_2$ is currently unknown; 
+deriving and numerically simulating it is one  of the goals of this project.
+The complete results for the first saturation correction $h_2$
+will enable us to quantify the reliability of the expansion~\eqref{Eq:DIP}
+for extraction of even harmonics  $v_{2n}\{2\}$. 
+
+We finally want to comment on the range of applicability  of the 
+dilute-dense approximation in terms of hadrons participating in collisions. 
+Besides the obvious application to p-A collisions, dilute-dense expansion 
+can also be applied to A-A  and high-multiplicity p-p collisions. 
+The latter, as also supported by experimental data on 
+the event-by-event dependence of the number of particles on rapidity,   
+is dominated by collisions in which one of the proton wave function experienced 
+a fluctuations with higher than average gluon density, or saturation momentum $Q_s$. 
+The former, if considered locally, can often be described by the 
+dilute-dense approach at least for some range of transverse momenta. 
+In A-A collisions, the required hierarchy of saturation momenta originates from 
+the fact that in a given event, for a given impact parameter in the transverse plane, it is quite unlikely
+to have the same number of participants on the target and projectile side simultaneously. 
+Since the target (projectile) saturation momentum squared is proportional to the number 
+of participants in the target (projectile), the desired hierarchy can be achieved.   
+
+
+%In this contexts, it is amusing Thus a nonzero value for odd azimuthal anisotropies in the CGC EFT can be understood to be a unique signature of the emerging coherence of the classical gluon field in the pro- jectile.
+
+
+\subsubsection*{High multiplicity events and reweighting}
+In the last years, study of multi-particle correlations in 
+p-A and p-p collisions have been a very active 
+area of both experimental and theoretical research 
+due to the observation of the long-range in rapidity 
+azimuthal correlations (the so-called ridge)
+at LHC and RHIC.   
+Since the observed ridge correlation is much more pronounced in high multiplicity
+events, the understanding of the origin of high multiplicity
+fluctuations and especially of the high multiplicity tail of the distribution describing 
+particle production  
+receives a lot of attention. 
+
+Recently, at small $x$, this problem has been attacked from different angles, 
+but lead to the universal result on the approximate negative binomial 
+distribution for the high multiplicity tail, see e.g. Ref.~\cite{Liou:2016mfr,Kovner:2018azs}.  
+In particular, PI with collaborators, derived an effective action describing 
+the covariant gauge gluon field ($A^+$)  distribution in a hadron both for the McLerran-Venugopalan 
+model~\cite{McLerran:1993ni,McLerran:1993ka} and for a (non-local) Gaussian 
+approximation~\cite{Iancu:2002tr} 
+for the small-x density matrix of 
+the valence charge distribution. It was shown that the corresponding effective action is a Liouville action (without kinetic term and with negative Ricci scalar):
+\begin{equation}
+	\label{Eq:Veff}
+	V_{\rm eff} [\eta(\v{q})] = \frac{1}{2} (N_c^2-1) S_\perp \int \frac{d^2q}{(2\pi)^2} 
+	\left\{ \eta(\v{q}) -1 - \ln \eta (\v{q}) \right\}\,, \quad  \eta(\v{q})   =
+	\frac{
+		 {\rm tr} |A^+(\v{q})|^2} 
+		{  \langle  {\rm tr} |A^+(\v{q})|^2 \rangle    }\,. 
+\end{equation}
+PI also demonstrated that small $x$  evolution preserves the shape of the effective 
+potential and affects only its widths~\cite{Dumitru:2017cwt}, see Fig.~\ref{fig:veff}. 
+
+
+\begin{figure}[t]
+\floatbox[{\capbeside\thisfloatsetup{capbesideposition={right,top},capbesidewidth=8cm}}]{figure}
+[0.8\linewidth]
+%[\FBwidth]
+{
+\caption{
+  The effective potential describing fluctuations of the
+  covariant gauge gluon field distribution (above the saturation scale) in
+  a transverse area patch of order $2\pi R^2 = 8\pi/Q_s^2(Y)$. Symbols
+  show the results obtained from the Monte-Carlo simulation, lines correspond
+  to the potential derived analytically, see Eq.~\eqref{Eq:Veff}. Here  $Y=\log x_0/x$. 
+	}
+	\label{fig:veff}
+}
+{ \includegraphics[width=\linewidth]{./figures/veff.pdf}
+ }
+\end{figure} 
+
+
+
+Later, this effective theory was directly connected to 
+the distribution of produced gluons in Ref.~\cite{Kovner:2018azs}. 
+It turned out that the leading effect that drives the multiplicity 
+fluctuations at small $x$ is the quantum Bose enhancement of gluons in the
+proton wave function. Strikingly, from completely different presumptions,
+the Liouville action was derived for the fluctuations of the effective saturation 
+momentum~\cite{Iancu:2004es,Marquet:2006xm,Iancu:2007st}. 
+In Refs.~\cite{Dumitru:2017cwt,Dumitru:2017ftq,Dumitru:2018iko} 
+it was also realized that high multiplicity events at small $x$ 
+cannot be parametrized by just a single  quantity  $Q_s$, 
+but rather by a nontrivial function which depends on the transverse 
+momentum and $x$. 
+
+The systematic treatment of high multiplicity 
+color charge configurations has only just begun and  
+although this progress lead to a better understanding of the high multiplicity fluctuations, 
+the state of the art numerical simulations in the saturation/CGC formalism 
+(\cite{Mantysaari:2017cni,Mace:2018vwq,Mace:2018yvl} to name a few)
+still rely 
+on a brute force numerical approach to access high multiplicity tail. 
+In this approach, configurations of target and projectile are generated 
+without any bias, the particle production and correlations are computed and a posteriori 
+multiplicity selection is applied. 
+Given the numerical complexity of sampling these configurations  on a 2+1 dimensional lattice
+(two transverse directions and rapidity),  
+this approach  is very inefficient in probing 
+high multiplicity tail, as most of the generated configurations are close to the most probable 
+one. 
+
+One of the goals of this proposal is to develop a theoretical high multiplicity ``trigger'', 
+i.e. the reweighting technique giving an efficient access to the high multiplicity tail.   
+
+\subsubsection*{Small-x evolution}
+Apart from the general advantage of having a semi-analytic solution, 
+the dilute-dense expansion or knowing the function $f_i$ and $h_i$ (see Eqs.~\eqref{Eq:SIP} and~\eqref{Eq:DIP}) 
+can facilitate the inclusion of small-$x$ evolution corrections~\cite{Kuraev:1977fs,
+Balitsky:1978ic, 
+Balitsky:1997mk, 
+Balitsky:1998ya, 
+Kovchegov:1999yj,
+Kovchegov:1999ua, 
+JalilianMarian:1997dw, 
+JalilianMarian:1997gr,
+Iancu:2001ad, 
+Iancu:2000hn}.
+Presently, in this framework,  the small-$x$ evolutions has not been accounted for 
+with rare exceptions and only
+for single inclusive gluon production, see e.g. in Ref.~\cite{Dumitru:2018iko}. 
+Usually, dependence on $x$ is approximated by the IP-SAT model~\cite{Kowalski:2003hm,Rezaeian:2012ji},
+which solves leading order  DGLAP (Dokshitzer--Gribov--Lipatov--Altarelli--Parisi)  gluon evolution (neglecting its coupling to quarks) 
+with analytically parametrized $x$ dependence at an initial 
+transverse scale $\mu_0$. 
+This approach provides a flexible and numerically simple method 
+to phenomenology. Nonetheless, incorporating actual non-linear 
+small $x$ evolution is essential to study physics 
+of high partonic densities and to extract phenomenological results from first principles.  
+Doing so in the framework of JIMWLK (Jalilian-Marian--Iancu--McLerran--Weigert--Leonidov--Kovner) equation 
+~\cite{JalilianMarian:1997dw, 
+JalilianMarian:1997gr,
+Iancu:2001ad, 
+Iancu:2000hn} 
+is one of the goals of this project. 
+JIMWLK equation is a functional integro-differential 
+equations describing evolution of the distribution of Wilson lines (or, alternatively, color sources) in a 
+hadron. At the leading order, JIWMLK equations can be rewritten in the Fokker-Planck form~\cite{Weigert:2000gi}
+and thus it can be also reformulated as  a Langevin equation describing a generalized Brownian motion of 
+the Wilson line. Owing to its complexity, no analytic solution of the JIMWLK equation exists. 
+Its solution has been obtained only numerically, using lattice gauge theory methods for the
+ Langevin form of JIMWLK equation.
+
+ At NLO, JIMWLK equation does not allow for a straightforward reformulation in the Langevin form~\cite{Kovner:2014lca}. 
+ This is why NLO JIMWLK equation has not been solved numerically yet. 	
+
+
+
+
+Physically small $x$ evolution accounts for soft gluon emission and thus 
+also contributes to multiplicity fluctuations. It is an open question how to 
+incorporate high multiplicity ``trigger'' in small $x$ evolution (that is how to perform 
+reweighting at each step of small $x$ evolution). 
+
+%along with the running-coupling corrections [35–39] into the gluon production cross section.
+%
+%[35] E. Gardi, J. Kuokkanen, K. Rummukainen, and H. Weigert, Running coupling and power corrections in nonlinear
+%evolution at the high-energy limit, Nucl. Phys. A784 (2007) 282–340, [hep-ph/0609087].
+%[36] I. I. Balitsky, Quark Contribution to the Small-x Evolution of Color Dipole, Phys. Rev. D 75 (2007) 014001,
+%[hep-ph/0609105].
+%[37] Y. Kovchegov and H. Weigert, Triumvirate of Running Couplings in Small-x Evolution, Nucl. Phys. A 784 (2007)
+%188–226, [hep-ph/0609090].
+%[38] J. L. Albacete and Y. V. Kovchegov, Solving high energy evolution equation including running coupling corrections, Phys.
+%Rev. D75 (2007) 125021, [0704.0612].
+%[39] W. A. Horowitz and Y. V. Kovchegov, Running Coupling Corrections to High Energy Inclusive Gluon Production, Nucl.
+%Phys. A849 (2011) 72–97, [arXiv:1009.0545].
+%
+%
+%
+%
+
+
+
+\subsubsection*{Gluon saturation at Electron-Ion Collider} 
+Because the final state effects are  minimal in e-A collisions, 
+the small $x$ saturation/CGC framework can with greater effect be applied to 
+quantifying particle scattering and production at an Electron-Ion Collider. 
+At small $x$ Deep Inelastic Scattering (DIS) can be described in the so-called color 
+dipole approach~\cite{Gunion:1976iy,Nussinov:1975mw,Nussinov:1975qb,Marquet:2009ca}: 
+the virtual photon emitted by the incoming electron splits into quark and anti-quark.
+This pair scatters off the target. The scattering is treated in the eikonal approximation.
+These approach can be used for a wide variety of inclusive and semi-inclusive processes  
+along with  smoking gun signatures of gluon saturation: suppression of dihadron 
+correlations 
+ and diffraction, in particular diffractive meson production 
+(see most recent study in Ref.~\cite{Mantysaari:2017slo}
+and Ref.~\cite{Aschenauer:2017jsk} 
+for a comprehensive review). 
+
+
+
+One of the processes which received our attention  is dijet (a jet pair) production in DIS.
+And although in saturation/CGC formalism the color dipole approach is the most natural, 
+it is important to mention, that in the correlations limit~\footnote{The correlation limit is  
+the limit of almost back-to-back jets~\cite{Dominguez:2011wm,Dominguez:2011br}.}
+it was shown that the saturation/CGC framework yields the same result for the dijet production
+cross section as the one obtained within Transverse Momentum Dependent (TMD) factorization 
+framework~\cite{Mulders:2000sh,Bomhof:2006dp,Meissner:2007rx} at small $x$~\cite{Metz:2011wb,Dominguez:2011wm}. 
+
+
+
+Both approaches universally demonstrated that the dijet production depends on   
+the Weiz\-s\"acker-Williams (WW) transverse-momentum-dependent  gluon distribution.  
+The TMD parton distributions signify the recent progress achieved in developing 
+frameworks to extend our understanding of hadron structure  beyond the one-dimensional
+parton distribution function (PDF), as the TMDs depend not only of the longitudinal momentum 
+fraction $x$ but also on the transverse momentum and therefore contain more 
+detailed information on the internal structure of hadrons relative to PDFs.
+Quark TMDs are the most studied, while the available studies of gluon TMDs 
+are rather sparse. In particular, the WW gluon distribution still awaits its experimental 
+determination; also theoretically little had been known about the evolution of the distribution at small $x$ 
+before Ref.~\cite{Dumitru:2015gaa} where PI and coauthors conducted the first small $x$ computation of 
+both components for the WW gluon distribution: unpolarized and polarized one, see Fig~\ref{fig:xGxh}. 
+Both components can be accessed through measuring azimuthal anisotropies in processes 
+such as dijet production in e+p and e+A scattering. The linearly polarized
+gluon distribution causes  a nontrivial azimuthal angular $\cos 2\phi$ dependence of the dijet cross section, 
+as we illustrate by the leading order in $\alpha_s$  cross-section for inclusive
+production of a $q+\bar q$ dijet in high energy deep inelastic
+scattering of a longitudinally~\footnote{The cross section for the transversely polarized virtual photon can be found in Refs.~\cite{Metz:2011wb,Dominguez:2011wm}.} polarized virtual photon $\gamma^*$ off a proton or nucleus is
+given by~\cite{Metz:2011wb,Dominguez:2011wm}
+\begin{eqnarray}
+E_1E_2
+\frac{d\sigma ^{\gamma _{L}^{\ast }A\rightarrow q\bar{q}X}}{d^3k_1d^3k_2 d^2b}
+&=&\alpha _{em}e_{q}^{2}\alpha _{s}\delta \left( 1-z-\bar z\right) z^2\bar z^2\frac{8\epsilon _{f}^{2}{P}_{\perp }^{2}}{(
+{P}_{\perp }^{2}+\epsilon _{f}^{2})^{4}}  %\notag \\
+%&&
+%\quad \quad \quad \quad \quad \quad
+%\times
+\left[ xG^{(1)}(x,q_{\perp })+\cos \left(2
+  \phi\right)xh_{\perp }^{(1)}(x,q_{\perp })\right]\, .
+\label{eq:dijet_L}
+\end{eqnarray}
+Here $\phi$ is the angle between the total momentum  ($P_\perp$) of dijet and the momentum imbalance  ($q_\perp$).
+The feasibility of extracting the azimuthal anisotropy was 
+consider in the proof of principle analysis of  Ref.~\cite{TODO}, where by doing Monte-Carlo simulations 
+we showed that with some experimental effort the WW gluon distributions can
+be successfully extracted, see Fig.~\ref{fig:extract}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.45\linewidth]{figures/qs_multipl_log.pdf}
+\includegraphics[width=0.45\linewidth]{figures/ratio.pdf}
+%\vspace*{5cm}       % Give the correct figure height in cm
+\caption{$xG^{(1)}(x,q^2_\perp)$ and $xh^{(1)}(x,q^2_\perp)$ WW gluon
+  distributions versus transverse momentum $q_\perp$ at different rapidities
+  $Y=\log x_0/x$. $Q_s(Y)$ is the saturation momentum. The computations are performed at 
+  fixed $\alpha_s$~\cite{Dumitru:2015gaa}.
+  The degree of gluon linear polarization is limited by the saturation of positivity bound and is maximal at high transverse momentum (dijet momentum imbalance). }
+\label{fig:xGxh}       % Give a unique label
+\end{figure}
+
+
+\begin{figure}[b]
+
+\floatbox[{\capbeside\thisfloatsetup{capbesideposition={right,top},capbesidewidth=8cm}}]{figure}
+[0.8\linewidth]
+%[\FBwidth]
+{
+\caption{Result of a fit of combined signal and background to a data sample obtained
+	in $\sqrt{s}=90$ GeV $e$+A collisions with an integrated luminosity of 10 fb$^{-1}$/A.
+	The results indicate that a proper measurement of
+the linearly polarized gluon distribution will require integrated
+luminosities of at least 20 fb$^{-1}$/A or more. Hence, this
+measurement would be a multi-year program assuming that an EIC
+initially starts off with luminosities around $10^{33}$ cm$^{-2}$
+s$^{-1}$. See details in Ref.~\cite{TODO}
+	}
+	\label{fig:extract}
+}
+{ \includegraphics[width=\linewidth]{./figures/extract.pdf}
+ }
+\end{figure} 
+
+
+{ 
+	Small $x$ saturation/CGC formalism provides access to dijet production beyond the
+	correlation limit~\cite{Dominguez:2011wm}; we illustrate this for the longitudinally 
+	polarized virtual photon (c.f. Eq.~\eqref{eq:dijet_L}): 
+	\begin{eqnarray}
+&&\frac{d\sigma ^{\gamma_{L}^{\ast }A\rightarrow q\bar{q}X}}{d^2k_1dz_1d^2k_2dz_2}
+= 8N_{c}\alpha _{em}e_{q}^{2} \, (2\pi)^2 \delta(1 -z- \bar{z}) 
+z \bar{z} \epsilon_f^2
+\int \frac{\text{d}^{2}u}{(2\pi)^{2}}\frac{\text{d}^{2}u^{\prime }}{(2\pi )^{2}}
+\; e^{-i \v{P}\cdot(\v{u}-\v{u}^{\prime})}
+ K_0(\epsilon_f u )   K_0(\epsilon_f u^\prime)  \\
+&&~~~~\times 
+\frac{1}{N_c}\left[
+N_c+
+\underbracket{
+\left< {\rm Tr}\,
+U^\dagger(\v{x_2})  U(\v{x_1}) U^\dagger(\v{x_1}^{\prime})  U(\v{x_2}^{\prime})
+\right>_x}_{\rm quadrupole} 
+-
+\underbracket{\left< {\rm Tr}\,
+U^\dagger(\v{x_2})  U(\v{x_1}) \right>_x}_{\rm dipole}
+-
+\underbracket{
+\left< {\rm Tr}\,
+U^\dagger(\v{x_1}^\prime)  U(\v{x_2}^\prime) \right>_x }_{\rm dipole}
+\right] ~.  \label{Eq:disL} \notag
+\end{eqnarray}
+Here $\v{u}=\v{x_1}-\v{x_2}$ and $\v{u}^\prime=\v{x_1}^\prime-\v{x_2}^\prime$ and the angles represent averages over the 
+target configurations. 
+As we can see in Eq.~\eqref{Eq:disL},  the production cross section cannot be expressed in terms of  
+	gluon TMDs but rather involve two- and four-point fundamental Wilson line ($U$) correlators (dipole and quadrupole terms)  in coordinate space. 
+	Using the general saturation/CGC framework results,  we 
+	estimated the amplitude of the azimuthal $\langle \cos 4\phi  \rangle$
+	dependence in Ref.~\cite{Dumitru:2016jku}; it involved a new gluon TMD, i.e. it was not reducible to known gluon distribution. 
+	Besides higher order harmonics, corrections to the correlation limit also 
+	modify the angular independent amplitude and the amplitude of $\langle \cos 2\phi  \rangle$ anisotropy.
+	This means that the corrections may also propagate to the observable azimuthal asymmetry.  
+	They are controlled by the ratio $q_\perp^2/P_\perp^2$~\cite{Dumitru:2016jku}.    
+	At an EIC, given statistical and collision energy limitations,  the kinematic range for the momentum imbalance and the 
+	total dijet momentum is rather narrow; at best we could hope to get the ratio of $1/4$.
+	This means that higher order corrections at an EIC can be phenomenologically important. 
+	This necessitates numerical estimate of these corrections and implementation of the 
+	full saturation/CGC formalism result, i.e. including the   full quadrupole contribution.   
+	This is one of the aims of this proposal. 
+	}
+
+
+
+
+We note that similar structures involving dipole and quadrupole 
+terms appear in single double inclusive production in the leading order of dilute-dense expansion in 
+p-A and high multiplicity p-p collisions, see Eq.~\eqref{eq:SIPc} and the discussion on $h_1$ after 
+Eq.~\eqref{Eq:DIP}. This illustrates an importance of a common framework to
+particle production and scattering in 
+p-p/A and e-A. 
+
+
+Besides 
+ extending and improving the dijet analysis, the application of the 
+ developed framework to the smoking gun signatures of saturation in e-A collisions such as diffractive scattering/production
+and dihadron correlations~\cite{Aschenauer:2017jsk} is also one of the goals of this project. 
+
+
+
+\vspace{0.5em}
+    \subsection{Detailed goals and methods}
+        \label{sec:p11}
+
+		Our main goal is to provide a unified systematic first-principle based description of
+		initial-state effects and particle production/scattering in p-A, 
+		high-multiplicity p-p, e-A and ultra peripheral p/A-A collisions.  
+		The ultimate goal is to write and publish an open source  simulation code based on the same saturation/CGC framework and 
+		the same set of parameters across different colliding systems. 
+
+		The main milestones to be reached are listed below:
+		\begin{itemize}
+			\item Derivation of the first saturation correction to the leading order 
+				dilute-dense approximation for single and double 
+				inclusive gluon production, i.e. $f_2$ of Eq.~\eqref{Eq:SIP} and $h_2$  of Eq.~\eqref{Eq:DIP} correspondingly. 
+				Previously PI with collaborators
+				derived the momentum odd contribution to the double inclusive production, $h_2$, see Eq.~\eqref{Eq:DIP}, 
+				in two different gauges: first in  the Fock-Schwinger gauge (this gauge is formulated in the coordinate space), see Ref.~\cite{McLerran:2016snu} and 
+				then in the global light-cone gauge, see Ref.~\cite{Kovchegov:2018jun}.
+
+
+				It may be straightforward, although technically difficult to derived complete 
+				results for  $f_2$ and $h_2$ in the light-cone gauge. Thus, instead, 
+				our approach will be based on the Fock-Schwinger gauge, where higher order corrections 
+				can be obtained by iteratively solving classical Yang-Mills equation~\cite{Dumitru:2001ux,McLerran:2016snu}
+				with appropriate boundary conditions~\cite{Kovner:1995ts}.
+				The form of the result in the Fock-Schwinger gauge is usually the most convenient for 
+				further numerical analysis on the lattice~\cite{Kovchegov:2018jun}.
+				If we confront with unforeseen difficulties in the Fock-Schwinger gauge,
+				we will be able to perform analytics in the light-cone gauge.  
+
+
+				As was repeatedly pointed out  in Refs.~\cite{Mace:2018vwq,Mace:2018yvl}, the knowledge of the first saturation corrections, 
+				$f_2$ and $h_2$, is required to estimate systematic uncertainties of the dilute-dense 
+				approximation and, potentially, extend the range of applicability of the dilute-dense expansion to higher 
+				gluon densities in the projectile. Also, higher order corrections may potentially reveal new non-trivial multi-gluon
+				effects in two particle correlations patterns.  
+			
+				We will also  explore if higher order corrections, $f_2$ and $h_2$ can be written in approximately 
+				$k_\perp$-factorized form as was previously done for te leading order dilute-dence expansion 
+				of the double inclusive production~\cite{Kovchegov:2013ewa}.
+
+			\item Developing reweighten for high multiplicity.  A posteriori multiplicity 
+				selection is not well suited to probe extremely high multiplicity events. This necessitates 
+				establishing an appropriate a priori reweighting
+				techniques. Based on the insights we gained by computing gluon multiplicity distribution
+				in a dilute  projectile~\cite{Dumitru:2017cwt,Dumitru:2017ftq,Dumitru:2018iko}, our  goal 
+				is to  develop a reweighting which would  allow us to access the
+				high-multiplicity tail; we will use this technique to compute multi particle correlations
+				and nuclear modification factor.  
+
+			\item Accounting for small $x$ evolution for particle production and correlations. 
+				Application of the framework in the wide range of energies from RHIC and EIC to LHC, requires 
+				inclusion of small $x$ evolution. The dilute-dense approximation allows straightforward 
+				numerical implementation  of the evolution, which we will account for using leading order 
+				JIMWLK equation. 
+
+				Along with this we will consider two higher risk problems detailed below. 
+				We want to stress that success of this project does not rely on solving these problems. 
+				\begin{itemize}
+					\item[--]
+				We  plan to explore the possibility of reformulating NLO JIMWLK in the Langevin form and 
+				solving it numerically. It is possible that the developed in this project reweighting method 
+				will facilitate projection of each evolution step of LO JIMWLK to NLO order. This ideas are only 
+				in its inception and will be considered in details during the implementation of this stage of the project.
+					\item[--]
+				From the result of Refs.~\cite{McLerran:2016snu,Kovchegov:2018jun}, it appears that 
+				the presence of transverse momentum odd correlations in double inclusive production cross section 
+				requires some degree of final state interactions (although 
+				this statement may be gauge-dependent). It is thus important to understand if there
+				are transverse momentum odd correlations in the {\it incoming} hadron wave function at small $x$
+				before scattering and particle production. PI and collaborators  explored  this in an adhoc  JIMWLK motivated 
+				wave function in Ref.~\cite{Kovner:2016jfp}; to improve  these calculations  we will consider 
+				the hadron wave function derived from JIMWLK under controlled approximations.  
+				\end{itemize}
+			
+			\item 
+				Implementing the following key improvements to the Monte-Carlo dijet event generator (MCDijet) 
+				for an EIC~\cite{TODO}:
+				\begin{itemize}
+					\item[--] incorporating event-by-event nucleon position fluctuations in nuclear target; 
+					\item[--] studying correlations between dijet production and gluon multiplicity fluctuations 
+						in the nuclear target; this might provide a realistic experimental probe 
+						of WW gluon distribution in rare configurations of the nucleus/proton;
+					\item[--] incorporating corrections to the correlation limit and simulations with complete 
+						quad\-rupole contribution to dijet production; 
+					\item[--] taking into account Sudakov corrections;  
+					\item[--] probing model dependence with different color sources distributions 
+						besides commonly used McLerran-Venugopalan (MV) model~\cite{McLerran:1993ni}. 
+						Usually the initial condition for JIM\-WLK evolution are taken following 
+						the MV model which is rigorously formulated only for large nuclei at 
+						small $x$. For a proton at moderate and large $x$, the color charge 
+						distribution can be quite different from the MV model. 
+						As was shown in recent paper~\cite{Dumitru:2018vpr}, a
+						standard light front Hamiltonian framework~\cite{Brodsky:1997de} can be used to compute color charge 
+						distribution in nucleons and nuclei~\footnote{On the subject of light front quark model, 
+							we will tap into expertise of a local nuclear theorist: Chueng-Ryong Ji.}  		
+							; we want to implement this color distribution 
+						to test model dependence of the results and provide a better estimates on 
+						in dijet production at an EIC in a wide range on the targets' atomic number.    
+				\end{itemize}
+				These improvements are required in order to provide a realistic description of DIS
+				dijet production at an EIC. 
+
+				Additionally we plan to extend MCDijet to Ultra Peripheral Collision  (UPC) at hadron 
+				colliders, such as RHIC and, especially, the LHC. 
+				At very large impact-parameters between colliding hadrons the long range electromagnetic
+				force becomes dominant over short-range QCD allowing for the dipole approach to 
+				dijet production in UPC. One significant difference compared to DIS is that, for
+				the UPC kinematics, the photon virtuality  is negligible; 
+				this leads to vanishing amplitude in front of the linearly polarized gluon 
+				distribution $x h^{(1)}_\perp$ (see e.g.~\cite{Dominguez:2011br}), 
+				but the unpolarized gluon distribution, $xG^{(1)}$,  can be extracted. 
+				We plan to conduct the realistic feasibility study of extracting  $xG^{(1)}$ in UPC 
+				by 
+				a) replacing the electron's photon fluxes with that from a proton or nucleus, as detailed in 
+				Ref.~\cite{Klein:1999gv}
+				and b) extending the range of accessible $x$ towards smaller values probed by  the LHC. 
+
+				We also plan to modify MCDijet even generator to simulate the 
+				suppression of dihadron correlations and diffractive meson production (beyond IP-SAT-based approach of Ref.~\cite{Toll:2012mb}). 	
+
+			\item Application to phenomenology of p-p, p-A and e-A collisions. 
+				In particular, we are interested in extracting the following observables 
+				\begin{itemize}
+					\item[--] Three-gluon correlations to explore if 
+						the framework's systematics is similar to the STAR measurements
+						in peripheral A-A collisions~\cite{Adamczyk:2017hdl,Adamczyk:2017byf}.  	
+					\item[--] Four particle correlations and integrated and differential $v_n\{4\}$ as a function of  multiplicity and collision energy
+					\item[--] Nuclear modification factor with multiplicity bias, so-called $Q_{pA}$~\cite{Adam:2014qja}.  
+					\item[--] 
+					Systematics of Dijet Production at an EIC and UPC: 
+					dependence on the atomic number, energy dependence, 
+					prediction for high order harmonics of azimuthal anisotropy, 
+					feasibility check of extracting correlation between dijet production and forward nucleus going  multiplicity, as a probe of biased WW gluon distribution, cristalysing the role of saturation in dijet observables.  
+				\end{itemize}
+		\end{itemize} 
+		
+		
+		
+%		The PI has experience in writing, publishing and maintaining source code, see e.g. MCDijet~\cite{ }.
+
+
+
+
+    \vspace{0.5em}
+    \subsection{Timeline}
+        \label{sec:p12}
+The targeted due dates for the deliverables are indicated in quarter year
+increments: e.g., Q4 refers to delivery one year after the project funding
+begins, and Q12 refers to the end of the three-year project.
+
+%{\TODO update}
+        \begin{enumerate}
+            \item Tasks oriented towards e-p/A and  
+				ultra-peripheral p-A and A-A collisions   
+                \begin{itemize}
+                    \item Extension of MCDijet,  Monte-Carlo generator 
+						for dijet production, to UPC (Q6)
+                        \begin{itemize}
+                            \item Extending small $x$ evolution to cover 
+								LHC energy range, incorporating running
+								coupling corrections  (Q2)
+                            \item Incorporating nucleon position fluctuations 
+								in nuclear wave function (Q4)
+                            \item Publishing the even generator MCDijet for UPC  (Q6)
+                        \end{itemize}
+                    \item Rare nuclear wave function configurations 
+						and dijet production 
+						(Q8)
+                        \begin{itemize}
+							\item Light front quark model for 
+							nucleon wave function in e-p collisions (Q2) 
+                            \item Incorporating nucleon position fluctuations 
+								in nuclear wave function   (Q3)
+                            \item Inclusion of Sudakov corrections and
+								estimating their importance  (Q6)
+                            \item   
+								Complete quadrupole contribution to dijet production  (Q8)
+                        \end{itemize}
+                \end{itemize}
+        \end{enumerate}
+        \begin{enumerate}
+            \item  Tasks oriented towards p-p 
+				and  p-A  collisions  
+                \begin{itemize}
+                    \item Theoretical development for p-A collisions (Q10)
+                        \begin{itemize}
+                            \item Complete result for single and double 
+								gluon production with first saturation 
+								correction (Q4)
+                            \item High-multiplicity reweighting  (Q10)
+                        \end{itemize}
+                    \item Numerical simulations and publishing the final version 
+					of the 	code (Q12)
+                        \begin{itemize}
+                            \item Role of complete first saturation correction on 
+								event-by event number of gluon distribution 
+								and on even harmonics, $v_{2n}$ (Q5)
+                            \item Inclusion of small-x evolution  (Q7)
+                            \item Numerical simulations with
+								high multiplicity trigger (Q11)
+							\item Application to phenomenology (Q1-Q12)
+							\item GPU-based implementation of the code (Q12) 
+                        \end{itemize}
+                \end{itemize}
+        \end{enumerate}
+
+% Section 2
+\section{Proposed Research: Entanglement and full density matrix}
+    \label{sec:p2}
+
+    \vspace{0.5em}
+    \subsection{Background}
+    \label{sec:p2b}
+
+
+
+
+    \vspace{0.5em}
+    \subsection{Detailed goals and methods}
+        \label{sec:p21}
+
+    \vspace{0.5em}
+    \subsection{Timeline}
+        \label{sec:p22}
+  \item Momentum entanglement in hadronic wave function
+        \begin{enumerate}
+            \item Full density matrix  in the basis 
+				of valence charge density
+                \begin{itemize}
+                    \item Small-$x$ evolution of full density matrix (Q6)
+                        \begin{itemize}
+                            \item Deriving evolution equation (Q2)
+                            \item Gaussian approximation and application to small-$x$ 
+								phenomenology (Q4)
+                            \item Relation to high-multiplicity events and correlation between large and small x components of the hadronic  wave function (Q6)
+                        \end{itemize}
+                    \item  Small-$x$ evolution of entangelment entropy   (Q10)
+                        \begin{itemize}
+                            \item Deriving small-$x$ evolution (Q7)
+                            \item Solving small-$x$ evolution on lattice (Q8)
+                            \item Phenomenological application  (Q10)
+                        \end{itemize}
+                \end{itemize}
+        \end{enumerate}
+
+% Section 3
+\section{Proposed Research: Quantum statistics at small $x$}
+    \label{sec:p3}
+
+    \vspace{0.5em}
+    \subsection{Background and motivation}
+    \label{sec:p3b}
+	Although the quantum statistic effects are exuberant at small $x$, 
+	only recently their significance was recognized in observables. 
+	In particular, 
+	for gluons, three sources of multi-particle  correlations were rigorously established at 
+	small $x$: -- Bose Enhancement, -- Hanbury Brown-Twiss (HBT), and classical effects due to 
+	scattering off a domain with spontaneous rotational symmetry breaking of the direction of 
+	color field~\cite{Dumitru:2014yza,Dumitru:2014vka,Dumitru:2015cfa}. It was shown that two genuinely quantum effects dominate over the classical one 
+	almost in the entire phenomenologically relevant kinematic range~\cite{Kovner:2018azs}.
+	Specifically, it was demonstrated that the ridge correlations at small $x$ are 
+	due mostly to gluon Bose enhancement and 
+	HBT~\cite{Kovchegov:2013ewa,Kovchegov:2012nd,Altinoluk:2015uaa,Altinoluk:2018ogz,Kovner:2018fxj,Kovchegov:2018jun};
+	also  it was recently identified 
+	that gluon Bose enhancement is responsible for the high multiplicity tail in p-A collisions~\cite{Kovner:2018azs}. 
+	Finally, it was shown that Fermi statistics my lead to non-trivial effects at small $x$~\cite{Altinoluk:2016vax,Kovner:2017ssr,Kovner:2018vec} 
+and potentially be responsible for a significant background contribution to the Chiral Magnetic Effect~\cite{Kovner:2017gab}. 
+	The latter was established only on the level of particle correlations in the incoming projectile wave function; 
+	quite recently the saturation/CGC framework applied to derive semi-analytic equations describing 
+	three particle correlations, including the CME observable~\cite{Martinez:2018tuf}. Numerical calculations of this 
+	correlations has not yet been performed and currently we can only speculate how large 
+	this contribution is in p-A and A-A collisions. One of the goals of this project is to 
+	numerically extract CME correlator in dilute-dense saturation/CGC framework and to asses its phenomenological importance 
+	for CME studies. 
+
+	Quantum statistics might be responsible not only for the intriguing observation of three particle CME-like correlations 
+	in p-A collisions, but also for an observed near-side baryon--baryon anti-correlation structure in p-p 
+	collisions~\cite{Adam:2016iwf} at the LHC. Currently the description of this effect presents a challenge 
+	to all Monte Carlo models and its origin is an open question. Exploratory studies to probe if this anti-correlations are 
+    related to parton statistics at small $x$ will be conducted in project.  
+
+
+	
+
+
+    \vspace{0.5em}
+    \subsection{Detailed goals and methods}
+        \label{sec:p31}
+
+		Here, the main goal is to elucidate the role of quantum statistics effects at small $x$ by 
+		conducting analytical and numerical analysis of quark and gluon production and correlations. 
+		The main milestones are 
+		\begin{itemize}
+			\item By conducting 
+				numerical simulation of deuteron-A collision 
+				on the lattice, test the hypothesis that high multiplicity tail is dominated by 
+				configurations of the deuteron with the overlapping nucleons in the transverse direction~\cite{Kovner:2018azs,Mace:2018vwq}. 
+				The foundation of this hypothesis is based on gluon Bose enhancement in the projectile~\cite{Mace:2018vwq}.   
+			\item Implementing a realistic wave function for the {\it polarized} deuteron. 
+				Due to an admixture of the 
+				$D$-wave state in the deuteron wave function (see e.g. \myref\cite{Machleidt:2000ge}), 
+				the direction of deuteron polarization defines the spatial
+				anisotropy of deuteron. Thus polarized deutron-nucleus collisions 
+				at high energy provide a unique system for measuring effects of quantum statistics sensitive to the 
+				deuteron wave function including Bose enhancement and HBT. Additionally  the polarized deuteron collisions 
+				provide the knowledge of the initial eccentricity and a good handle on the reaction plane orientation; 
+				this may facilitate disentangling and testing the role of initial and final state effects in driving
+				azimuthal anisotropy in d-A collisions.
+			\item  Testing  numerically the saturation/CGC predictions in polarized d-A collisions, in particular: -- that  the longitudinal 
+				deuteron polarization leads to greater multiplicity fluctuations than the transverse deuteron polarization,  --  that 
+				two gluon correlations are stronger along the axis polarization due to gluon HBT. Assessing if this effect can be experimentally
+				measured.
+			\item Implementing quark production in the framework. Applying the framework to extract numerically: -- 
+				the background contribution to the Chiral Magnetic Effect, i.e. the three particle charge-dependent correlator, -- 
+				the quark--quark and quark--anti-quark correlation function and explore if it may be responsible for the 
+				observed baryon-baryon rapidity anti-correlation. 
+			\item Providing a realistic 
+				initial baryon number  distribution in the coordinate space for further hydrodynamic evolution in A-A collisions. 
+		\end{itemize}
+		
+		
+		Summarizing the above research complemented by that conducted previously, 
+		we plan to write a comprehensive review on the quantum statistics effects at small $x$. 
+
+
+    \vspace{0.5em}
+    \subsection{Timeline}
+        \label{sec:p32}
+        \begin{enumerate}
+            \item Exploring role of quantum statistics at small $x$
+                \begin{itemize}
+                    \item Investigating the role of gluon quantum statistics (Q8)
+                        \begin{itemize}
+                            \item Numerical simulations of unpolarized deuteron-A collisions: role of Bose enhancement (Q2) 
+                            \item Polarized deuteron wave function and two gluon correlations as a test of quantum 
+								statistics effects and collectivity (Q8) 
+                        \end{itemize}
+                    \item Investigating the role of quark statistics (Q10)
+                        \begin{itemize}
+                            \item Implementing quark degrees of freedom in numerical simulations (Q5)
+                            \item Computing two and three particle correlations involving quark degrees of freedom (Q8)
+                            \item Computing tables of the initial baryon number distribution for further hydrodynamical evolution in A-A collisions   (Q10)
+                        \end{itemize}
+                \end{itemize}
+        \end{enumerate}
+
+
+
+% flatex input end: [Text/outline.tex]
+    
+    
+    % Extras
+  %  \section{Project Management Plan}
+  %     \label{sec:management}
+  %    \input{Text/Extras/management_plan}
+
+
+
+  %  \section{Software Productivity and Sustainability Plan}
+  %      \label{sec:software_sustainability}
+  %      \input{Text/Extras/software_sustainability}
+
+
+    % end of proposal narrative
+    
+		\vspace{1em}
+    \section*{\underline{End of proposal narrative; supplemental materials to follow.}}
+    \newpage
+
+
+    % supplemental materials
+    \addcontentsline{toc}{section}{Supplemental Materials:}
+    
+	    \section{Data Management Plan}
+        \label{sec:data_management}
+        % flatex input: [Text/Extras/data_management.tex]
+
+We will follow the following protocol 
+\begin{itemize}
+
+	\item 
+The published data will be distributed as a supplementary  material for each 
+published manuscript in a widely used format, e. g. 
+ASCII or tab-delimited  format. 
+Instructional material will be provided in 
+the manuscripts and in text form along  with the data. 
+The data will be strictly in standard, non-proprietary file formats 
+to facilitate  data sharing. 
+
+\item 
+For each published manuscript, iin case of large data files, 
+the PI will make copies of data 
+available to co-investigators, students, and
+others by request within 30 days from receipt of the request. 
+ 
+
+
+	\item
+The simulation code will be developed in C++, Python and Julia, 
+the data processing  scripts will be written using sed and awk. 
+Every piece of written software or script will 
+be provided to the public in source code format for non-commercial use 
+under GNU General Public License (GPL). 
+For each code made available, a user's manual will be provided with
+instructions for compiling the source codes, installing and running the codes,
+formulating input data streams, and visualizing the output. Documentation will
+be in PDF format.
+Source codes will be published on North Carolina State University 
+	GitHub web page \url{https://github.ncsu.edu}. 
+
+\item 
+For all of the numerical simulations, representative input files will
+be kept along with the sources codes. Sample  output files 
+will also be provided when possible. 
+
+\end{itemize}
+
+% flatex input end: [Text/Extras/data_management.tex]
+	
+	
+	\section{Student Tracking Information}
+        \label{sec:staffing}
+        % flatex input: [Text/staffing.tex]
+\vspace{0.5em}
+
+\begin{center}
+\begin{tabular}{| p{16mm}| p{25mm}| p{22mm}| p{18mm}|p{25mm}|p{15mm}|  }                                                                              \hline
+             Student & Date~Entered Grad. School  &   Date Joined Group & Degree Program 
+			 & Date Degree Expected & Advisor \\
+            \hline
+             Gregory Johnson & August 2017 & July 2018  & Ph.D.  & May 2022  & Skokov \\ 
+			 \hline
+             Haowu Duan &  August 2017    & August 2018  & Ph.D.   & May 2022 & Skokov \\ 
+			 \hline
+        \end{tabular}
+
+\end{center}
+%\lipsum[121-130]
+
+% flatex input end: [Text/staffing.tex]
+    \newpage
+
+  %  \section{Project Timeline}
+  %      \label{sec:timetable}
+   %     \input{Text/task_list}
+   % \newpage
+
+
+    % The bibliography 
+   % \section{Abbreviations and Code Names}
+   %     \label{sec:abbreviations}
+   %     \input{Text/Extras/abbreviations}
+   % \newpage
+
+    \section{Literature Cited}
+        \label{sec:references}
+%FLATEX-REM:        \bibliography{bibl,references,v3}
+    \newpage
+
+	\section{List of Principle Collaborators}
+        \label{sec:PC}
+        % flatex input: [Text/PC.tex]
+%\begin{document}
+\vspace{0.5em}
+\noindent
+{\bf  \Investigator: }
+
+
+{
+\it
+\noindent
+Bzdak, Adam (AGH-UST), \\
+Dumitru, Adrian (Baruch College),\\
+Friman, Bengt (GSI),\\
+Fukushima, Kenji (Tokyo Uni),\\ 
+Kharzeev, Dmitri (SBU),\\
+Koch, Volker (LBNL),\\
+Kovchegov, Yuri (OSU),\\
+Kovner, Alex (UConn),\\
+Lappi, Tuomas (Jyvaskyla Uni),\\
+Levai, Peter (Wigner Institute),\\ 
+Lublinsky, Michael (Ben Gurion U. of Negev), \\
+Mace, Mark (BNL),\\
+McLerran, Larry (INT),\\ 
+Nakano, Eiji (Kochi Uni),\\
+Nishimura, Hiromichi (RBRC),\\
+Pisarski, Robert (BNL), \\
+Redlich, Krzysztof (Wroclaw),\\
+Tribedy, Prithwish (BNL), \\
+Ullrich, Thomas (Yale), \\
+Venugopalan, Raju (BNL)
+}
+
+% flatex input end: [Text/PC.tex]
+    \newpage
+
+    % The short biosketches for EVERY contributing person
+ 
+	
+	\section{Biographical Sketches}
+        \label{sec:biosketches}
+        % flatex input: [Bios/biosketches.tex]
+
+%The following pages list 2-page CVs for the key personnel listed below.
+
+%\begin{itemize} \zapspace
+%    \item{\Investigator}
+%\end{itemize}
+
+%\newpage
+
+% NOTE: You can import tex bios like so
+% flatex input: [Bios/cv_skokov.tex]
+%\newpage
+
+\begin{center}
+   {\large\bf Vladimir Skokov} \\[0.25em]
+    Physics Department, College of Sciences \\
+    North Carolina State university, Raleigh, NC 27695 \\
+    Email: vskokov@ncsu.edu
+\end{center}
+
+\noindent\textbf{Education and Training}
+
+\vspace{0.6em}
+\begin{tabular}{rp{5.6in}}
+	2006 & Ph.D., Physics, Joint Institute for Nuclear Researchers, Dubna, Russian Federation \\[0.5em]
+	2002 & M. Sc., Physics, Saratov State University \& Joint Institute for Nuclear Researchers, Russian Federation \\[0.5em]
+\end{tabular}
+\vspace{0.6em}
+    
+\noindent\textbf{Research and Professional Experience}
+
+\vspace{0.6em}
+\begin{tabular}{lp{5in}}
+    {2018--present} & Assistant Professor, 
+	North Carolina State University, 
+	Raleigh, NC. \\[0.5em]
+    {2018--present} & Fellow, 
+	Riken-BNL Research Center, 
+	Brookhaven National Laboratory, 
+	Upton, NY. \\[0.5em]
+    {2015--2018} & Research Associate, 
+	Riken-BNL Research Center, 
+	Brookhaven National Laboratory, 
+	Upton, NY. \\[0.5em]
+    {2013--2015} & Visiting Assistant Professor (non-tenure), 
+	Western Michigan University, 
+	Kalamazoo, MI.  \\[0.5em]
+    {2011--2013} & Research Associate, 
+	Physics Department, 
+	Brookhaven National Laboratory, 
+	Upton, NY. \\[0.5em]
+    {2009--2011} & Research Associate, 
+	GSI Helmholtzzentrum fuer Schwerionenforschung, 
+	Darmstadt, Germany. \\[0.5em]
+\end{tabular}
+
+\vspace{0.6em}
+
+\noindent\textbf{Awards} % Top 10!
+\begin{itemize}
+	\item[] {\it Fellowship}\\ 
+		2012, 2017, 2018  EMMI Research Visiting Professor GSI, Darmstadt, Germany
+	\item []  {\it Fellowship}\\ 	
+		2003, 2005 Bogoliubov-Infeld Fellowship, JINR, Dubna, Russia
+	\item []  {\it Fellowship} 	\\ 
+		2001 Leonard Euler Fellowship, Justus-Liebig-Universitaet, Giessen, Germany
+	\item []  {\it Fellowship} 	\\ 
+		2000 CRDF Grant for Undergraduate Scientific Research, Saratov State
+University,  Russia
+\end{itemize}
+
+\vspace{0.6em}
+
+\noindent\textbf{Selected Publications} % Top 10! 
+\\
+\noindent{\it Most pertinent publications for the past three years} % Top 10!
+
+\begin{itemize}
+	\setlength\itemsep{0.25em}	
+	\item[]  
+		M.~Mace, V.~Skokov, P.~Tribedy and R.~Venugopalan, \\
+  ``Hierarchy of azimuthal anisotropy harmonics in collisions of small systems from the Color Glass Condensate,'' \\
+  \href{http://dx.doi.org/10.1103/PhysRevLett.121.052301}{
+	  Phys.\ Rev.\ Lett.\  {\bf 121}, no. 5, 052301 (2018)}
+	
+	\item[]   
+		A.~Kovner and V.~Skokov, \\
+  ``Bose enhancement, the Liouville effective action and the high multiplicity tail in p-A collisions,'' \\
+  \href{http://dx.doi.org/10.1103/PhysRevD.98.014004}{ 
+  Phys.\ Rev.\ D {\bf 98}, no. 1, 014004 (2018)}
+
+	\item[]   
+		Y.~V.~Kovchegov and V.~Skokov, \\
+  ``How classical gluon fields generate odd azimuthal harmonics for the two-gluon correlation function in high-energy collisions,'' \\
+  \href{http://dx.doi.org/doi:10.1103/PhysRevD.97.094021}  {
+	  Phys.\ Rev.\ D {\bf 97}, no. 9, 094021 (2018) }
+
+	\item[]  
+		A.~Dumitru, G.~Kapilevich and V.~Skokov,\\
+  ``The small-x gluon distribution in centrality biased pA and pp collisions,''\\
+  \href{http://dx.doi.org/doi:10.1016/j.nuclphysa.2018.03.012}{
+	  Nucl.\ Phys.\ A {\bf 974}, 106 (2018)}
+
+
+	\item[] 
+		A.~Kovner, M.~Lublinsky and V.~Skokov,\\
+  ``Initial state qqg correlations as a background for the Chiral Magnetic Effect in collision of small systems,''\\
+  \href{http://dx.doi.org/doi:10.1103/PhysRevD.96.096003}{
+	  Phys.\ Rev.\ D {\bf 96}, no. 9, 096003 (2017)}
+
+  \item[] 
+	  A.~Dumitru and V.~Skokov,\\
+  ``Fluctuations of the gluon distribution from the small-x effective action,''\\
+   \href{http://dx.doi.org/doi:10.1103/PhysRevD.96.056029}{
+  Phys.\ Rev.\ D {\bf 96}, no. 5, 056029 (2017)
+}
+
+  \item[]
+	   A.~Kovner, M.~Lublinsky and V.~Skokov,\\
+  ``Exploring correlations in the CGC wave function: odd azimuthal anisotropy,''\\
+   \href{http://dx.doi.org/doi:10.1103/PhysRevD.96.016010}{
+  Phys.\ Rev.\ D {\bf 96}, no. 1, 016010 (2017)
+}
+
+  \item[]
+	    L.~McLerran and V.~Skokov,\\
+  ``Odd Azimuthal Anisotropy of the Glasma for pA Scattering,''\\
+   \href{http://dx.doi.org/doi:10.1016/j.nuclphysa.2016.12.011}{
+Nucl.\ Phys.\ A {\bf 959}, 83 (2017)
+}
+  \item[]
+	    A.~Dumitru and V.~Skokov,\\
+  ``$cos(4 \phi )$ azimuthal anisotropy in small-$x$ DIS dijet production beyond the leading power TMD limit,''\\
+   \href{http://dx.doi.org/doi:10.1103/PhysRevD.94.014030}{
+  Phys.\ Rev.\ D {\bf 94}, no. 1, 014030 (2016)
+}
+
+	\item[]
+    A.~Dumitru, T.~Lappi and V.~Skokov,\\
+  ``Distribution of Linearly Polarized Gluons and Elliptic Azimuthal Anisotropy in Deep Inelastic Scattering Dijet Production at High Energy,''\\
+  \href{http://dx.doi.org/doi:10.1103/PhysRevLett.115.252301}{
+  Phys.\ Rev.\ Lett.\  {\bf 115}, no. 25, 252301 (2015)
+  }
+\end{itemize}
+
+
+
+
+
+% flatex input end: [Bios/cv_skokov.tex]
+
+% NOTE: But, You'll probably import PDF versions of everyones short CV like so
+%\includepdf[pages=-,pagecommand={\thispagestyle{plain}}]{Bios/cv_example.pdf}
+
+
+% flatex input end: [Bios/biosketches.tex]
+    
+	\section{Current and Pending Support}
+        \label{sec:grants}
+	
+	{\bf Current Support}
+
+	\noindent
+	Title: BEST
+	
+	\noindent
+	Principal Invistigator: ???  
+
+	\section{Facilities and Resources}
+        \label{sec:facres}
+	
+		The work will be mainly conducted at North Carolina State University. 
+
+
+		The PI joined 
+		the nuclear theory group at North Carolina State University, which consist
+		of Chueng-Ryong Ji, Thomas Sch\"afer, and Mithat \"Unsal. 
+		North Carolina State also has a strong representation in	
+		nuclear astrophysics, led by Carla Fr\"ohlich, Gail McLaughlin,
+		and Jim Kneller. 
+		The groups collaborate with the Nuclear Theory Groups 
+		at Duke  and the University of North
+		Carolina at Chapel Hill. 
+		Nuclear theory faculty at Duke include Steffen Bass, 
+		Shailesh Chandrasekharan, Tom Mehen, and Roxanne Springer. 
+		The theory group at UNC Chapel Hill consists of Jon Engel, Joaquin Drut and Amy Nicholson.
+		
+		The  NCSU nuclear theory group has access to computing capabilities of  
+		North Carolina State University, which   
+		maintains \href{https://projects.ncsu.edu/hpc//main.php}{High Performance Computing} 
+		cluster. The cluster has 1344 computes nodes (mostly dual Xeon), 
+		over 11000 cores, 2-4GB per core distributed memory, and 10Gb Ethernet interconnects.
+		GPU (NVIDIA) nodes are available. 
+		The cluster provides 1TB mass storage space per project. 
+		The PI applied and got access to the cluster under the project tittled  
+		``Gluon saturation''. 
+		Currently the PI has a common access 
+		to the cluster; however, a dedicated high-priority computing queue can be set up 
+		if required. 
+		
+		For faculties, North Carolina State University provides free access to 
+		many commercial software products including Wolfram Mathematica, Matlab, and
+		Waterloo Maple.  The PI will also utilize \href{https://github.ncsu.edu}{GitHub}, 
+		web-based hosting service 
+		for software development projects that use the Git revision control system, 
+		provided by North Carolina State University.  
+
+
+		The PI is also a Riken-BNL fellow and will in-part work  at 
+		Riken-BNL research center at Brookhaven National Laboratory (BNL). 
+		The nuclear theory group at BNL consists of 
+		Yoshitaka Hatta,
+		Frithjof Karsch,
+		Dmitri Kharzeev,
+		Yacine Mehtar-Tani,
+		Swagato Mukherjee,
+		Peter Petreczky,
+		Rob Pisarski,
+		Bj\"orn Schenke,
+		and Raju Venugopalan. 
+		The nuclear theory group has strong ties with the nuclear theory group 
+		at Stony Brook University and specifically to 
+		Edward Shuryak, Jacobus Verbaarschot, Ismail Zahed,  Derek Teaney,
+		Dmitri Kharzeev, and  Sergey Syritsyn. 
+		BNL is also a home for Relativistic Heavy Ion Collider, the world renowned 
+		accelerator facility.    
+
+
+		Computational Science Initianive (CSI) group at BNL 
+		provides support in optimizing and writting high performance 
+		simulation software. The PI have successfully collaborated with 
+		CSI in the past and is going to continue in the future. 
+
+		Additionally nuclear physics  groups at BNL and SBU launched 
+		the Center for Frontiers in Nuclear Science (CFNS), which mission
+		is to promote and facilitate the realization of the U.S. based 
+		EIC by enhancing the science case and collaborations amongst the 
+		scientists around the world interested in the EIC.The PI is in contact
+		with several CFNS working groups.  
+
+\section{Budget justification}
+        \label{sec:budget}
+		\vspace{1.2em}			
+
+		\subsection*{Personnel} 
+		\vspace{0.5em}			
+
+		\noindent
+		Two months of {\bf summer salary} is requested for the Principal Investigator in each year of the project and
+		is calculated on the current rate with an anticipated (1-3)\% annual increase throughout the project.  
+		The salary for the PI is based on the current 9-month salary. 
+		The PI will be responsible for the overall coordination of the project and the supervision of the graduate 
+		students and other project personnel. 
+	\vspace{0.5em}		
+
+	\noindent
+	{\bf Graduate student} support is based on the current University rate for graduate students with an anticipated 
+		annual increase of 1-3\% throughout the project. 
+
+	\vspace{0.5em}		
+
+	\noindent
+	Support for a {\bf postdoctoral research associate} is  \$47,500 and  is based on the current common University rate.
+		\vspace{1.2em}			
+
+		\subsection*{Fringe benefits} 
+		\vspace{0.5em}			
+	
+		\noindent 	
+		Fringe benefits are charged at the currently approved and anticipated rates of 33\%
+		for PI, 19\% for a postdoc, 
+		16\% for a graduate student.% and 8.65\% for hourly employees (temps and undergraduate students).
+		\vspace{1.2em}			
+
+		\subsection*{Travel} 
+
+		\vspace{0.5em}			
+		
+		{\TODO {when does the support begin} } \\ 
+%\begin{table}[]
+%\resizebox{\textwidth}{!}
+		\begin{center}
+{%
+\begin{tabular}{|l|l|p{90mm}|l| }
+\hline
+Year &  Traveleler \hspace{0.5cm}  &  Meeting  & Cost   \\
+\hline
+1 &  Skokov  &  INT Program INT-19-1b
+``Origins of Correlations in High Energy Collisions'' & 1000   \\
+\hline
+1  & Skokov  & International Workshop on Deep-Inelastic Scattering and Related Subjects (DIS19)   & 2000   \\ \hline
+2  & Skokov  & International Conference Hard Probes 2020  &  2000   \\ \hline
+2  & Postdoc  & 
+ International Conference Hard Probes 2020 
+ &  2000  \\ \hline
+3  & Skokov  & International Meeting (TBD) &  2000  \\ \hline
+3 & Postdoc &  International Meeting (TBD) &  2000\\ \hline
+3 & Postdoc  & International Meeting (TBD) &  2000 \\ \hline
+\end{tabular}
+}
+\end{center}
+%\end{table}	
+			
+				
+
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% End the document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% flatex input end: [main.bbl]

@@ -1,0 +1,359 @@
+%\documentclass[%
+%,aps%
+% ,onecolumn%
+%,amssymb, amsmath,
+%nobibnotes, aps, prd, preprint]{revtex4-1}
+
+\documentclass{DOEproposal}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{latexsym}
+\usepackage{epsfig}
+\usepackage{epstopdf}
+\usepackage{graphicx}
+\usepackage[footnotesize,bf]{caption}
+\usepackage[final]{pdfpages}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,        % false: boxed links; true: colored links
+    linkcolor=blue,         % color of internal links
+    citecolor=black,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=magenta,       % color of external links
+    pdfstartview=           % omit this key from pdf dictionary so reader 
+}                           %     just uses user default
+
+\usepackage{floatrow}
+\usepackage{mathtools}
+% ----------------------------------
+% Things to remove!
+% ----------------------------------
+% Add line numbers to draft
+\usepackage{lineno}
+\linenumbers
+% Lorem ipsum generator for template
+%\usepackage{lipsum}
+\newcommand{\lipsum}[1][1]{}
+\newcommand{\TODO}{\color{red} \bf}
+% Some definition to make collab. 
+% editing easier. 
+\input{edit}
+% ----------------------------------
+
+
+\newcommand{\myref}{Ref.~}
+\newcommand{\myrefs}{Refs.~}
+\def\wt#1{\widetilde{#1}}
+\def\gsim{ \,\, \vcenter{\hbox{$\buildrel{\displaystyle >}\over\sim$}}
+ \,\,}
+\def\lsim{ \,\, \vcenter{\hbox{$\buildrel{\displaystyle <}\over\sim$}}
+ \,\,}
+\newcommand{\as}{\alpha_s}
+
+
+
+\def\be{\begin{equation}}
+\def\ee{\end{equation}}
+\def\bea{\begin{eqnarray}}
+\def\eea{\end{eqnarray}}
+
+\def\beq{\begin{equation}}
+\def\eeq{\end{equation}}
+
+\newcommand{\nn}{\notag \\}
+
+\newcommand{\CGCket}{|{\rm CGC}\rangle}
+\newcommand{\CGCbra}{\langle {\rm CGC}|}
+
+
+\def\vp#1{\vec{#1}_\perp}
+\def\d{\dagger}
+\def\lrd{\overset{\leftrightarrow}{\partial_0}}
+
+\newcommand{\pvec}[1]{\vec{#1}\mkern2mu\vphantom{#1}}
+\def\pvp#1{\pvec{#1}'_\perp}
+
+
+
+
+
+
+
+% Use roman numerals to number all pages before the narrative.
+\pagenumbering{roman}
+
+% The PI's information
+\investigator{Vladimir Skokov}
+\institute{North Carolina State University}
+\phone{\dots}
+\email{vskokov@ncsu.edu}
+
+% setup the title page.
+% NOTE: you'll have to edit the imported file.
+\title{QuantumChromodynamics at extreme gluon densities}
+\date{August 22, 2018}
+\renewcommand*{\maketitle}{\input{Text/title_page}}
+
+
+
+\usepackage[TS1,T1]{fontenc}
+\usepackage{fourier, heuristica}
+\usepackage{array,longtable}
+\DeclareCaptionFont{blue}{\color{LightSteelBlue3}}
+
+\newcommand{\foo}{\color{LightSteelBlue3}\makebox[0pt]{\textbullet}\hskip-0.5pt\vrule width 1pt\hspace{\labelsep}}
+
+
+
+
+
+%\bibliographystyle{abbrvnat}
+\bibliographystyle{apsrev4-1}
+\renewcommand{\v}[1]{ \ensuremath{  \vec {#1}_\perp }}
+\renewcommand{\vp}[1]{ \ensuremath{  \underline {#1} }}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Begin the document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+    % make the title page
+    \maketitle
+
+    % make the table of contents
+    \renewcommand{\contentsname}{Table of Contents}
+    \tableofcontents
+    \newpage
+
+	\pagenumbering{arabic}
+    \setcounter{page}{1}
+    % the abstract
+    %\phantomsection
+    \section{Introduction}
+    %\addcontentsline{toc}{section}{Introduction}
+    \input{Text/abstract}
+    \newpage
+
+    % setup the main body of the proposal
+
+    \phantomsection
+    \addcontentsline{toc}{section}{Proposal Narrative}
+
+    
+    % the main body of the proposal
+    \input{Text/outline}
+    
+    
+    % Extras
+  %  \section{Project Management Plan}
+  %     \label{sec:management}
+  %    \input{Text/Extras/management_plan}
+
+
+
+  %  \section{Software Productivity and Sustainability Plan}
+  %      \label{sec:software_sustainability}
+  %      \input{Text/Extras/software_sustainability}
+
+
+    % end of proposal narrative
+    
+		\vspace{1em}
+    \section*{\underline{End of proposal narrative; supplemental materials to follow.}}
+    \newpage
+
+
+    % supplemental materials
+    \addcontentsline{toc}{section}{Supplemental Materials:}
+    
+	    \section{Data Management Plan}
+        \label{sec:data_management}
+        \input{Text/Extras/data_management}
+	
+	
+	\section{Student Tracking Information}
+        \label{sec:staffing}
+        \input{Text/staffing}
+    \newpage
+
+  %  \section{Project Timeline}
+  %      \label{sec:timetable}
+   %     \input{Text/task_list}
+   % \newpage
+
+
+    % The bibliography 
+   % \section{Abbreviations and Code Names}
+   %     \label{sec:abbreviations}
+   %     \input{Text/Extras/abbreviations}
+   % \newpage
+
+    \section{Literature Cited}
+        \label{sec:references}
+        \bibliography{bibl,references,v3}
+    \newpage
+
+	\section{List of Principle Collaborators}
+        \label{sec:PC}
+        \input{Text/PC}
+    \newpage
+
+    % The short biosketches for EVERY contributing person
+ 
+	
+	\section{Biographical Sketches}
+        \label{sec:biosketches}
+        \input{Bios/biosketches}
+    
+	\section{Current and Pending Support}
+        \label{sec:grants}
+	
+	{\bf Current Support}
+
+	\noindent
+	Title: BEST
+	
+	\noindent
+	Principal Invistigator: ???  
+
+	\section{Facilities and Resources}
+        \label{sec:facres}
+	
+		The work will be mainly conducted at North Carolina State University. 
+
+
+		The PI joined 
+		the nuclear theory group at North Carolina State University, which consist
+		of Chueng-Ryong Ji, Thomas Sch\"afer, and Mithat \"Unsal. 
+		North Carolina State also has a strong representation in	
+		nuclear astrophysics, led by Carla Fr\"ohlich, Gail McLaughlin,
+		and Jim Kneller. 
+		The groups collaborate with the Nuclear Theory Groups 
+		at Duke  and the University of North
+		Carolina at Chapel Hill. 
+		Nuclear theory faculty at Duke include Steffen Bass, 
+		Shailesh Chandrasekharan, Tom Mehen, and Roxanne Springer. 
+		The theory group at UNC Chapel Hill consists of Jon Engel, Joaquin Drut and Amy Nicholson.
+		
+		The  NCSU nuclear theory group has access to computing capabilities of  
+		North Carolina State University, which   
+		maintains \href{https://projects.ncsu.edu/hpc//main.php}{High Performance Computing} 
+		cluster. The cluster has 1344 computes nodes (mostly dual Xeon), 
+		over 11000 cores, 2-4GB per core distributed memory, and 10Gb Ethernet interconnects.
+		GPU (NVIDIA) nodes are available. 
+		The cluster provides 1TB mass storage space per project. 
+		The PI applied and got access to the cluster under the project titled  
+		``Gluon saturation''. 
+		Currently the PI has a common access 
+		to the cluster; however, a dedicated high-priority computing queue can be set up 
+		if required. 
+		
+		For faculties, North Carolina State University provides free access to 
+		many commercial software products including Wolfram Mathematica, Matlab, and
+		Waterloo Maple.  The PI will also utilize \href{https://github.ncsu.edu}{GitHub}, 
+		web-based hosting service 
+		for software development projects that use the Git revision control system, 
+		provided by North Carolina State University.  
+
+
+		The PI is also a Riken-BNL fellow and will in-part work  at 
+		Riken-BNL research center at Brookhaven National Laboratory (BNL). 
+		The nuclear theory group at BNL consists of 
+		Yoshitaka Hatta,
+		Frithjof Karsch,
+		Dmitri Kharzeev,
+		Yacine Mehtar-Tani,
+		Swagato Mukherjee,
+		Peter Petreczky,
+		Rob Pisarski,
+		Bj\"orn Schenke,
+		and Raju Venugopalan. 
+		The nuclear theory group has strong ties with the nuclear theory group 
+		at Stony Brook University and specifically to 
+		Edward Shuryak, Jacobus Verbaarschot, Ismail Zahed,  Derek Teaney,
+		Dmitri Kharzeev, and  Sergey Syritsyn. 
+		BNL is also a home for Relativistic Heavy Ion Collider, the world renowned 
+		accelerator facility.    
+
+
+		Computational Science Initiative (CSI) group at BNL 
+		provides support in optimizing and writing high performance 
+		simulation software. The PI have successfully collaborated with 
+		CSI in the past and is going to continue in the future. 
+
+		Additionally nuclear physics  groups at BNL and SBU launched 
+		the Center for Frontiers in Nuclear Science (CFNS), which mission
+		is to promote and facilitate the realization of the U.S. based 
+		EIC by enhancing the science case and collaborations amongs the 
+		scientists around the world interested in the EIC.The PI is in contact
+		with several CFNS working groups.  
+
+\section{Budget justification}
+        \label{sec:budget}
+		\vspace{1.2em}			
+
+		\subsection*{Personnel} 
+		\vspace{0.5em}			
+
+		\noindent
+		Two months of {\bf summer salary} is requested for the Principal Investigator in each year of the project and
+		is calculated on the current rate with an anticipated (1-3)\% annual increase throughout the project.  
+		The salary for the PI is based on the current 9-month salary. 
+		The PI will be responsible for the overall coordination of the project and the supervision of the graduate 
+		students and other project personnel. 
+	\vspace{0.5em}		
+
+	\noindent
+	{\bf Graduate student} support is based on the current University rate for graduate students with an anticipated 
+		annual increase of 1-3\% throughout the project. 
+
+	\vspace{0.5em}		
+
+	\noindent
+	Support for a {\bf postdoctoral research associate} is  \$47,500 and  is based on the current common University rate.
+		\vspace{1.2em}			
+
+		\subsection*{Fringe benefits} 
+		\vspace{0.5em}			
+	
+		\noindent 	
+		Fringe benefits are charged at the currently approved and anticipated rates of 33\%
+		for PI, 19\% for a postdoc, 
+		16\% for a graduate student.% and 8.65\% for hourly employees (temps and undergraduate students).
+		\vspace{1.2em}			
+
+		\subsection*{Travel} 
+
+		\vspace{0.5em}			
+		
+		{\TODO {when does the support begin} } \\ 
+%\begin{table}[]
+%\resizebox{\textwidth}{!}
+		\begin{center}
+{%
+\begin{tabular}{|l|l|p{90mm}|l| }
+\hline
+Year &  Traveler \hspace{0.5cm}  &  Meeting  & Cost   \\
+\hline
+1 &  Skokov  &  INT Program INT-19-1b
+``Origins of Correlations in High Energy Collisions'' & 1000   \\
+\hline
+1  & Skokov  & International Workshop on Deep-Inelastic Scattering and Related Subjects (DIS19)   & 2000   \\ \hline
+2  & Skokov  & International Conference Hard Probes 2020  &  2000   \\ \hline
+2  & Postdoc  & 
+ International Conference Hard Probes 2020 
+ &  2000  \\ \hline
+3  & Skokov  & International Meeting (TBD) &  2000  \\ \hline
+3 & Postdoc &  International Meeting (TBD) &  2000\\ \hline
+3 & Postdoc  & International Meeting (TBD) &  2000 \\ \hline
+\end{tabular}
+}
+\end{center}
+%\end{table}	
+			
+				
+
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% End the document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
