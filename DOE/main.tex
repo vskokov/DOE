@@ -28,8 +28,8 @@
 % Things to remove!
 % ----------------------------------
 % Add line numbers to draft
-\usepackage{lineno}
-\linenumbers
+%\usepackage{lineno}
+%\linenumbers
 % Lorem ipsum generator for template
 %\usepackage{lipsum}
 \newcommand{\lipsum}[1][1]{}
@@ -114,6 +114,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Begin the document
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\setlength{\textfloatsep}{10pt plus 1.0pt minus 2.0pt}
+\renewcommand{\refname}{}
 \begin{document}
     % make the title page
     \maketitle
@@ -167,7 +171,8 @@
 	    \section{Data Management Plan}
         \label{sec:data_management}
         \input{Text/Extras/data_management}
-	
+	\newpage 
+
 	
 	\section{Student Tracking Information}
         \label{sec:staffing}
@@ -186,9 +191,12 @@
    %     \input{Text/Extras/abbreviations}
    % \newpage
 
-    \section{Literature Cited}
-        \label{sec:references}
+	\newpage 
+    \section{Literature Cited} 
+	{%\fontsize{10}{10}\selectfont
+		\label{sec:references}
         \bibliography{bibl,references,v3}
+	}
     \newpage
 
 	\section{List of Principle Collaborators}
@@ -203,6 +211,7 @@
         \label{sec:biosketches}
         \input{Bios/biosketches}
     
+	\newpage 
 	\section{Current and Pending Support}
         \label{sec:grants}
 	
@@ -214,6 +223,8 @@
 	\noindent
 	Principal Investigator: ???  
 
+
+	\newpage 
 	\section{Facilities and Resources}
         \label{sec:facres}
 	
@@ -255,7 +266,9 @@
 
 
 		The PI is also a Riken-BNL fellow and will in-part work  at 
-		Riken-BNL research center at Brookhaven National Laboratory (BNL). 
+		Riken-BNL research center (RBRC) at Brookhaven National Laboratory (BNL).
+		{\bf During the initial five-year appointment with RBRC 
+		(2018-2023), the PIs teaching load is reduced to one course per year. }   
 		The nuclear theory group at BNL consists of 
 		Yoshitaka Hatta,
 		Frithjof Karsch,
@@ -277,7 +290,11 @@
 		Computational Science Initiative (CSI) group at BNL 
 		provides support in optimizing and writing high performance 
 		simulation software. The PI have successfully collaborated with 
-		CSI in the past and is going to continue in the future. 
+		CSI in the past and is going to continue in the future. In particular, 
+		the CSI offered support to the PI in rewriting time critical 
+		parts of simulations for GPU; the PI exploratory 
+		work has demonstrated that for the JIMWLK evolution this leads 
+		to 300 fold decrease in computational time. 
 
 		Additionally nuclear physics  groups at BNL and SBU launched 
 		the Center for Frontiers in Nuclear Science (CFNS), which mission
@@ -286,6 +303,7 @@
 		scientists around the world interested in the EIC. The PI is in contact
 		with several CFNS working groups.  
 
+	\newpage 
 \section{Budget justification}
         \label{sec:budget}
 		\vspace{1.2em}			

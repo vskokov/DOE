@@ -22,7 +22,7 @@
 
 
 % Section 1
-\section{Proposed Research: Multi particle production and correlations at small $x$ in p-p/A and 
+\section{Proposed Research: Multiparticle production and correlations at small $x$ in p-p/A and 
 e-A collisions}
     \label{sec:p1}
 
@@ -86,7 +86,7 @@ Functions $f_2 , f_3 , \ldots$ are
 not known analytically at present.
 Here we want to explain what we mean by  analytical results, 
 as e.g. $f_i$ may still involve rather  complicated momentum integrals 
-of  Wilson lines of the target field, see also Eq.~\eqref{eq:SIPc}. 
+of  Wilson lines of the target field, see e.g. Eq.~\eqref{eq:SIPc}. 
 Getting to a number, often requires using $f_i$ to 
 conduct numerical lattice simulations. This is why in what follow we 
 often refer to this as semi-analytical approach. 
@@ -94,10 +94,12 @@ In contrast to numerical Classical Yang-Mills (CYM)
 calculations, $f_i$ require neither numerical solution 
 for the proper time dependence nor numerical implementation of 
 LSZ (projection of gluon field time evolution to asymptotic particle states). 
-Aslo the advantage of this approach is that, in contrast to numerical CYM, the dilute-dense semi-analytic 
+Also the advantage of this semi-analytic  
+approach is that, in contrast to numerical CYM, the dilute-dense semi-analytic 
 results facilitates inclusion of small $x$ evolution, 
 running coupling corrections and, finally, it is superior 
-in terms of simulation time. 
+in terms of simulation time and allows for easier access to 
+the continuum limit. 
  
 
 Returning back to the expansion~\eqref{Eq:SIP},  
@@ -135,7 +137,7 @@ approaches.
 %to determine $f_2$!
  
  
-The same discussion  applies to the two- gluon production. For the
+The same discussion  applies to the two-gluon production. For the
 classical two-gluon production cross section one can write
 \begin{align}
 	\frac{dN}{d^2 k_1 \, d^2 b_1 \, d^2 k_2 \, d^2 b_2 \, d^2 B} 
@@ -159,12 +161,12 @@ classical two-gluon production cross section one can write
   \label{Eq:DIP}
 \end{align}
 The function $h_1$ can be found from the results of
-\myrefs\cite{Kovner:2012jm,Kovchegov:2012nd}, 
+\myrefs\cite{Kovner:2012jm,Kovchegov:2012nd,Altinoluk:2018ogz}, 
 explicitly it is also written in \myrefs\cite{Kovner:2018fxj}. 
 Compared to $f_1$ in Eq.~\eqref{eq:SIPc}, which has two target Wilson lines (dipole), 
 the function $h_1$ involves four Wilson lines (quadrupole). 
 This
-part of the two-gluon production cross section is even 
+part of the two-gluon production cross section is invariant  
 under the reflection of either momenta $k_1$ or $k_2$ and thus 
 generates  only even harmonics of azimuthal anisotropy. This is why finding the function $h_2$ 
 was one of the highest priorities for saturation/CGC community. 
@@ -191,7 +193,7 @@ can also be applied to A-A  and high-multiplicity p-p collisions.
 The latter, as also supported by experimental data on 
 the event-by-event dependence of the number of particles on rapidity,   
 is dominated by collisions in which one of the proton wave function experienced 
-a fluctuations with higher than average gluon density, or saturation momentum $Q_s$. 
+a fluctuation with higher than average gluon density, or saturation momentum $Q_s$. 
 The former, if considered locally, can often be described by the 
 dilute-dense approach at least for some range of transverse momenta. 
 In A-A collisions, the required hierarchy of saturation momenta originates from 
@@ -205,12 +207,12 @@ of participants in the target (projectile), the desired hierarchy can be achieve
 
 
 \subsubsection*{High multiplicity events and reweighting}
-In the last years, study of multi-particle correlations in 
+In the last years, study of multiparticle correlations in 
 p-A and p-p collisions have been a very active 
 area of both experimental and theoretical research 
 due to the observation of the long-range in rapidity 
 azimuthal correlations (the so-called ridge)
-at LHC and RHIC.   
+at the LHC and RHIC.   
 Since the observed ridge correlation is much more pronounced in high multiplicity
 events, the understanding of the origin of high multiplicity
 fluctuations and especially of the high multiplicity tail of the distribution describing 
@@ -260,7 +262,7 @@ potential and affects only its widths~\cite{Dumitru:2017cwt}, see Fig.~\ref{fig:
 
 Later, this effective theory was directly connected to 
 the distribution of produced gluons in Ref.~\cite{Kovner:2018azs}. 
-It turned out that the leading effect that drives the multiplicity 
+It turned out that the leading effect driving  the multiplicity 
 fluctuations at small $x$ is the quantum Bose enhancement of gluons in the
 proton wave function. Strikingly, from completely different presumptions,
 the Liouville action was derived for the fluctuations of the effective saturation 
@@ -277,13 +279,13 @@ although this progress lead to a better understanding of the high multiplicity f
 the state of the art numerical simulations in the saturation/CGC formalism 
 (\cite{Mantysaari:2017cni,Mace:2018vwq,Mace:2018yvl} to name a few)
 still rely 
-on a brute force numerical approach to access high multiplicity tail. 
+on a brute force numerical approach to access the high multiplicity tail. 
 In this approach, configurations of target and projectile are generated 
 without any bias, the particle production and correlations are computed and a posteriori 
 multiplicity selection is applied. 
 Given the numerical complexity of sampling these configurations  on a 2+1 dimensional lattice
 (two transverse directions and rapidity),  
-this approach  is very inefficient in probing 
+this approach  is very inefficient in probing the 
 high multiplicity tail, as most of the generated configurations are close to the most probable 
 one. 
 
@@ -328,7 +330,7 @@ the Wilson line. Owing to its complexity, no analytic solution of the JIMWLK equ
 Its solution has been obtained only numerically, using lattice gauge theory methods for the
  Langevin form of JIMWLK equation.
 
- At net-to-leading order (NLO), the JIMWLK equation does not allow for a straightforward reformulation in the Langevin form~\cite{Kovner:2014lca,Balitsky:2013fea}. 
+ At next-to-leading order (NLO), the JIMWLK equation does not allow for a straightforward reformulation in the Langevin form~\cite{Kovner:2014lca,Balitsky:2013fea}. 
  This is why the NLO JIMWLK equation has not been solved numerically yet. 	
 
 
@@ -381,7 +383,7 @@ And although in the saturation/CGC formalism the color dipole approach is the mo
 it is important to mention, that in the correlations limit~\footnote{The correlation limit is  
 the limit of almost back-to-back jets~\cite{Dominguez:2011wm,Dominguez:2011br}.}
 it was shown that the saturation/CGC framework yields the same result for the dijet production
-cross section as the one obtained within Transverse Momentum Dependent (TMD) factorization 
+cross section as the one obtained within the Transverse Momentum Dependent (TMD) factorization 
 framework~\cite{Mulders:2000sh,Bomhof:2006dp,Meissner:2007rx} at small $x$~\cite{Metz:2011wb,Dominguez:2011wm}. 
 
 
@@ -390,7 +392,7 @@ Both approaches universally demonstrated that  dijet production depends on
 the Weiz\-s\"acker-Williams (WW) transverse-momentum-dependent  gluon distribution.  
 The TMD parton distributions signify the recent progress achieved in developing 
 frameworks to extend our understanding of hadron structure  beyond the one-dimensional
-parton distribution function (PDF), as the TMDs depend not only of the longitudinal momentum 
+parton distribution function (PDF), as the TMDs depend not only on the longitudinal momentum 
 fraction $x$ but also on the transverse momentum and therefore contain more 
 detailed information on the internal structure of hadrons relative to PDFs.
 Quark TMDs are the most studied, while the available studies of gluon TMDs 
@@ -460,7 +462,7 @@ s$^{-1}$. See details in Ref.~\cite{TODO}
 
 
 { 
-	Small $x$ saturation/CGC formalism provides access to dijet production beyond the
+	The small $x$ saturation/CGC formalism provides access to dijet production beyond the
 	correlation limit~\cite{Dominguez:2011wm}; we illustrate this for the longitudinally 
 	polarized virtual photon (c.f. Eq.~\eqref{eq:dijet_L}): 
 	\begin{eqnarray}
@@ -565,23 +567,23 @@ and dihadron correlations~\cite{Aschenauer:2017jsk} is also one of the goals of 
 				$k_\perp$-factorized form as was previously done for te leading order dilute-dence expansion 
 				of the double inclusive production~\cite{Kovchegov:2013ewa}.
 
-			\item Developing reweighten for high multiplicity.  A posteriori multiplicity 
+			\item Developing reweighting  for high multiplicity.  A posteriori multiplicity 
 				selection is not well suited to probe extremely high multiplicity events. This necessitates 
 				establishing an appropriate a priori reweighting
 				techniques. Based on the insights we gained by computing gluon multiplicity distribution
 				in a dilute  projectile~\cite{Dumitru:2017cwt,Dumitru:2017ftq,Dumitru:2018iko}, our  goal 
 				is to  develop a reweighting which would  allow us to access the
-				high-multiplicity tail; we will use this technique to compute multi particle correlations
+				high-multiplicity tail; we will use this technique to compute multiparticle correlations
 				and nuclear modification factor.  
 
 			\item Accounting for small $x$ evolution for particle production and correlations. 
-				Application of the framework in the wide range of energies from RHIC and EIC to LHC, requires 
+				Application of the framework in the wide range of energies from RHIC and an EIC to the LHC  requires 
 				inclusion of small $x$ evolution. The dilute-dense approximation allows straightforward 
 				numerical implementation  of the evolution, which we will account for using the leading order 
 				JIMWLK equation. 
 
-				Along with this we will consider two higher risk problems detailed below. 
-				We want to stress that success of this project does not rely on solving these problems. 
+				Along with this we will consider two high risk problems detailed below. 
+				We want to stress that success of this project does not rely on solving them. %se problems. 
 				\begin{itemize}
 					\item[--]
 				We  plan to explore the possibility of reformulating the NLO JIMWLK in the Langevin form and 
@@ -609,7 +611,7 @@ and dihadron correlations~\cite{Aschenauer:2017jsk} is also one of the goals of 
 						of WW gluon distribution in rare configurations of the nucleus/proton;
 					\item[--] incorporating corrections to the correlation limit and simulations with complete 
 						quad\-rupole contribution to dijet production; 
-					\item[--] taking into account Sudakov corrections (similar to analysis of Ref.~\cite{Zheng:2014vka};  
+					\item[--] taking into account Sudakov corrections (similar to analysis of Ref.~\cite{Zheng:2014vka});  
 					\item[--] probing model dependence with different color sources distributions 
 						besides commonly used McLerran-Venugopalan (MV) model~\cite{McLerran:1993ni}. 
 						Usually the initial condition for JIM\-WLK evolution are taken following 
@@ -621,19 +623,19 @@ and dihadron correlations~\cite{Aschenauer:2017jsk} is also one of the goals of 
 						distribution in nucleons and nuclei~\footnote{On the subject of light front quark model, 
 							we will tap into expertise of a local nuclear theorist: Chueng-Ryong Ji.}  		
 							; we want to implement this color distribution 
-						to test model dependence of the results and provide a better estimates on 
-						in dijet production at an EIC in a wide range on the targets' atomic number.    
+						to test model dependence of the results and provide better estimates on 
+						dijet production at an EIC in a wide range of the targets' atomic number.    
 				\end{itemize}
 				These improvements are required in order to provide a realistic description of DIS
 				dijet production at an EIC. 
 
-				Additionally we plan to extend MCDijet to Ultra Peripheral Collision  (UPC) at hadron 
+				Additionally we plan to extend MCDijet to ultra peripheral collision  (UPC) at hadron 
 				colliders, such as RHIC and, especially, the LHC. 
 				At very large impact-parameters between colliding hadrons the long range electromagnetic
 				force becomes dominant over short-range QCD allowing for the dipole approach to 
 				dijet production in UPC. One significant difference compared to DIS is that, for
 				the UPC kinematics, the photon virtuality  is negligible; 
-				this leads to vanishing amplitude in front of the linearly polarized gluon 
+				this leads to a vanishing amplitude in front of the linearly polarized gluon 
 				distribution $x h^{(1)}_\perp$ (see e.g.~\cite{Dominguez:2011br}), 
 				but the unpolarized gluon distribution, $xG^{(1)}$,  can be extracted. 
 				We plan to conduct the realistic feasibility study of extracting  $xG^{(1)}$ in UPC 
@@ -642,7 +644,7 @@ and dihadron correlations~\cite{Aschenauer:2017jsk} is also one of the goals of 
 				Ref.~\cite{Klein:1999gv}
 				and b) extending the range of accessible $x$ towards smaller values probed by  the LHC. 
 
-				We also plan to modify MCDijet even generator to simulate the 
+				We also plan to modify MCDijet event generator to simulate the 
 				suppression of dihadron correlations and diffractive meson production (beyond IP-SAT-based approach of Ref.~\cite{Toll:2012mb}). 	
 
 			\item Application to phenomenology of p-p, p-A and e-A collisions. 
@@ -650,14 +652,14 @@ and dihadron correlations~\cite{Aschenauer:2017jsk} is also one of the goals of 
 				\begin{itemize}
 					\item[--] Three-gluon correlations to explore if 
 						the framework's systematics is similar to the STAR measurements
-						in peripheral A-A collisions~\cite{Adamczyk:2017hdl,Adamczyk:2017byf}.  	
-					\item[--] Four particle correlations and integrated and differential $v_n\{4\}$ as a function of  multiplicity and collision energy
-					\item[--] Nuclear modification factor with multiplicity bias, so-called $Q_{pA}$~\cite{Adam:2014qja}.  
+						in peripheral A-A collisions~\cite{Adamczyk:2017hdl,Adamczyk:2017byf};  	
+					\item[--] Four particle correlations and integrated and differential $v_n\{4\}$ as a function of  multiplicity and collision energy; 
+					\item[--] Nuclear modification factor with multiplicity bias, so-called $Q_{pA}$~\cite{Adam:2014qja};   
 					\item[--] 
 					Systematics of Dijet Production at an EIC and UPC: 
 					dependence on the atomic number, energy dependence, 
 					prediction for high order harmonics of azimuthal anisotropy, 
-					feasibility check of extracting correlation between dijet production and forward nucleus going  multiplicity, as a probe of biased WW gluon distribution, cristalysing the role of saturation in dijet observables.  
+					feasibility check of extracting correlation between dijet production and forward nucleus going  multiplicity, as a probe of biased WW gluon distribution, crystallizing the role of gluon saturation in dijet observables.  
 				\end{itemize}
 		\end{itemize} 
 		
@@ -688,7 +690,7 @@ begins, and Q12 refers to the end of the three-year project.
 								coupling corrections  (Q2)
                             \item Incorporating nucleon position fluctuations 
 								in nuclear wave function (Q4)
-                            \item Publishing the even generator MCDijet for UPC  (Q6)
+                            \item Publishing the event generator MCDijet for UPC  (Q6)
                         \end{itemize}
                     \item Rare nuclear wave function configurations 
 						and dijet production 
@@ -716,17 +718,17 @@ begins, and Q12 refers to the end of the three-year project.
 								correction (Q4)
                             \item High-multiplicity reweighting  (Q10)
                         \end{itemize}
-                    \item Numerical simulations and publishing the final version 
+                    \item Numerical simulations and publishing  final version 
 					of the 	code (Q12)
                         \begin{itemize}
                             \item Role of complete first saturation correction on 
-								event-by event number of gluon distribution 
+								event-by-event number of gluon distribution 
 								and on even harmonics, $v_{2n}$ (Q5)
                             \item Inclusion of small-x evolution  (Q7)
                             \item Numerical simulations with
 								high multiplicity trigger (Q11)
 							\item Application to phenomenology (Q1-Q12)
-							\item GPU-based implementation of the code (Q12) 
+							%\item GPU-based implementation of the code (Q12) 
                         \end{itemize}
                 \end{itemize}
         \end{enumerate}
@@ -739,24 +741,58 @@ begins, and Q12 refers to the end of the three-year project.
     \subsection{Background}
     \label{sec:p2b}
 
-momentum entanglement -- small - large x 
+	A key property distinguishing 
+	quantum systems from classical ones is the entanglement 
+	of otherwise distinct degrees of freedom. 
+	Due to entanglement of certain degrees of freedom (e.g. soft/semi-hard gluons) 
+	with the rest of a quantum system (e.g. valence color charges), their description
+	is not possible by a pure state. 
+	Rather, the most complete description of a subsystem 
+ 	is via the reduced density matrix
+	obtained 
+	by tracing over the degrees of freedom in the complement. 
+	Recently, these ideas 
+	were considered in the context of small $x$ physics 
+	both in momentum~\cite{Kovner:2015hga} (see Ref.~\cite{Liu:2018gae} 
+	for an approach using the AdS/CFT correspondence) and coordinate spaces~\cite{Kharzeev:2017qzs,Hagiwara:2017uaz}. 
+	It was suggested that, in hadronic collisions,  the 
+	apparent thermal nature of the produced soft 
+	particle spectra
+	might originated from entanglement between the different 
+	degrees of freedom in the hadronic wave function; 
+	that is the complement hadronic degrees of freedom 
+	are entangled by those measured in experiments 
+	and thus serve as an effective thermal bath. 
 
+
+	The calculations of the momentum entanglement 
+	between the valence color charges and soft gluons field 
+ 	of Ref.~\cite{Kovner:2015hga} were performed only in the framework of the 
+	MV model and require an extension to account for small $x$ evolution. 
+
+	All calculations in high-energy hadronic collisions 
+	were performed assuming that the density matrix  in the basis 
+	of valence charge density is diagonal. This assumption 
+	is manifest in the MV model. Computing off diagonal 
+	components might be a missing link to understanding 
+	hadronic wave function. 
 
 
     \vspace{0.5em}
     \subsection{Detailed goals and methods}
         \label{sec:p21}
-The main motivation for these ramblings is the idea that one should be able to get some idea about correlation
-between the profile of the charge density and the current density in the hadronic wave function at high energy. One
-may expect for example, that if the scattering catches a configuration with large density or large density gradient,
-this configuration will naturally also have a large current, since it does not want to stay static for a long time. The
-large current then may translate into relatively high momenta of the particles in the wave function. That way we
-may be able to relate on the level of the initial hadronic state the density (number)
-fluctuation in the configuration
-space and momentum distribution of particles.
+	The main idea in computing the off-diagonal component of the density matrix 
+	in the basis  of valence charge density is that there should be a nontrivial 
+	correlation between the profile of the charge density 
+	and the current density in the hadronic wave function at high energy. 
+	By repeating the JIMWLK derivation, we plan to extract evolution
+	for the full density matrix including the off-diagonal components. We plan to investigate 
+	the evolution numerically and to analytically study % investigate 
+	high-energy fixed point in the non-local Gaussian approximation.  
 
-
-Evolution of entanglement entropy 
+	The full density matrix can be generalized by considering the 
+	valence charge densities at different rapidities, 
+	thus giving access to the evolution of the entanglement entropy.   
 
 
     \vspace{0.5em}
@@ -776,11 +812,11 @@ Momentum entanglement in hadronic wave function
 								phenomenology (Q4)
                             \item Relation to high-multiplicity events and correlation between large and small x components of the hadronic  wave function (Q6)
                         \end{itemize}
-                    \item  Small-$x$ evolution of entanglement entropy   (Q10)
+                    \item  Small-$x$ evolution of entanglement entropy (Q10)
                         \begin{itemize}
-                            \item Deriving small-$x$ evolution (Q7)
+                            \item Deriving small-$x$ evolution; establishing connection to Liouville effective action   (Q7)
                             \item Solving small-$x$ evolution on lattice (Q8)
-                            \item Phenomenological application  (Q10)
+                            \item Phenomenological applications  (Q10)
                         \end{itemize}
                 \end{itemize}
         \end{enumerate}
@@ -796,7 +832,7 @@ Momentum entanglement in hadronic wave function
 	Although the quantum statistic effects are exuberant at small $x$, 
 	only recently their significance was recognized in observables. 
 	In particular, 
-	for gluons, three sources of multi-particle  correlations were rigorously established at 
+	for gluons, three sources of multiparticle  correlations were rigorously established at 
 	small $x$: -- Bose enhancement, -- Hanbury Brown-Twiss (HBT), and classical effects due to 
 	scattering off a domain with spontaneous rotational symmetry breaking of the direction of 
 	color field~\cite{Dumitru:2014yza,Dumitru:2014vka,Dumitru:2015cfa}. It was shown that two genuinely quantum effects dominate over the classical one 
@@ -874,14 +910,14 @@ and potentially be responsible for a significant background contribution to the 
                 \begin{itemize}
                     \item Investigating the role of gluon quantum statistics (Q8)
                         \begin{itemize}
-                            \item Numerical simulations of unpolarized deuteron-A collisions: role of Bose enhancement (Q2) 
-                            \item Polarized deuteron wave function and two gluon correlations as a test of quantum 
+                            \item Numerical simulations of d-A collisions: role of Bose enhancement (Q2) 
+                            \item Polarized d wave function and two gluon correlations as a test of quantum 
 								statistics effects and collectivity (Q8) 
                         \end{itemize}
                     \item Investigating the role of quark statistics (Q10)
                         \begin{itemize}
                             \item Implementing quark degrees of freedom in numerical simulations (Q5)
-                            \item Computing two and three particle correlations involving quark degrees of freedom (Q8)
+                            \item Computing 2- and 3-particle correlations involving quark degrees of freedom (Q8)
                             \item Computing tables of the initial baryon number distribution for further hydrodynamical evolution in A-A collisions   (Q10)
                         \end{itemize}
                 \end{itemize}
