@@ -12,8 +12,8 @@
     \titlespacing{\subsubsection}{0pt}{*0.75}{*0.5}
 \RequirePackage[sort&compress,numbers]{natbib}
 \RequirePackage{longtable}
-\RequirePackage{color}
 \RequirePackage[utf8]{inputenc}
+\RequirePackage{color}
 
 \renewcommand*{\title}[1]{\gdef\Title{#1}}
 \renewcommand*{\date}[1]{\gdef\Date{#1}}

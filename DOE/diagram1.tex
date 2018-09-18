@@ -1,0 +1,71 @@
+\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+    text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+    text width=7em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex',line width=0.5mm]
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20,  text width=6em, text centered, node distance=3cm,
+    minimum height=2em]
+    
+
+	\begin{center}
+\begin{tikzpicture}[node distance = 2cm, auto,scale=0.6, every node/.style={transform shape}]
+    % Place nodes
+    \node [block,fill=red!20] (HWF) {Hadron Wave Function I};
+    %
+	\node [block,below right=2cm, fill=red!20] (HWF2) {Hadron Wave Function II};
+    %
+	\node [block,below left=3cm, fill=green!20] (SP) {Scattering and production};
+	\node [cloud,below left of=SP, fill=green!20,node distance=5cm] (EDD) {LO Dilute Dense approximation};
+	\node [cloud,below of=SP, fill=green!40,node distance=5cm ] (SDD) {LO Dilute Dense approximation + odd first saturation correction};
+	\node [cloud,below right of=SP, fill=green!50,node distance=5cm] (FSC) {First saturation correction};
+	\node [cloud,below=4.5cm , fill=green!80,node distance=5cm] (DD) {Numerical classical YM};
+	%
+	\node [block,below right of=SDD, fill=yellow!20,node distance=5cm] (FR) {Fragmentation};
+	\node [cloud, right of=FR, fill=yellow!20,node distance=5cm,text width=9em] (FRC) {Averaged colinear fragmentation};
+	\node [cloud,below right of=FR, fill=yellow!20,node distance=3cm] (FRP) {PYTHIA afterburner};
+	%
+	\node [block,right of=FSC, fill=cyan!60,node distance=7cm] (Hydro) {Initial conditions for hydrodynamics};
+	\node [block,right of=FRP, fill=white,node distance=7cm] (Obs) {Observables};
+	%
+	\node [block, left of=HWF,node distance=5cm] (MV) {MV};
+    \node [block, left of=MV,node distance=5cm] (LP) {$Q_s$ fluctuations  motivated by Louville potential};
+    \node [block, left of=LP,node distance=5cm] (IPSAT) {IP-SAT model};
+    \node [block, right of=HWF,node distance=5cm] (JIMWLK) {JIMWLK conf.-by-conf. evolution};
+    \node [block, above of=HWF,node distance=3cm] (LF) {Light Front Quark Model};
+    \node [block, above of=JIMWLK,node distance=3cm] (ICJ) {Initial conditions $x=x_0$};
+    \node [block, above of=IPSAT,node distance=3cm] (ICIP) {Initial conditions $Q=Q_0$};
+	\path [line] (IPSAT) -- (LP) node [midway, above]  {$\langle Q_s^2 (\v{b}) \rangle$};
+	\path [line] (LP) -- (MV) node [midway, above]  {$ \mu^2  (\v{b}) $};
+	\path [line] (MV) -- (HWF);
+	\path [line,black!20] (MV) -- (HWF2);
+%
+	\path [line,double,line width=0.25mm] (HWF) -- (SP);
+	\path [line,double,line width=0.25mm] (HWF2) -- (SP);
+%	
+	\path [line,black!20,dashed] (LF) -- (HWF2);
+	\path [line,black!20,dashed] (JIMWLK) -- (HWF2);
+	\path [line,dashed] (LF) -- (HWF);
+	\path [line,dashed] (JIMWLK) -- (HWF);
+	\path [line] (ICJ) -- (JIMWLK);
+	\path [line] (ICIP) -- (IPSAT) node [midway, left]  {DGLAP};
+%
+	\path [line] (SP) -- (DD);
+	\path [line,dashed] (SP) -- (FSC);
+	\path [line] (SP) -- (EDD);
+	\path [line] (SP) -- (SDD);
+	\path [line,dashed] (FSC) -- (FR);
+	\draw [->,line width=0.5mm,dashed] (EDD) to [bend right=45] (FR);
+	\draw [->,line width=0.5mm,dashed] (DD) to [bend left=40] (FR);
+	\path [line,dashed] (SDD) -- (FR);
+%
+	\path [line,dashed,cyan!40] (FSC) -- (Hydro);
+	\draw [->,line width=0.5mm,dashed,cyan!40] (EDD) to [bend left=15] (Hydro);
+	\draw [->,line width=0.5mm,cyan!40] (DD) to [bend left=25] (Hydro);
+	\draw [->,line width=0.5mm,dashed,cyan!40] (SDD) to [bend right=25] (Hydro);
+
+	\draw [->,line width=0.5mm] (FR) to  (FRC);
+	\draw [->,line width=0.5mm] (FR) to (FRP);
+	\draw [->,line width=0.5mm] (FRC) to  (Obs);
+	\draw [->,line width=0.5mm] (FRP) to (Obs);
+\end{tikzpicture}
+\end{center}
